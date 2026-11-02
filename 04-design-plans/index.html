@@ -1,0 +1,2166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vantage Suite Plans</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Interactive 3D model, scaled 2D drawings, build-up details and spec sheet for the Perch, Lodge and Summit rooftop sauna suites.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: one 1180px column of "sheets". A sticky control bar (model, units, theme) drives the 3D model,
+   the 2D drawings and the spec sheet from one data object. Drawings sit on paper-toned surfaces with
+   title blocks, the way a design package reads; prose sections stay on the Birch ground. */
+:root {
+  --bg: #F4EFE6;             /* Birch */
+  --surface: #FBF8F2;        /* sheet paper */
+  --surface-2: #EAE3D6;
+  --fg: #1F1D1B;             /* Charcoal */
+  --fg-2: #5E5751;
+  --fg-3: #8A827A;
+  --line: rgba(31, 29, 27, .14);
+  --line-strong: rgba(31, 29, 27, .32);
+  --accent: #C8552B;         /* Ember */
+  --accent-strong: #B04A22;
+  --accent-text: #A84520;    /* AA on Birch */
+  --accent-soft: rgba(200, 85, 43, .10);
+  --on-accent: #FFF8F1;
+  --cool: #DCE6E8;           /* Steam */
+  --cool-text: #3E5B66;
+  --cedar: #8A5A3C;
+  --aspen: #D9BE95;          /* thermo-aspen in drawings */
+  --aspen-line: #9B7A52;
+  --steel: #6B6F74;
+  --steel-2: #4A4E53;
+  --wall: #CFC6B8;           /* wall hatch ground */
+  --glass: rgba(90, 150, 175, .22);
+  --glass-line: #4E8197;
+  --water: rgba(70, 140, 180, .28);
+  --tint: #4A3F33;
+  --glass-out: rgba(43, 39, 34, .84);
+  --paper-grid: rgba(31, 29, 27, .06);
+  --ok: #3F7A4E;
+  --shadow: 0 1px 2px rgba(31, 29, 27, .05), 0 14px 36px rgba(31, 29, 27, .08);
+  --bar-bg: rgba(244, 239, 230, .88);
+  --font-display: "Fraunces", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F1A24;           /* Night */
+    --surface: #162330;
+    --surface-2: #1D2B39;
+    --fg: #EDE7DC;
+    --fg-2: #A9B1B7;
+    --fg-3: #7D878F;
+    --line: rgba(220, 230, 232, .14);
+    --line-strong: rgba(220, 230, 232, .34);
+    --accent: #C8552B;
+    --accent-strong: #C8552B;
+    --accent-text: #E8744A;
+    --accent-soft: rgba(200, 85, 43, .16);
+    --on-accent: #0F1A24;
+    --cool: #13212B;
+    --cool-text: #9FBCC7;
+    --cedar: #A8714C;
+    --aspen: #8C6E47;
+    --aspen-line: #C9A878;
+    --steel: #8E959C;
+    --steel-2: #B3BAC1;
+    --wall: #3A4652;
+    --glass: rgba(120, 190, 220, .22);
+    --glass-line: #7FB7CC;
+    --water: rgba(90, 170, 215, .3);
+    --tint: #B9A58C;
+    --glass-out: rgba(18, 16, 14, .86);
+    --paper-grid: rgba(220, 230, 232, .06);
+    --ok: #7FB58C;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 14px 36px rgba(0, 0, 0, .35);
+    --bar-bg: rgba(15, 26, 36, .86);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0F1A24;
+  --surface: #162330;
+  --surface-2: #1D2B39;
+  --fg: #EDE7DC;
+  --fg-2: #A9B1B7;
+  --fg-3: #7D878F;
+  --line: rgba(220, 230, 232, .14);
+  --line-strong: rgba(220, 230, 232, .34);
+  --accent: #C8552B;
+  --accent-strong: #C8552B;
+  --accent-text: #E8744A;
+  --accent-soft: rgba(200, 85, 43, .16);
+  --on-accent: #0F1A24;
+  --cool: #13212B;
+  --cool-text: #9FBCC7;
+  --cedar: #A8714C;
+  --aspen: #8C6E47;
+  --aspen-line: #C9A878;
+  --steel: #8E959C;
+  --steel-2: #B3BAC1;
+  --wall: #3A4652;
+  --glass: rgba(120, 190, 220, .22);
+  --glass-line: #7FB7CC;
+  --water: rgba(90, 170, 215, .3);
+  --tint: #B9A58C;
+  --glass-out: rgba(18, 16, 14, .86);
+  --paper-grid: rgba(220, 230, 232, .06);
+  --ok: #7FB58C;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 14px 36px rgba(0, 0, 0, .35);
+  --bar-bg: rgba(15, 26, 36, .86);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 96px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bar-bg); }
+h1, h2, h3, h4 { margin: 0; font-weight: 400; text-wrap: balance; }
+p { margin: 0; }
+a { color: var(--accent-text); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.eyebrow { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--fg-2); font-weight: 500; }
+.h1 { font-family: var(--font-display); font-size: clamp(2rem, 4.6vw, 3.4rem); line-height: 1.05; font-variation-settings: "opsz" 96; font-weight: 400; letter-spacing: -.01em; }
+.h1 em { font-style: italic; font-weight: 300; color: var(--accent-text); }
+.h2 { font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2.2rem); line-height: 1.1; font-variation-settings: "opsz" 72; }
+.lede { font-size: 1.08rem; color: var(--fg-2); max-width: 44rem; }
+.muted { color: var(--fg-2); }
+.small { font-size: 14px; }
+.tnum { font-variant-numeric: tabular-nums; }
+
+/* Masthead */
+.mast { padding-block: 40px 20px; display: grid; gap: 14px; }
+.mast .title-row { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 10px 24px; }
+.brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-size: 1.15rem; font-variation-settings: "opsz" 48; }
+.brand .mark { width: 22px; height: 22px; border-radius: 50%; background: var(--accent); box-shadow: inset 0 0 0 4px var(--bg), inset 0 0 0 5px var(--accent); }
+.pkg-meta { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: var(--fg-2); font-variant-numeric: tabular-nums; }
+.pkg-meta b { color: var(--fg); font-weight: 500; }
+
+/* Sticky control bar */
+.bar {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+  background: var(--bar-bg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+}
+.bar .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; padding-block: 10px; }
+.bar .grow { flex: 1 1 auto; }
+.seg { display: inline-flex; border: 1px solid var(--line-strong); border-radius: 999px; padding: 3px; gap: 2px; background: var(--surface); }
+.seg button {
+  border: 0; background: transparent; border-radius: 999px; padding: 6px 14px; cursor: pointer;
+  font-size: 14px; font-weight: 500; color: var(--fg-2); line-height: 1.2; white-space: nowrap;
+}
+.seg button[aria-pressed="true"] { background: var(--fg); color: var(--bg); }
+.seg.models button[aria-pressed="true"] { background: var(--accent-strong); color: var(--on-accent); }
+.seg-label { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--fg-2); margin-right: 8px; }
+.ctl { display: inline-flex; align-items: center; }
+.icon-btn {
+  border: 1px solid var(--line-strong); background: var(--surface); border-radius: 999px; width: 38px; height: 38px;
+  display: inline-grid; place-items: center; cursor: pointer; color: var(--fg);
+}
+.icon-btn svg { width: 18px; height: 18px; }
+.icon-btn .sun, :root[data-theme="dark"] .icon-btn .moon { display: none; }
+:root[data-theme="dark"] .icon-btn .sun { display: block; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .icon-btn .moon { display: none; }
+  :root:not([data-theme="light"]) .icon-btn .sun { display: block; }
+}
+
+/* Model summary strip */
+.model-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px 24px; padding-block: 22px 6px; }
+.model-strip div { border-top: 1px solid var(--line); padding-top: 8px; }
+.model-strip dt { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--fg-2); }
+.model-strip dd { margin: 2px 0 0; font-family: var(--font-display); font-size: 1.35rem; line-height: 1.15; font-variation-settings: "opsz" 48; font-variant-numeric: tabular-nums; }
+.model-strip dd small { font-family: var(--font-body); font-size: 13px; color: var(--fg-2); display: block; }
+
+/* Sections */
+section.block { padding-block: 44px; border-top: 1px solid var(--line); }
+section.block > .wrap > header { display: grid; gap: 8px; margin-bottom: 22px; max-width: 52rem; }
+.sheet-no { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-text); font-weight: 600; }
+
+/* 3D viewer */
+.viewer-shell { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); }
+.viewer-tools { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+.viewer-tools .group { display: inline-flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.viewer-tools .group-label { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--fg-2); margin-right: 4px; }
+.chip-btn {
+  border: 1px solid var(--line-strong); background: transparent; border-radius: 999px; padding: 5px 12px; cursor: pointer;
+  font-size: 13.5px; font-weight: 500; color: var(--fg); line-height: 1.2;
+}
+.chip-btn[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.chip-btn.toggle[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent-text); border-color: var(--accent); }
+.stage { position: relative; height: clamp(320px, 60vh, 680px); max-height: 60vh; width: 100%; background: var(--cool); }
+.stage canvas { display: block; width: 100%; height: 100%; }
+.stage .labels { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.stage .labels > div { pointer-events: none; }
+.dim-label {
+  font: 500 12px/1.2 var(--font-body); font-variant-numeric: tabular-nums; color: #1F1D1B; background: rgba(251, 248, 242, .92);
+  border: 1px solid rgba(31, 29, 27, .3); border-radius: 4px; padding: 2px 6px; white-space: nowrap;
+}
+.layer-label { font: 500 12px/1.2 var(--font-body); color: #FFF8F1; background: rgba(31, 29, 27, .78); border-radius: 4px; padding: 3px 8px; white-space: nowrap; letter-spacing: .02em; }
+.stage .fallback { position: absolute; inset: 0; display: grid; place-items: center; padding: 24px; text-align: center; background: var(--surface); color: var(--fg-2); }
+.stage .fallback p { max-width: 36rem; }
+.stage .fallback b { color: var(--fg); display: block; font-family: var(--font-display); font-size: 1.3rem; font-weight: 400; margin-bottom: 6px; }
+.stage .loading { position: absolute; left: 12px; bottom: 10px; font-size: 12px; color: var(--fg-2); background: var(--surface); border-radius: 6px; padding: 3px 8px; }
+.viewer-foot { display: flex; flex-wrap: wrap; gap: 6px 20px; padding: 10px 12px; font-size: 13px; color: var(--fg-2); border-top: 1px solid var(--line); }
+.viewer-foot b { color: var(--fg); font-weight: 500; }
+
+/* Drawing sheets */
+.sheets { display: grid; gap: 28px; }
+.sheet { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); overflow: hidden; }
+.sheet .drawing { overflow-x: auto; padding: 18px 14px 8px; background-image: linear-gradient(var(--paper-grid) 1px, transparent 1px), linear-gradient(90deg, var(--paper-grid) 1px, transparent 1px); background-size: 24px 24px; }
+.sheet svg { display: block; max-width: 100%; height: auto; margin: 0 auto; color: var(--fg); font-family: var(--font-body); }
+.sheet figure { margin: 0; }
+.sheet figcaption { padding: 0 16px 12px; font-size: 14px; color: var(--fg-2); max-width: 70rem; }
+.title-block { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); border-top: 1px solid var(--line-strong); font-size: 12px; }
+.title-block div { padding: 8px 12px; border-right: 1px solid var(--line); min-width: 0; }
+.title-block div:last-child { border-right: 0; }
+.title-block span { display: block; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--fg-2); }
+.title-block b { font-weight: 500; font-variant-numeric: tabular-nums; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; padding: 10px 16px 14px; font-size: 13px; color: var(--fg-2); }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend i { display: inline-block; width: 22px; height: 12px; border: 1px solid var(--line-strong); }
+.legend i.wall { background: repeating-linear-gradient(45deg, var(--wall) 0 3px, transparent 3px 6px); }
+.legend i.aspen { background: var(--aspen); }
+.legend i.glass { background: var(--glass); border-color: var(--glass-line); }
+.legend i.steel { background: var(--steel); }
+.legend i.water { background: var(--water); border-color: var(--glass-line); }
+.legend i.dash { border: 0; border-top: 1.5px dashed currentColor; height: 0; }
+.legend i.accent { background: var(--accent); border-color: var(--accent); }
+.legend i.cool { background: var(--cool); }
+.legend i.tint { background: var(--glass-out); }
+
+/* SVG drawing classes (page CSS applies to inline SVG) */
+.d-wall { fill: var(--wall); stroke: currentColor; stroke-width: 1.2; }
+.d-wall-hatch { fill: url(#hatch); }
+.d-glass { fill: var(--glass); stroke: var(--glass-line); stroke-width: 1.4; }
+.d-aspen { fill: var(--aspen); stroke: var(--aspen-line); stroke-width: 1; }
+.d-steel { fill: var(--steel); stroke: var(--steel-2); stroke-width: 1; }
+.d-steel-light { fill: none; stroke: var(--steel); stroke-width: 1.2; }
+.d-water { fill: var(--water); stroke: var(--glass-line); stroke-width: 1; }
+.d-cool { fill: var(--cool); stroke: currentColor; stroke-width: .8; }
+.d-floor { fill: var(--surface-2); stroke: currentColor; stroke-width: .8; }
+.d-deck { fill: var(--surface-2); stroke: var(--aspen-line); stroke-width: 1; }
+.d-thin { fill: none; stroke: currentColor; stroke-width: .8; }
+.d-line { fill: none; stroke: currentColor; stroke-width: 1.2; }
+.d-heavy { fill: none; stroke: currentColor; stroke-width: 2; }
+.d-dash { fill: none; stroke: currentColor; stroke-width: 1; stroke-dasharray: 5 4; }
+.d-dot { fill: none; stroke: currentColor; stroke-width: 1; stroke-dasharray: 2 3; }
+.d-accent { fill: none; stroke: var(--accent); stroke-width: 1.4; }
+.d-accent-fill { fill: var(--accent); stroke: none; }
+.d-accent-soft { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1; }
+.d-dim { fill: none; stroke: currentColor; stroke-width: .8; }
+.d-text { font-size: 11.5px; fill: currentColor; }
+.d-text-sm { font-size: 10px; fill: currentColor; }
+.d-text-dim { font-size: 11px; fill: currentColor; font-variant-numeric: tabular-nums; font-weight: 500; }
+.d-text-room { font-size: 13px; fill: currentColor; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+.d-text-muted { font-size: 10.5px; fill: var(--fg-2); }
+.d-text-accent { font-size: 11px; fill: var(--accent-text); font-weight: 600; }
+.d-mask { fill: var(--surface); stroke: none; }
+.d-vent { fill: var(--surface); stroke: var(--accent); stroke-width: 1.4; }
+.d-sky { fill: var(--cool); }
+.d-tint { fill: none; stroke: var(--tint); stroke-width: 2.5; }
+.d-glass-out { fill: var(--glass-out); stroke: var(--glass-line); stroke-width: 1; }
+.d-text-on-glass { font-size: 10.5px; fill: #F4EFE6; }
+.d-ins { fill: none; stroke: var(--fg-3); stroke-width: 1; }
+
+/* Details */
+.details-grid { display: grid; grid-template-columns: 1fr; gap: 28px; }
+.details-grid .sheet { display: grid; grid-template-rows: auto 1fr auto; }
+.details-grid .why { padding: 14px 16px 18px; border-top: 1px solid var(--line); font-size: 15px; color: var(--fg-2); }
+.details-grid .why h3 { font-family: var(--font-body); font-weight: 600; font-size: 1rem; color: var(--fg); margin-bottom: 6px; }
+
+/* Spec table */
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); box-shadow: var(--shadow); }
+table.spec { border-collapse: collapse; width: 100%; min-width: 760px; font-size: 14.5px; }
+table.spec th, table.spec td { padding: 10px 14px; text-align: left; vertical-align: top; border-top: 1px solid var(--line); }
+table.spec thead th { border-top: 0; background: var(--surface-2); font-weight: 600; }
+table.spec thead th:not(:first-child) { font-family: var(--font-display); font-size: 1.35rem; font-weight: 500; font-variation-settings: "opsz" 48; }
+table.spec thead th small { display: block; font-family: var(--font-body); font-size: 12.5px; color: var(--fg-2); font-weight: 500; }
+table.spec th[scope="row"] { font-weight: 500; color: var(--fg-2); width: 24%; }
+table.spec th[scope="row"] small { display: block; font-weight: 400; font-size: 12px; color: var(--fg-3); }
+table.spec td { font-variant-numeric: tabular-nums; }
+table.spec tr.group th { background: var(--accent-soft); color: var(--accent-text); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; padding: 7px 14px; }
+table.spec td.sel { background: var(--accent-soft); }
+table.spec td small { display: block; color: var(--fg-2); font-size: 12.5px; }
+.spec-foot { font-size: 13.5px; color: var(--fg-2); margin-top: 12px; max-width: 70rem; }
+
+/* Open items */
+.open-items { border-left: 3px solid var(--accent); background: var(--surface); padding: 16px 18px; margin-top: 24px; display: grid; gap: 8px; }
+.open-items h3 { font-family: var(--font-body); font-weight: 600; font-size: 1rem; }
+.open-items ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; font-size: 14.5px; color: var(--fg-2); }
+
+/* Notes */
+.notes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 18px 28px; counter-reset: note; }
+.note { border-top: 1px solid var(--line-strong); padding-top: 12px; min-width: 0; }
+.note h3 { font-family: var(--font-display); font-size: 1.25rem; font-variation-settings: "opsz" 48; line-height: 1.2; margin-bottom: 6px; }
+.note p { font-size: 15px; color: var(--fg-2); }
+.note .src { display: block; margin-top: 6px; font-size: 12.5px; color: var(--fg-3); }
+.refs { columns: 2; column-gap: 32px; font-size: 13.5px; color: var(--fg-2); margin: 0; padding-left: 18px; }
+.refs li { break-inside: avoid; margin-bottom: 6px; }
+.refs a { word-break: break-word; }
+@media (max-width: 720px) { .refs { columns: 1; } }
+
+/* Footer */
+footer.site { border-top: 1px solid var(--line); padding-block: 28px 40px; font-size: 14px; color: var(--fg-2); }
+footer.site .wrap { display: grid; gap: 10px; }
+footer.site b { color: var(--fg); font-weight: 500; }
+
+@media (max-width: 640px) {
+  .seg button { padding: 6px 10px; font-size: 13px; }
+  .bar .wrap { gap: 8px 12px; }
+  .viewer-tools { padding: 8px 10px; }
+  .stage { height: clamp(300px, 60vh, 520px); }
+  .sheet .drawing { padding: 12px 8px 4px; }
+  .sheet .drawing svg { min-width: 680px; }   /* scroll sideways inside the sheet instead of shrinking the lettering */
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0ms !important; animation: none !important; }
+}
+</style>
+</head>
+<body>
+<header class="wrap mast">
+  <div class="title-row">
+    <div class="brand"><span class="mark" aria-hidden="true"></span>Vantage Sauna Co.</div>
+    <div class="pkg-meta"><span>Package <b>VSC-DP-02</b></span><span>Rev <b>P1</b></span><span>Issued <b>1 Nov 2026</b></span><span>Status <b>Design intent</b></span></div>
+  </div>
+  <h1 class="h1">Vantage rooftop sauna suites: <em>design plans</em></h1>
+  <p class="lede">One interactive package for investors, building owners and the engineers and sauna builders who will build it: a 3D model, scaled plans, sections and elevations, build-up details and the spec sheet for the Perch, Lodge and Summit suites, all driven from one set of dimensions.</p>
+</header>
+
+<div class="bar" role="region" aria-label="Model, units and theme">
+  <div class="wrap">
+    <div class="ctl"><span class="seg-label">Model</span>
+      <div class="seg models" role="group" aria-label="Choose model">
+        <button type="button" id="model-perch" data-model="perch" aria-pressed="false">Perch</button>
+        <button type="button" id="model-lodge" data-model="lodge" aria-pressed="true">Lodge</button>
+        <button type="button" id="model-summit" data-model="summit" aria-pressed="false">Summit</button>
+      </div>
+    </div>
+    <div class="ctl"><span class="seg-label">Units</span>
+      <div class="seg" role="group" aria-label="Choose units">
+        <button type="button" id="units-metric" data-units="metric" aria-pressed="true">Metric</button>
+        <button type="button" id="units-imperial" data-units="imperial" aria-pressed="false">Imperial</button>
+      </div>
+    </div>
+    <span class="grow"></span>
+    <button type="button" class="icon-btn" id="theme-toggle" aria-label="Switch between light and dark theme" title="Light / dark">
+      <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+      <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
+    </button>
+  </div>
+</div>
+
+<div class="wrap">
+  <dl class="model-strip" id="model-strip" aria-live="polite"></dl>
+</div>
+
+<section class="block" id="viewer-section">
+  <div class="wrap">
+    <header>
+      <div class="sheet-no">Sheet A-001 · 3D model</div>
+      <h2 class="h2">Interactive model on a typical rooftop</h2>
+      <p class="muted">Built to scale from the dimension data below. Drag to orbit, scroll or pinch to zoom, right-drag or two-finger drag to pan. The stair bulkhead, rooftop units and the 1.75 m figure are there for scale only.</p>
+    </header>
+    <div class="viewer-shell">
+      <div class="viewer-tools">
+        <div class="group" role="group" aria-label="Camera presets"><span class="group-label">View</span>
+          <button type="button" class="chip-btn" id="cam-exterior" data-cam="exterior" aria-pressed="true">Exterior</button>
+          <button type="button" class="chip-btn" id="cam-interior" data-cam="interior" aria-pressed="false">Interior</button>
+          <button type="button" class="chip-btn" id="cam-bench" data-cam="bench" aria-pressed="false">Bench view</button>
+          <button type="button" class="chip-btn" id="cam-plan" data-cam="plan" aria-pressed="false">Plan (top)</button>
+          <button type="button" class="chip-btn" id="cam-section" data-cam="section" aria-pressed="false">Section</button>
+        </div>
+        <div class="group" role="group" aria-label="Display toggles"><span class="group-label">Show</span>
+          <button type="button" class="chip-btn toggle" id="tgl-night" aria-pressed="false">Night</button>
+          <button type="button" class="chip-btn toggle" id="tgl-explode" aria-pressed="false">Exploded view</button>
+          <button type="button" class="chip-btn toggle" id="tgl-dims" aria-pressed="false">Dimensions</button>
+        </div>
+      </div>
+      <div class="stage" id="stage">
+        <div class="labels" id="stage-labels"></div>
+        <div class="loading" id="stage-loading">Loading Three.js r160 from jsDelivr…</div>
+        <div class="fallback" id="stage-fallback" hidden>
+          <p><b>The 3D model needs a network connection.</b>Three.js could not be loaded from cdn.jsdelivr.net, so the interactive model is unavailable here. The scaled drawings, build-up details and spec sheet below do not depend on it.</p>
+        </div>
+      </div>
+      <div class="viewer-foot" id="viewer-foot">
+        <span><b>Bench view</b> puts you on the upper bench, looking out through the glass.</span>
+        <span><b>Exploded view</b> separates base frame, floor, wall panels, benches and heater, and roof.</span>
+        <span><b>Section</b> cuts the module through the hot room so bench tiers and the heater read against the wall.</span>
+        <span><b>Night</b> dims the sky and shows the 2700 K bench lighting through the glass.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="drawings">
+  <div class="wrap">
+    <header>
+      <div class="sheet-no">Sheets A-101 to A-301 · 2D drawings</div>
+      <h2 class="h2">Plan, section and elevation</h2>
+      <p class="muted">Drawn to scale from the same dimension data as the model. Supply and extract vent positions, the drain, the door swing and the 1,525 mm (60 in) turning circle follow the research's ventilation and accessibility findings.</p>
+    </header>
+    <div class="sheets">
+      <article class="sheet" id="sheet-plan">
+        <figure>
+          <div class="drawing" id="plan-host"></div>
+          <figcaption id="plan-caption"></figcaption>
+        </figure>
+        <div class="legend">
+          <span><i class="wall"></i>Insulated wall panel</span>
+          <span><i class="glass"></i>Glass front, double-glazed; heavy line = tinted outer face</span>
+          <span><i class="aspen"></i>Thermo-aspen bench</span>
+          <span><i class="steel"></i>Heater with guard</span>
+          <span><i class="dash"></i>Base frame / items above the cut / linear drain / lift-out bench section</span>
+          <span><i class="accent"></i>S supply register (ceiling) · E extract (low) · FD floor drain</span>
+          <span><i class="cool"></i>Grating, pad or deck</span>
+        </div>
+        <div class="title-block" id="plan-title"></div>
+      </article>
+      <article class="sheet" id="sheet-section">
+        <figure>
+          <div class="drawing" id="section-host"></div>
+          <figcaption id="section-caption"></figcaption>
+        </figure>
+        <div class="legend">
+          <span><i class="wall"></i>Wall and roof panel (cut)</span>
+          <span><i class="glass"></i>Glass front (cut)</span>
+          <span><i class="aspen"></i>Thermo-aspen benches and lining</span>
+          <span><i class="steel"></i>Galvanized base frame · heater</span>
+          <span><i class="accent"></i>Air path: supply over heater, extract behind benches</span>
+          <span><i class="dash"></i>Headroom line (law of löyly)</span>
+        </div>
+        <div class="title-block" id="section-title"></div>
+      </article>
+      <article class="sheet" id="sheet-elevation">
+        <figure>
+          <div class="drawing" id="elevation-host"></div>
+          <figcaption id="elevation-caption"></figcaption>
+        </figure>
+        <div class="legend">
+          <span><i class="tint"></i>Privacy-tinted glass front</span>
+          <span><i class="wall"></i>Thermo-ash/pine vertical cladding</span>
+          <span><i class="steel"></i>Standing-seam roof · base frame</span>
+          <span><i class="aspen"></i>Privacy screen (Summit) · exterior lockers (Lodge)</span>
+        </div>
+        <div class="title-block" id="elevation-title"></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="details">
+  <div class="wrap">
+    <header>
+      <div class="sheet-no">Sheets A-501 and A-502 · Details</div>
+      <h2 class="h2">Wall panel and base frame build-up</h2>
+      <p class="muted">Shared across all three models. Layers are listed outside to inside; thicknesses are from the construction system spec.</p>
+    </header>
+    <div class="details-grid">
+      <article class="sheet">
+        <figure>
+          <div class="drawing" id="wall-host"></div>
+          <figcaption>Wall panel section, outside (left) to hot room (right). The foil is the only vapour barrier and sits on the warm side of the insulation; the 22 mm batten gap behind the aspen lets the foil face breathe.</figcaption>
+        </figure>
+        <div class="why">
+          <h3>Why this wall</h3>
+          <p>A sauna wall has to do three jobs a normal wall does not: survive 90 °C and steam on the inside, stay non-combustible on a roof, and dry out every day. The thermo-aspen lining and the ventilated batten gap handle the heat and moisture; the aluminium-foil barrier (rated at least 120 °C, 0.1 perm or less) stops vapour reaching the mineral wool; the fiber-cement sheathing and Euroclass A1 wool keep the envelope non-combustible from the outside in; and the ventilated cavity behind the thermally modified cladding lets rain and sun do no harm. At roughly 185 mm it is thicker than a garden sauna wall because a rooftop sees wind, cold and fire exposure a garden does not.</p>
+        </div>
+        <div class="title-block"><div><span>Sheet</span><b>A-501</b></div><div><span>Title</span><b>Wall panel build-up</b></div><div><span>Scale</span><b>1:2 at full width</b></div><div><span>Rev / status</span><b>P1 · Design intent</b></div></div>
+      </article>
+      <article class="sheet">
+        <figure>
+          <div class="drawing" id="base-host"></div>
+          <figcaption>Base frame on the roof, cut across the module: adjustable feet on rubber load-spreading pads over beam lines, ballast trays between the members, and the tie-back bracket to the parapet. Nothing penetrates the roof membrane.</figcaption>
+        </figure>
+        <div class="why">
+          <h3>Why this base</h3>
+          <p>A roof membrane warranty, a landlord's patience and a structural engineer's sign-off all depend on the same thing: no holes, and no surprise loads. The hot-dip galvanized frame spreads the module onto adjustable feet that sit on rubber pads directly over beams and columns, so point loads land where the structure already carries them. Wind is resisted by weight and friction (ballast trays with pavers sized per site from ASCE 7-16 Section 29.5.1, with GC<sub>r</sub> of 1.9 lateral and 1.5 uplift) plus bolted tie-back brackets to the parapet, which take the lateral load on tall, exposed roofs where ballast alone would be too heavy. The grating sub-floor drains to a floor drain that runs to the building's roof drain, so the membrane under the module stays dry and inspectable.</p>
+        </div>
+        <div class="title-block"><div><span>Sheet</span><b>A-502</b></div><div><span>Title</span><b>Base frame, pads and tie-back</b></div><div><span>Scale</span><b>1:10 at full width</b></div><div><span>Rev / status</span><b>P1 · Design intent</b></div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="spec">
+  <div class="wrap">
+    <header>
+      <div class="sheet-no">Sheet S-001 · Spec sheet</div>
+      <h2 class="h2">Specification, all three models</h2>
+      <p class="muted">Values are the v2 product spec. Electrical supplies are planning values for the building's electrical engineer; the final feeder size follows the listed heater's nameplate and NEC Articles 422 and 424. The selected model is highlighted.</p>
+    </header>
+    <div class="table-wrap">
+      <table class="spec" id="spec-table"></table>
+    </div>
+    <p class="spec-foot" id="spec-foot"></p>
+    <div class="open-items" id="open-items">
+      <h3>Open items for the engineer of record (v2.1 reconciliation)</h3>
+      <ol>
+        <li><b>Wall thickness vs footprint.</b> The v2 brief's exterior footprints and interior room sizes net to 100 mm walls in plan (for example Lodge: 3.0 m outside, 2.8 m inside). The specified wall panel totals about 185 mm. This package draws the plans at the brief's room sizes with 100 mm nominal walls and shows the full 185 mm panel on sheet A-501. Either the footprint grows by about 170 mm per axis or the hot rooms shrink; decide before production drawings.</li>
+        <li><b>Seat places vs headline ranges.</b> With both tiers along the back wall and the ADA transfer section at the end of the lower tier, the drawn layouts seat 5 / 7 / 11 at 600 mm per place, or 7 / 9 / 13 at 550 mm, against the headline 4–6 / 8–10 / 12–14. Either restate the Lodge and Summit counts or lengthen those hot rooms by about 0.6 m.</li>
+        <li><b>Summit effective volume.</b> The brief's ~37 m³ was computed on a 3.4 × 3.4 m hot room. With the v2 room of 3.4 × 4.0 × 2.4 m and the full-length 4.0 × 2.4 m glass front the Harvia rule gives about 44 m³; confirm that 2 × 12 kW listed units on one controller cover it outdoors, or step up to 2 × 12.5 kW or 1 × 20 kW plus 1 × 12 kW. Perch and Lodge recompute to about 17 and 27 m³ and stay inside their heaters' ratings.</li>
+        <li><b>Heater clearances.</b> The Perch hot room cannot give the recommended 900 mm from heater to foot bench; the layout follows the listed heater's minimum clearances and guard. Confirm against the chosen heater's installation manual.</li>
+        <li><b>Point loads.</b> Publish the foot point loads, ballast mass and tie-back reactions per model once the frame is detailed; this package shows positions only.</li>
+        <li><b>Lodge shower and lockers.</b> The shower now sits inside the changing vestibule, which needs a wet-room floor and a 4.5 kW tank water heater on its own circuit; the lockers move outside as weatherproof units beside the entry. Neither change is in the $139,000 from-price yet.</li>
+        <li><b>Tinted glass at night.</b> A reflective tint only hides the interior while it is brighter outside. Confirm the coating, the night lighting scene and whether hotels want an interior blind.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="notes">
+  <div class="wrap">
+    <header>
+      <div class="sheet-no">Design notes</div>
+      <h2 class="h2">Why the suites are drawn this way</h2>
+      <p class="muted">Short notes for the people who will build and sign off the suites, each grounded in the design research. Sources are named in brackets and listed below.</p>
+    </header>
+    <div class="notes">
+      <article class="note"><h3>Two tiers, facing out</h3><p>Both bench tiers run wall to wall along the back wall and face the glass, so every bather looks out over the parapet. The glass is the whole outside wall of the hot room; the two short side walls are solid thermo-aspen and carry the door and the heater corner, which keeps the heater off the glass and holds the heat. Seated on the upper bench, eyes are about 2.2 m above the roof surface, well above a typical 1 m parapet; the 3D model's Bench view shows that sightline.</p><span class="src">Kirami FinVision and Iglucraft Panoramic product pages; Trumpkin's Notes</span></article>
+      <article class="note"><h3>The law of löyly sets the bench height</h3><p>Bathers' feet should sit above the stones and out of the cold lower third of the room, and the sitting bench should be 1,100 to 1,200 mm below the ceiling. The upper bench is at 1,150 mm, which leaves 1,150 mm of headroom under the 2.3 m Perch ceiling and 1,250 mm under the 2.4 m Lodge and Summit ceilings. That is why the exterior heights are 2.9, 3.0 and 3.1 m rather than the 2.6 to 2.8 m of the first draft.</p><span class="src">Trumpkin's Notes; Finnleo construction guide (77 to 96 in ceilings)</span></article>
+      <article class="note"><h3>Thermo-aspen inside, thermally modified ash or pine outside</h3><p>Aspen is low in resin, stays cool to the touch and does not splinter; heat treatment makes it dimensionally stable in daily wet-dry cycles. Finnish guidance lists aspen, alder, abachi and linden for benches and advises against cedar in the hot room, which most North American kits still use. Kirami's commercial cabins use heat-treated aspen for the same reason.</p><span class="src">Trumpkin's Notes; Kirami FinVision product page</span></article>
+      <article class="note"><h3>Mechanical downdraft ventilation, and where the vents go</h3><p>An electric heater does not pull air through the room the way a wood stove does, so the supply sits in the ceiling above the heater and a mechanical extract sits low on the back wall behind the benches. Design rate 9 to 12 L/s per bather at the full bench count: 54 to 72 L/s for Perch, 90 to 120 L/s for Lodge, 126 to 168 L/s for Summit. A CO₂ sensor (target below 700 ppm) drives the extract fan through Vantage Access.</p><span class="src">Trumpkin's Notes; Finnleo construction guide</span></article>
+      <article class="note"><h3>Privacy-tinted double glazing</h3><p>The front wall is a tempered, double-glazed insulated unit with a bronze-tinted reflective outer pane and a low-iron inner pane in a thermally broken frame. By day the outer coating reads as a dark mirror from the roof while bathers see out. After dark, with the lights on inside, the effect reverses, so the night lighting scene keeps the hot room dim and an interior blind is an option. Harvia's sizing rule adds 1.2 m³ of heater volume for every square metre of glass, so the full-length front adds about 6, 8 and 12 m³; the brief's effective volumes of 16, 25 and 37 m³ recompute to about 17, 27 and 44 m³ for these rooms (open item 3).</p><span class="src">Harvia electric heater catalogue (sizing rule); Kirami and Iglucraft product pages</span></article>
+      <article class="note"><h3>A non-combustible envelope</h3><p>A rooftop structure is exposed to wind-driven embers, neighbouring plant and the fire officer's questions. Fiber-cement sheathing, Euroclass A1 mineral wool and a standing-seam steel roof make every layer outside the foil non-combustible, while the thermally modified cladding is a thin rain screen on a ventilated cavity. Hotel rooftop precedents such as Das Weitzer in Graz went the same way with metal slats.</p><span class="src">Research section 5, fire and clearances; Das Weitzer press release</span></article>
+      <article class="note"><h3>No roof penetrations</h3><p>Every bolt through a membrane is a leak and a warranty argument. The suites sit on a galvanized frame with ballast trays and parapet tie-back brackets instead. Wind on rooftop structures is checked to ASCE 7-16 Section 29.5.1 with GC<sub>r</sub> of 1.9 lateral and 1.5 uplift, which sets the ballast mass per site; the ballast is added to the roof load in the structural check.</p><span class="src">STRUCTURE magazine, Wind loads on non-building structures; Roofing Magazine, wind loading rooftop equipment</span></article>
+      <article class="note"><h3>Flat-pack first in dense cities</h3><p>In New York a crane lift means DOB crane permits and inspections, DOT street permits, a licensed rigger and off-hours premiums. Perch and Lodge therefore ship as elevator-sized panel kits (panels no larger than 2.3 × 1.2 m, heaviest piece under 120 kg) and are assembled on the roof in one to three days. The craneable module is optional for those two and required for Summit, whose hot room and plunge do not fit a service elevator.</p><span class="src">NYC DOB Cranes and Derricks permit page; Consigli, Hotel Indigo rooftop pool lift</span></article>
+      <article class="note"><h3>Accessibility is designed in, not added</h3><p>Where a building provides one sauna, that sauna must comply with the 2010 ADA Standards (241, 612). Each suite has an 813 mm (32 in) clear outward-swinging door with a 5 lbf opening force and a threshold no higher than 13 mm, and a 1,525 mm (60 in) turning circle inside the Lodge and Summit hot rooms (on the level landing for Perch, whose room is too narrow). The far end of the lower tier is a transfer section 1,070 mm long, 560 mm deep and 465 mm high, backed by the front of the upper tier; the lower-bench section beside it lifts out to give the 760 × 1,220 mm clear space at its end, as ADA 612.2 allows for a readily removable bench. The level route from the elevator to the door is the building's responsibility and a site-selection filter.</p><span class="src">US Access Board, Chapter 6: Saunas and Steam Rooms</span></article>
+      <article class="note"><h3>Listing the whole module to UL 875</h3><p>UL 875 Edition 10 (2024), Electric Dry-Bath Heaters, covers "a heater unit combined with a prefabricated rigid room". Vantage pursues that configuration with an NRTL (UL or ETL) so the module, not just the heater, carries the mark. Wiring follows NEC Articles 422 and 424 and the listing instructions under 110.3(B), with a disconnect within sight of the heater or lockable.</p><span class="src">UL Standards store, UL 875; Peak Saunas, 2023 NEC sauna requirements; Mike Holt forum threads</span></article>
+      <article class="note"><h3>The 90 °C cap and the hygiene cycle</h3><p>UL and ETL-listed heaters limit at about 194 °F (90 °C), so the controller caps the room there; the 100 °C figure in early drafts is not reachable with a listed unit. After the last booking of the day the controller holds 65 °C at the benches for 15 to 20 minutes to dry the wood before shutting down.</p><span class="src">Haven of Heat, HUUM HIVE review; Trumpkin's Notes</span></article>
+      <article class="note"><h3>Cold plunge sanitation and weight</h3><p>The Summit plunge holds 1,200 L, three times a consumer tub, so it needs a 2 HP commercial chiller, ozone or AOP sanitation and 20 µm filtration, benchmarked on facility units such as Blue Cube's C3X and Modular. Filled it weighs about 1,900 kg and is placed over primary structure, never mid-span, which is why it sits on the terrace deck at the module's end.</p><span class="src">Blue Cube Baths; Plunge technical specifications; Ice Barrel 500</span></article>
+      <article class="note"><h3>Bearing design basis</h3><p>The suites are designed for occupiable roofs rated 100 psf (4.8 kPa), the assembly and roof-garden live load in NYC Building Code Table 1607.1. Planning weight is at least 300 kg/m² dry, heavier than the 200 to 240 kg/m² of lighter insulated cabins on the market, plus ballast and about 90 kg per occupant. Roofs rated lower (60 psf residential decks, 20 psf ordinary roofs) need spreader frames or reinforcement, quoted as site preparation.</p><span class="src">NYC Building Code 2022, Chapter 16 (UpCodes); research section 4, weight per m²</span></article>
+      <article class="note"><h3>Seats, and how many people are comfortable</h3><p>Bench seats are counted at 600 mm per place along the two tiers, which run 2.2, 2.8 and 4.0 m from side wall to side wall. The Finnish comfort guideline of 3 m³ per bather gives 4, 6 and 11 at full comfort for the three hot rooms, which is why the spec sheet shows both numbers. The Lodge and Summit upper benches are longer than 1.95 m, so a bather can lie down.</p><span class="src">Trumpkin's Notes (Finnish RT card); Finnleo, 2 ft of upper bench per bather</span></article>
+    </div>
+    <h3 class="eyebrow" style="margin: 36px 0 12px">References (from research/sauna-design-research.md, accessed 1 Nov 2026)</h3>
+    <ol class="refs">
+      <li>Trumpkin's Notes on Building a Sauna, localmile.org: <a href="https://www.localmile.org/trumpkins-notes-on-building-a-sauna/" rel="noopener">localmile.org/trumpkins-notes-on-building-a-sauna</a></li>
+      <li>Finnleo, Sauna construction guide: <a href="https://finnleo.com/sauna-construction" rel="noopener">finnleo.com/sauna-construction</a></li>
+      <li>US Access Board, ADA guide Chapter 6: Saunas and Steam Rooms: <a href="https://www.access-board.gov/ada/guides/chapter-6-saunas/" rel="noopener">access-board.gov/ada/guides/chapter-6-saunas</a></li>
+      <li>NYC Building Code 2022, Chapter 16 Structural Design, Table 1607.1 (UpCodes): <a href="https://up.codes/viewer/new_york_city/nyc-building-code-2022/chapter/16/structural-design" rel="noopener">up.codes/viewer/new_york_city/nyc-building-code-2022/chapter/16</a></li>
+      <li>UL Standards, UL 875 Electric Dry-Bath Heaters, Edition 10 (2024): <a href="https://www.shopulstandards.com/ProductDetail.aspx?productId=UL875" rel="noopener">shopulstandards.com/ProductDetail.aspx?productId=UL875</a></li>
+      <li>STRUCTURE magazine, Wind Loads on Non-Building Structures (ASCE 7-16 29.5.1): <a href="https://www.structuremag.org/article/wind-loads-on-non-building-structures/" rel="noopener">structuremag.org/article/wind-loads-on-non-building-structures</a></li>
+      <li>Roofing Magazine, Wind loading rooftop equipment (search excerpt): <a href="https://roofingmagazine.com/wind-loading-rooftop-equipment/2/" rel="noopener">roofingmagazine.com/wind-loading-rooftop-equipment</a></li>
+      <li>NYC Department of Buildings, Cranes and Derricks permits: <a href="https://www.nyc.gov/site/buildings/property-or-business-owner/cranes-derricks-permit.page" rel="noopener">nyc.gov/site/buildings/.../cranes-derricks-permit.page</a></li>
+      <li>Harvia, Virta Pro 16 kW 240 V and Virta Pro 20 kW 208 V product pages: <a href="https://www.harvia.com/en-US/products/HL16U1UL/virta-pro-16-kw-240v-black" rel="noopener">harvia.com/.../virta-pro-16-kw-240v-black</a>, <a href="https://www.harvia.com/en-US/products/HL20U3UL/virta-pro-20-kw-208v-black" rel="noopener">harvia.com/.../virta-pro-20-kw-208v-black</a></li>
+      <li>Harvia electric sauna heaters catalogue, sizing rule (ArchiExpo, search excerpt): <a href="https://pdf.archiexpo.com/pdf/harvia/harvia-electric-sauna-heaters/9998-15185.html" rel="noopener">pdf.archiexpo.com/pdf/harvia/harvia-electric-sauna-heaters</a></li>
+      <li>Haven of Heat, HUUM HIVE review, UL temperature limit (search excerpt): <a href="https://havenofheat.com/blogs/sauna-guides/huum-hive-review" rel="noopener">havenofheat.com/blogs/sauna-guides/huum-hive-review</a></li>
+      <li>Peak Saunas, 2023 NEC sauna requirements (search excerpt): <a href="https://peaksaunas.com/blogs/wellness/2023-nec-sauna-requirements" rel="noopener">peaksaunas.com/blogs/wellness/2023-nec-sauna-requirements</a>; Mike Holt forum, sauna threads: <a href="https://forums.mikeholt.com/threads/sauna.137125/" rel="noopener">forums.mikeholt.com/threads/sauna.137125</a></li>
+      <li>Blue Cube Baths, C3 cold plunge and commercial packages: <a href="https://bluecubebaths.com/" rel="noopener">bluecubebaths.com</a></li>
+      <li>Plunge, technical specifications: <a href="https://plunge.com/pages/tech-specs" rel="noopener">plunge.com/pages/tech-specs</a>; Ice Barrel 500: <a href="https://icebarrel.com/products/ice-barrel-500" rel="noopener">icebarrel.com/products/ice-barrel-500</a></li>
+      <li>Kirami FinVision at John Lewis: <a href="https://www.johnlewis.com/kirami-finvision-electric-misty-sauna-large-black/p112040095" rel="noopener">johnlewis.com/kirami-finvision-...</a>; Iglucraft Panoramic at Recovery for Athletes: <a href="https://www.recoveryforathletes.com/products/iglucraft-panoramic-iglusauna" rel="noopener">recoveryforathletes.com/products/iglucraft-panoramic-iglusauna</a></li>
+      <li>Consigli, Hotel Indigo Lower East Side rooftop pool lift (search excerpt): <a href="https://www.consigli.com/project/hotel-indigo-lower-east-side-new-york" rel="noopener">consigli.com/project/hotel-indigo-lower-east-side-new-york</a>; Habitat Magazine, Rooftop Sauna: <a href="https://habitatmag.com/layout/set/amphtml/Publication-Content/Building-Operations/2016/2016-April/Rooftop-Sauna" rel="noopener">habitatmag.com/.../Rooftop-Sauna</a></li>
+      <li>Das Weitzer, rooftop sauna press release (Graz): <a href="https://hotelweitzer.com/content/uploads/2023/03/2b_Das_Weitzer_rooftop_sauna_press_release_EN_2023.pdf" rel="noopener">hotelweitzer.com/.../Das_Weitzer_rooftop_sauna_press_release_EN_2023.pdf</a></li>
+    </ol>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <p><b>Design intent package, not for construction.</b> Structural, electrical and fire-code review by licensed engineers is required for every site.</p>
+    <p>Imperial values are converted from the metric design values; the nominal 8′ × 10′, 10′ × 16′ and 12′ × 24′ footprints in marketing copy are rounded. © 2026 Vantage Sauna Co.</p>
+  </div>
+</footer>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<script>
+/* ==========================================================================================
+   VANTAGE SUITE DIMENSION DATA
+   ------------------------------------------------------------------------------------------
+   Every drawing on this page (3D model, plan, section, elevation), the model strip and the
+   spec sheet are generated from SHARED and MODELS. Edit here only; nothing is hard-coded in
+   the renderers. Units: metres, kilograms, kilowatts, litres, m3, USD. Source: BRIEF.md
+   section 2 (v2 spec, 2026-11-01). Axes: x = width (0 at the gutter / low-eave side),
+   z = depth (0 at the entry end), y = height (0 at the roof surface).
+   ========================================================================================== */
+const SHARED = {
+  wallPlan: 0.10,      // nominal wall thickness in plan: the brief's footprint minus its room sizes (open item 1)
+  wallPanel: 0.185,    // specified wall panel build-up, drawn on sheet A-501
+  glassT: 0.10,        // glazed front wall assembly, frame included
+  floorT: 0.10,        // aluminium grating sub-floor + non-slip composite decking
+  roofT: 0.18,         // roof build-up at the low eave: standing seam, deck, 90 mm wool, foil, battens, aspen ceiling
+  pitchDeg: 3,         // mono-pitch across the width, falling to the gutter at x = 0
+  frameH: 0.10,        // galvanized perimeter channel / cross member depth
+  padT: 0.02,          // rubber load-spreading pad; adjustable foot height is the residual to the brief's exterior H
+  memberSpacing: 1.2,  // max cross-member and foot spacing along the depth
+  bench: {             // thermo-aspen benches (brief: construction system)
+    upperH: 1.15, upperD: 0.70,     // upper (sitting) bench
+    lowerH: 0.70, lowerD: 0.50,     // lower bench
+    stepH: 0.35, stepD: 0.30, stepL: 0.60,
+    adaH: 0.465, adaL: 1.07, adaD: 0.56, // ADA transfer bench at the lower tier (450-480 high, 510-610 deep)
+    seatPitch: 0.60,                // bench seats at 600 mm per place
+    backrestH: 0.45
+  },
+  door: { clear: 0.813, leaf: 0.90, h: 2.00 },   // 32 in clear, outward swing, glass leaf
+  turning: 1.525,      // 60 in turning circle (ADA 612)
+  comfortVolume: 3,    // m3 per person, Finnish RT card
+  ventPerPerson: [9, 12],  // L/s per person, mechanical downdraft: supply above heater, extract low behind benches
+  tempCapC: 90,
+  wallLayers: [        // outside -> inside (brief: wall panel)
+    { n: 1, name: 'Thermally modified ash/pine cladding, vertical', short: 'Thermo-ash/pine cladding', sub: 'vertical boards', t: 0.020 },
+    { n: 2, name: 'Ventilated cavity', short: 'Ventilated cavity', t: 0.025, void: true },
+    { n: 3, name: 'Breathable membrane', short: 'Breathable membrane', t: 0.001, line: true },
+    { n: 4, name: 'Fiber-cement sheathing, non-combustible', short: 'Fiber-cement sheathing', sub: 'non-combustible', t: 0.012 },
+    { n: 5, name: 'Mineral-wool insulation, Euroclass A1', short: 'Mineral-wool insulation', sub: 'Euroclass A1', t: 0.090, wool: true },
+    { n: 6, name: 'Aluminium-foil vapour barrier, rated 120 °C or more, 0.1 perm or less', short: 'Foil vapour barrier', sub: '≥ 120 °C, ≤ 0.1 perm', t: 0.001, line: true, foil: true },
+    { n: 7, name: 'Ventilated batten gap', short: 'Ventilated batten gap', t: 0.022, void: true },
+    { n: 8, name: 'Thermo-aspen interior panelling', short: 'Thermo-aspen lining', t: 0.015, aspen: true }
+  ],
+  siteRoof: { x0: -12.4, x1: 5.4, z0: -6.0, z1: 12.0, parapetH: 1.0, parapetT: 0.3 } // typical rooftop in the 3D scene; the glass side faces the near parapet and the skyline
+};
+
+const MODELS = {
+  perch: {
+    key: 'perch', name: 'Perch', seats: '4–6', seatsMax: 6, comfort: 4,
+    ext: { w: 2.4, d: 3.0, h: 2.9 },                    // exterior footprint and height to the high eave
+    sauna: { w: 2.2, d: 2.2, ceiling: 2.3 },           // hot room, interior: w = back wall to glass, d = side wall to side wall
+    // Zones along the depth from the entry end; depths must sum to ext.d. In every model the glass front is the
+    // x = W outside wall over the sauna zone, both bench tiers run along the x = 0 back wall facing it, and the two
+    // cross walls either side of the sauna zone are its solid wood side walls (sauna door in the near one).
+    zones: [
+      { kind: 'porch', d: 0.60, name: 'Covered entry porch' },
+      { kind: 'wall',  d: 0.10 },                       // near side wall with the sauna door, facing the porch
+      { kind: 'sauna', d: 2.20, name: 'Sauna' },
+      { kind: 'wall',  d: 0.10 }                        // far side wall: heater corner
+    ],
+    heater: { n: 1, kwEach: 10.5, label: '1 × 10.5 kW', w: 0.45, d: 0.45, h: 0.95 },
+    entry: false,                                       // the sauna door is the entry
+    planLabels: { sauna: [1.72, 1.15], heater: 'above', clear: 'bench', fd: 'end' }, // plan label positions in hot-room (u, v) metres
+    effVol: 16, dryKg: 2300, ballastKg: 600, extraKg: 0, extraNote: '',
+    price: 78000, breakdown: [44000, 8000, 16000, 6000, 4000],
+    electrical: '208–240 V, 3-phase, 40 A feeder (planning value)',
+    water: 'None required; optional outdoor shower add-on needs a ½ in cold feed',
+    drain: 'Floor drain to the building roof drain',
+    delivery: 'Flat-pack panel kit (default), 1 elevator trip; craneable module optional',
+    days: '1–2 days', lead: '6–10 weeks',
+    fitout: [], lockers: null, extras: '',
+    shower: null, deck: null, plunge: null
+  },
+  lodge: {
+    key: 'lodge', name: 'Lodge', seats: '8–10', seatsMax: 10, comfort: 6,
+    ext: { w: 3.0, d: 4.8, h: 3.0 },
+    sauna: { w: 2.8, d: 2.8, ceiling: 2.4 },
+    zones: [
+      { kind: 'wall',  d: 0.10 },
+      { kind: 'vestibule', d: 1.60, name: 'Changing vestibule' },
+      { kind: 'wall',  d: 0.20, service: true },          // service partition = near side wall with the sauna door
+      { kind: 'sauna', d: 2.80, name: 'Sauna' },
+      { kind: 'wall',  d: 0.10 }                          // far side wall: heater corner
+    ],
+    heater: { n: 1, kwEach: 18, label: '1 × 18 kW', w: 0.60, d: 0.60, h: 1.05 },
+    entry: true,                                         // entry door in the end wall, in line with the sauna door
+    planLabels: { sauna: [1.62, 2.32], heater: 'left', clear: 'center', fd: 'start' },
+    effVol: 25, dryKg: 4500, ballastKg: 1000, extraKg: 0, extraNote: '',
+    price: 139000, breakdown: [82000, 11000, 26000, 9000, 11000],
+    electrical: '208–240 V, 3-phase, 60 A heater feeder plus a 30 A circuit for the shower water heater (planning values)',
+    water: '½ in cold feed to a 4.5 kW tank water heater for the indoor shower; drinking-water station',
+    drain: 'Floor drain and shower drain to the building roof drain',
+    delivery: 'Flat-pack panel kit (default), 2 elevator trips; craneable module optional',
+    days: '2–3 days', lead: '6–10 weeks',
+    // Changing-room fit-out in metres from the room's inner corner (x from the back wall, z from the entry side).
+    // wall: 'front' = entry-side wall, 'back' = wall shared with the sauna, 'side' = the x = W outside wall.
+    fitout: [
+      { kind: 'shower', name: 'Shower', x0: 0.00, x1: 0.90, z0: 0.00, z1: 0.90 },
+      { kind: 'bench', name: 'Bench', x0: 0.00, x1: 1.65, z0: 1.20, z1: 1.60, top: 0.45 },
+      { kind: 'hooks', x: 0.00, z0: 0.95, z1: 1.45 },
+      { kind: 'water', name: 'Water, first aid', wall: 'front', x0: 0.95, x1: 1.35 },
+      { kind: 'panel', name: 'Controller', wall: 'front', x0: 1.40, x1: 1.70 },
+      { kind: 'label', x: 2.15, z: 0.70 }
+    ],
+    lockers: { x0: 0.15, x1: 1.35, z0: -0.45, z1: -0.02, h: 1.8 },   // weatherproof exterior lockers by the entry (world metres)
+    extras: 'Shower inside the changing vestibule<br>Exterior lockers beside the entry',
+    shower: null, deck: null, plunge: null
+  },
+  summit: {
+    key: 'summit', name: 'Summit', seats: '12–14', seatsMax: 14, comfort: 11,
+    ext: { w: 3.6, d: 7.2, h: 3.1 },
+    sauna: { w: 3.4, d: 4.0, ceiling: 2.4 },
+    zones: [
+      { kind: 'wall',  d: 0.10 },
+      { kind: 'changing', d: 2.80, name: 'Changing room' },
+      { kind: 'wall',  d: 0.20, service: true },
+      { kind: 'sauna', d: 4.00, name: 'Sauna' },
+      { kind: 'wall',  d: 0.10 }
+    ],
+    heater: { n: 2, kwEach: 12, label: '2 × 12 kW', w: 0.50, d: 0.50, h: 1.00 },
+    entry: true,
+    planLabels: { sauna: [2.30, 0.80], heater: 'left', clear: 'center', fd: 'start' },
+    effVol: 37, dryKg: 8000, ballastKg: 1600, extraKg: 1900, extraNote: 'cold plunge, filled',
+    price: 249000, breakdown: [152000, 16000, 44000, 17000, 20000],
+    electrical: '208–240 V, 3-phase, 2 × 50 A heater feeders plus 20 A chiller circuit (planning values)',
+    water: '¾ in cold feed: plunge fill, outdoor shower, drinking-water station',
+    drain: 'Floor, shower and plunge drains to the building roof drain; plunge drain valved',
+    delivery: 'Craneable module (required); DOB crane permit and DOT street permit',
+    days: '4–6 days', lead: '10–14 weeks',
+    fitout: [
+      { kind: 'lockers', name: 'Lockers', x0: 0.00, x1: 1.40, z0: 0.00, z1: 0.40, top: 1.8 },
+      { kind: 'bench', name: 'Bench', x0: 0.00, x1: 0.40, z0: 0.60, z1: 2.70, top: 0.45 },
+      { kind: 'hooks', x: 0.00, z0: 0.80, z1: 2.55 },
+      { kind: 'water', name: 'Water, first aid', wall: 'back', x0: 0.55, x1: 0.95 },
+      { kind: 'panel', name: 'Controller', wall: 'back', x0: 1.05, x1: 1.35 }
+    ],
+    lockers: null,
+    extras: 'Outdoor shower on the terrace',
+    shower: { x: 2.60, z: 2.60, w: 0.90, d: 0.90, onDeck: true },
+    deck: { w: 3.6, d: 3.6 },                           // terrace deck beyond the far side wall
+    plunge: { x: 0.35, z: 0.90, w: 1.50, d: 1.00, depth: 0.80, litres: 1200, chillerHp: 2, rim: 0.12 }
+  }
+};
+
+/* ------------------------------------------------------------------------------------------
+   Derived geometry. layout(model) turns the data above into world-coordinate rectangles the
+   plan, section, elevation and 3D builders all consume. Room-local coordinates inside the
+   hot room: u across the width from the x = 0 wall, v from the back wall toward the glass.
+   ------------------------------------------------------------------------------------------ */
+function layout(m) {
+  const S = SHARED, wp = S.wallPlan, B = S.bench;
+  let zc = 0;
+  const zones = m.zones.map(zn => { const o = Object.assign({}, zn, { z0: zc, z1: zc + zn.d }); zc += zn.d; return o; });
+  const sauna = zones.find(z => z.kind === 'sauna');
+  const saunaIdx = zones.indexOf(sauna);
+  const rw = m.sauna.w, rd = m.sauna.d;
+  const W = m.ext.w, D = m.ext.d;
+  const rise = W * Math.tan(S.pitchDeg * Math.PI / 180);
+  const baseH = +(m.ext.h - S.floorT - m.sauna.ceiling - S.roofT - rise).toFixed(4);
+  const floorY = baseH + S.floorT;
+  const ceilY = floorY + m.sauna.ceiling;
+  const eaveLowY = ceilY + S.roofT;
+  const eaveHighY = eaveLowY + rise;
+  const far = !!m.entry;      // Lodge and Summit: the hot room lies beyond a changing room entered from the end wall
+  // Hot-room local coordinates: u from the back wall (x = 0 side, benches) toward the glass front (x = W side);
+  // v from the near side wall (sauna door) toward the far side wall (heaters).
+  const toWorld = (u, v) => ({ x: wp + u, z: sauna.z0 + v });
+  const rectW = (u0, u1, v0, v1) => {
+    const a = toWorld(u0, v0), b = toWorld(u1, v1);
+    return { x0: Math.min(a.x, b.x), x1: Math.max(a.x, b.x), z0: Math.min(a.z, b.z), z1: Math.max(a.z, b.z) };
+  };
+
+  // Benches: two tiers along the back wall, side wall to side wall, facing the glass. The ADA transfer section is
+  // the far end of the lower tier; the lower-tier section beside it lifts out to give the 760 x 1,220 mm clear floor
+  // at its end (ADA 903.2, with the 612.2 exception for a readily removable bench). The step sits by the door.
+  const lowerU0 = B.upperD, lowerU1 = B.upperD + B.lowerD;
+  const adaV0 = rd - B.adaL;
+  const clearFloor = { u0: B.upperD, u1: B.upperD + 1.22, v0: Math.max(0, adaV0 - 0.76), v1: adaV0 };
+  const stepV0 = 0.05, stepV1 = stepV0 + B.stepL;
+  const benches = [
+    { id: 'upper', name: 'Upper bench', u0: 0, u1: B.upperD, v0: 0, v1: rd, top: B.upperH, thick: 0.06, tier: 'upper' },
+    { id: 'lower', name: 'Lower bench', u0: lowerU0, u1: lowerU1, v0: 0, v1: clearFloor.v0, top: B.lowerH, thick: 0.05, tier: 'lower' },
+    { id: 'lowerRemovable', name: 'Lower bench, lift-out section', u0: lowerU0, u1: lowerU1, v0: clearFloor.v0, v1: adaV0, top: B.lowerH, thick: 0.05, tier: 'lower', removable: true },
+    { id: 'ada', name: 'ADA transfer section', u0: lowerU0, u1: lowerU0 + B.adaD, v0: adaV0, v1: rd, top: B.adaH, thick: 0.05, tier: 'ada' },
+    { id: 'step', name: 'Step', u0: lowerU1, u1: lowerU1 + B.stepD, v0: stepV0, v1: stepV1, top: B.stepH, thick: 0.04, tier: 'step', removable: stepV1 > clearFloor.v0 }
+  ].map(b => Object.assign(b, rectW(b.u0, b.u1, b.v0, b.v1)));
+  const bench = id => benches.find(b => b.id === id);
+  const clearFloorW = rectW(clearFloor.u0, clearFloor.u1, clearFloor.v0, clearFloor.v1);
+
+  // Heaters in the front corner against the far side wall: 150 mm off the glass, 100 mm off the wall, guarded.
+  const H = m.heater, heaters = [];
+  for (let i = 0; i < H.n; i++) {
+    const u1 = rw - 0.15 - i * (H.w + 0.10), u0 = u1 - H.w, v1 = rd - 0.10, v0 = v1 - H.d;
+    heaters.push(Object.assign({ id: 'heater' + i, u0, u1, v0, v1, h: H.h, kw: H.kwEach }, rectW(u0, u1, v0, v1)));
+  }
+  const hU = heaters.reduce((a, h) => a + (h.u0 + h.u1) / 2, 0) / heaters.length;
+  const hV = heaters.reduce((a, h) => a + (h.v0 + h.v1) / 2, 0) / heaters.length;
+  // Vents: supply register in the ceiling above the heaters; mechanical extract low on the back wall behind the benches.
+  const supply = Object.assign({ u: hU, v: hV, y: ceilY, size: 0.25 }, toWorld(hU, hV));
+  const extract = Object.assign({ u: 0, v: rd * 0.5, y: floorY + 0.15, size: 0.20 }, toWorld(0, rd * 0.5));
+  // Linear drain under the lower tier, falling to a floor drain just in front of it.
+  const drain = Object.assign({ u0: B.upperD + 0.18, u1: B.upperD + 0.28, v0: 0.25, v1: rd - 0.25 }, rectW(B.upperD + 0.18, B.upperD + 0.28, 0.25, rd - 0.25));
+  const floorDrain = toWorld(lowerU1 + 0.30, rd * 0.5);
+  // Doors: the sauna door is in the near side wall at the glass end and swings out; the entry door lines up with it.
+  const leaf = S.door.leaf, doorU0 = rw - leaf - 0.15;
+  const doorZone = zones[saunaIdx - 1];
+  const saunaDoor = { u0: doorU0, u1: doorU0 + leaf, x0: wp + doorU0, x1: wp + doorU0 + leaf, zWall: sauna.z0, wall: 'near', outward: -1, zone: doorZone };
+  const entryDoor = m.entry ? { x0: saunaDoor.x0, x1: saunaDoor.x1, zone: zones[0], outward: -1 } : null;
+
+  // Rooms as world rects.
+  const rooms = zones.filter(z => ['sauna', 'vestibule', 'changing', 'porch'].includes(z.kind)).map(z => ({
+    kind: z.kind, name: z.name, x0: z.kind === 'porch' ? 0 : wp, x1: z.kind === 'porch' ? W : W - wp, z0: z.z0, z1: z.z1,
+    w: z.kind === 'porch' ? W : W - 2 * wp, d: z.d
+  }));
+  // Walls as world rects (plan). The back wall runs the full depth; the x = W outside wall is glass over the hot room.
+  const glass = { kind: 'glass', x0: W - wp, x1: W, z0: sauna.z0, z1: sauna.z1 };
+  const walls = [
+    { kind: 'side', x0: 0, x1: wp, z0: 0, z1: D },
+    { kind: 'side', x0: W - wp, x1: W, z0: 0, z1: sauna.z0 },
+    { kind: 'side', x0: W - wp, x1: W, z0: sauna.z1, z1: D },
+    glass
+  ];
+  zones.forEach(z => { if (z.kind === 'wall') walls.push({ kind: z.service ? 'service' : 'cross', x0: 0, x1: W, z0: z.z0, z1: z.z1, zone: z }); });
+  const panes = Math.max(1, Math.ceil(rd / 1.4));
+  const mullionsZ = Array.from({ length: panes - 1 }, (_, i) => sauna.z0 + rd * (i + 1) / panes);
+  const openings = [{ x0: saunaDoor.x0, x1: saunaDoor.x1, zone: doorZone, kind: 'sauna' }];
+  if (entryDoor) openings.push({ x0: entryDoor.x0, x1: entryDoor.x1, zone: zones[0], kind: 'entry' });
+  // Turning circle (ADA 612.3): inside the hot room in front of the benches, clear of the step and the heater guard.
+  // The Perch room is too narrow, so its circle is on the level landing outside the porch.
+  const tr = S.turning / 2;
+  let turning;
+  if (far) {
+    const guardV0 = Math.min(...heaters.map(h => h.v0)) - 0.08;
+    const c = toWorld(rw - tr - 0.01, Math.min(guardV0 - tr - 0.02, rd / 2));
+    turning = { cx: c.x, cz: c.z, r: tr, where: 'hot room, in front of the benches', inside: true };
+  } else {
+    turning = { cx: (saunaDoor.x0 + saunaDoor.x1) / 2, cz: -tr + 0.25, r: tr, where: 'level landing outside the porch', inside: false };
+  }
+  // Base frame: cross members and feet.
+  const n = Math.ceil((D - 0.1) / S.memberSpacing) + 1;
+  const memberZ = Array.from({ length: n }, (_, i) => 0.05 + (D - 0.10) * i / (n - 1));
+  const feetX = W >= 3.0 ? [0.05, W / 2, W - 0.05] : [0.05, W - 0.05];
+  const feet = []; memberZ.forEach(z => feetX.forEach(x => feet.push({ x, z })));
+  // Changing-room fit-out from the model data (room-relative metres) to world rects.
+  const fitout = [];
+  const fr = rooms.find(rm => rm.kind === 'vestibule' || rm.kind === 'changing');
+  let roomLabel = null;
+  if (fr) (m.fitout || []).forEach(f => {
+    const o = Object.assign({}, f), deep = f.kind === 'water' ? 0.12 : 0.08;
+    if (f.kind === 'label') { roomLabel = { x: fr.x0 + f.x, z: fr.z0 + f.z }; return; }
+    if (f.kind === 'hooks') { o.x = fr.x0 + f.x; o.z0 = fr.z0 + f.z0; o.z1 = fr.z0 + f.z1; }
+    else if (f.wall === 'front') { o.x0 = fr.x0 + f.x0; o.x1 = fr.x0 + f.x1; o.z0 = fr.z0; o.z1 = fr.z0 + deep; }
+    else if (f.wall === 'back') { o.x0 = fr.x0 + f.x0; o.x1 = fr.x0 + f.x1; o.z0 = fr.z1 - deep; o.z1 = fr.z1; }
+    else if (f.wall === 'side') { o.x0 = fr.x1 - deep; o.x1 = fr.x1; o.z0 = fr.z0 + f.z0; o.z1 = fr.z0 + f.z1; }
+    else { o.x0 = fr.x0 + f.x0; o.x1 = fr.x0 + f.x1; o.z0 = fr.z0 + f.z0; o.z1 = fr.z0 + f.z1; }
+    fitout.push(o);
+  });
+  const lockers = m.lockers ? Object.assign({}, m.lockers) : null;
+  // Site pieces: shower pad, deck, plunge (world rects), level landing outside the entry.
+  const deck = m.deck ? { x0: 0, x1: m.deck.w, z0: D, z1: D + m.deck.d, w: m.deck.w, d: m.deck.d } : null;
+  const plunge = m.plunge ? { x0: m.plunge.x, x1: m.plunge.x + m.plunge.w, z0: D + m.plunge.z, z1: D + m.plunge.z + m.plunge.d, depth: m.plunge.depth, rim: m.plunge.rim, litres: m.plunge.litres } : null;
+  const chiller = m.plunge ? { x0: plunge.x1 + 0.15, x1: plunge.x1 + 0.75, z0: plunge.z0, z1: plunge.z0 + 0.45, h: 0.8 } : null;
+  const shower = m.shower ? { x0: m.shower.x, x1: m.shower.x + m.shower.w, z0: (m.shower.onDeck ? D : 0) + m.shower.z, z1: (m.shower.onDeck ? D : 0) + m.shower.z + m.shower.d, onDeck: !!m.shower.onDeck } : null;
+  const entryX = entryDoor ? entryDoor : saunaDoor;
+  const landing = { x0: entryX.x0 - 0.40, x1: entryX.x1 + 0.40, z0: -1.60, z1: 0, note: 'Level landing by building: raised pavers or 1:12 ramp' };
+  // Seats: 600 mm per place on each tier; the ADA transfer section counts as one place.
+  const seats = Math.floor(rd / B.seatPitch) + Math.floor(adaV0 / B.seatPitch) + 1;
+  const hotVolume = rw * rd * m.sauna.ceiling;
+  const glassArea = rd * m.sauna.ceiling;
+  const footprint = W * D;
+  return {
+    m, W, D, H: m.ext.h, wp, rw, rd, rise, baseH, feetH: baseH - S.frameH - S.padT, floorY, ceilY, eaveLowY, eaveHighY,
+    zones, sauna, far, toWorld, rectW, benches, bench, heaters, supply, extract, drain, floorDrain, saunaDoor, entryDoor, openings,
+    rooms, walls, glass, mullionsZ, turning, memberZ, feetX, feet, fitout, roomLabel, lockers, deck, plunge, chiller, shower, landing,
+    clearFloor: clearFloorW, seats, hotVolume, glassArea, footprint,
+    ventRange: [m.seatsMax * S.ventPerPerson[0], m.seatsMax * S.ventPerPerson[1]]
+  };
+}
+
+/* ------------------------------------------------------------------------------------------
+   Units and formatting. Every element carrying data-m / data-kg / data-m3 / data-l / data-kgm2
+   / data-lps is rewritten by refreshUnits() when the units toggle changes.
+   ------------------------------------------------------------------------------------------ */
+const STATE = { units: 'metric', model: 'lodge', theme: null };
+const listeners = {};
+function on(ev, fn) { (listeners[ev] = listeners[ev] || []).push(fn); }
+function emit(ev, data) { (listeners[ev] || []).forEach(fn => { try { fn(data); } catch (e) { console.error(e); } }); }
+const nf0 = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 });
+const nf1 = new Intl.NumberFormat('en-US', { maximumFractionDigits: 1 });
+function ftin(m) {
+  const inches = m * 39.37007874;
+  let ft = Math.floor(inches / 12);
+  let rem = Math.round((inches - ft * 12) * 4) / 4;
+  if (rem >= 12) { ft += 1; rem -= 12; }
+  const whole = Math.floor(rem), frac = { 0: '', 0.25: '¼', 0.5: '½', 0.75: '¾' }[+(rem - whole).toFixed(2)] || '';
+  if (m < 1) { const tot = Math.round(inches * 4) / 4; const w = Math.floor(tot); const f = { 0: '', 0.25: '¼', 0.5: '½', 0.75: '¾' }[+(tot - w).toFixed(2)] || ''; return `${w === 0 && f ? '' : w}${f}″`; }
+  return `${ft}′ ${whole}${frac}″`;
+}
+function fmtLen(m) {           // prose and tables: "2.4 m" / "700 mm" or feet-inches
+  if (STATE.units === 'imperial') return ftin(m);
+  return m < 1 ? `${nf0.format(Math.round(m * 1000))} mm` : `${+m.toFixed(2)} m`;
+}
+function fmtDim(m) {           // drawing dimension strings: millimetres (units in the title block) or feet-inches
+  if (STATE.units === 'imperial') return ftin(m);
+  return nf0.format(Math.round(m * 1000));
+}
+function fmtMass(kg) { return STATE.units === 'imperial' ? `${nf0.format(Math.round(kg * 2.20462 / 100) * 100)} lb` : `${nf0.format(kg)} kg`; }
+function fmtVol(m3) { return STATE.units === 'imperial' ? `${nf0.format(Math.round(m3 * 35.3147))} ft³` : `${nf1.format(m3)} m³`; }
+function fmtLitres(l) { return STATE.units === 'imperial' ? `${nf0.format(Math.round(l * 0.264172))} gal` : `${nf0.format(l)} L`; }
+function fmtArea(m2) { return STATE.units === 'imperial' ? `${nf0.format(Math.round(m2 * 10.7639))} ft²` : `${nf1.format(m2)} m²`; }
+function fmtPressure(kgm2) { return STATE.units === 'imperial' ? `${nf0.format(Math.round(kgm2 * 0.204816))} psf` : `${nf0.format(Math.round(kgm2))} kg/m² (${nf1.format(kgm2 * 0.00980665)} kPa)`; }
+function fmtFlow(lps) { return STATE.units === 'imperial' ? `${nf0.format(Math.round(lps * 2.11888))} CFM` : `${nf0.format(lps)} L/s`; }
+function fmtFlowRange(a, b) { return STATE.units === 'imperial' ? `${nf0.format(Math.round(a * 2.11888))}–${nf0.format(Math.round(b * 2.11888))} CFM` : `${nf0.format(a)}–${nf0.format(b)} L/s`; }
+const spanFlowRange = (a, b) => `<span data-lps-range="${a},${b}">${fmtFlowRange(a, b)}</span>`;
+const tFlowRange = (a, b) => `<tspan data-lps-range="${a},${b}">${fmtFlowRange(a, b)}</tspan>`;
+function refreshUnits(root) {
+  const r = root || document;
+  r.querySelectorAll('[data-m]').forEach(el => { el.textContent = (el.dataset.fmt === 'dim' ? fmtDim : fmtLen)(+el.dataset.m); });
+  r.querySelectorAll('[data-kg]').forEach(el => { el.textContent = fmtMass(+el.dataset.kg); });
+  r.querySelectorAll('[data-m3]').forEach(el => { el.textContent = fmtVol(+el.dataset.m3); });
+  r.querySelectorAll('[data-l]').forEach(el => { el.textContent = fmtLitres(+el.dataset.l); });
+  r.querySelectorAll('[data-m2]').forEach(el => { el.textContent = fmtArea(+el.dataset.m2); });
+  r.querySelectorAll('[data-kgm2]').forEach(el => { el.textContent = fmtPressure(+el.dataset.kgm2); });
+  r.querySelectorAll('[data-lps]').forEach(el => { el.textContent = fmtFlow(+el.dataset.lps); });
+  r.querySelectorAll('[data-lps-range]').forEach(el => { const [a, b] = el.dataset.lpsRange.split(',').map(Number); el.textContent = fmtFlowRange(a, b); });
+  r.querySelectorAll('[data-units-label]').forEach(el => { el.textContent = STATE.units === 'imperial' ? 'ft-in' : 'mm'; });
+}
+// Inline span helpers for generated HTML and SVG text.
+const spanLen = (m, cls) => `<span${cls ? ` class="${cls}"` : ''} data-m="${m}">${fmtLen(m)}</span>`;
+const tLen = (m) => `<tspan data-m="${m}" data-fmt="dim">${fmtDim(m)}</tspan>`;
+/* ------------------------------------------------------------------------------------------
+   2D drawings. Each renderer returns an SVG string drawn to scale (S px per metre) from
+   layout(model). Strokes use currentColor; fills use the page's colour tokens through the
+   d-* classes so the sheets read in both themes.
+   ------------------------------------------------------------------------------------------ */
+const r2 = v => Math.round(v * 100) / 100;
+function svgDefs(id) {
+  return `<defs>
+  <pattern id="hatch-${id}" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="currentColor" stroke-width=".7" opacity=".55"/></pattern>
+  <pattern id="wool-${id}" patternUnits="userSpaceOnUse" width="10" height="8"><path d="M0 4 Q2.5 0 5 4 T10 4" fill="none" stroke="currentColor" stroke-width=".7" opacity=".6"/></pattern>
+  <pattern id="grate-${id}" patternUnits="userSpaceOnUse" width="5" height="5"><rect width="5" height="5" fill="none"/><line x1="0" y1="2.5" x2="5" y2="2.5" stroke="currentColor" stroke-width=".5" opacity=".5"/><line x1="2.5" y1="0" x2="2.5" y2="5" stroke="currentColor" stroke-width=".5" opacity=".5"/></pattern>
+  <pattern id="conc-${id}" patternUnits="userSpaceOnUse" width="12" height="12"><circle cx="3" cy="4" r=".8" fill="currentColor" opacity=".5"/><circle cx="9" cy="9" r=".8" fill="currentColor" opacity=".5"/><path d="M6 1 l2 2 M1 9 l2 1" stroke="currentColor" stroke-width=".6" opacity=".5"/></pattern>
+  <marker id="arr-${id}" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="currentColor"/></marker>
+  <marker id="arrA-${id}" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--accent)"/></marker>
+</defs>`;
+}
+function dimH(id, x1, x2, y, m, opt = {}) {
+  const ext = opt.from !== undefined ? `<line class="d-dim" x1="${r2(x1)}" y1="${r2(opt.from)}" x2="${r2(x1)}" y2="${r2(y + (opt.from < y ? 3 : -3))}"/><line class="d-dim" x1="${r2(x2)}" y1="${r2(opt.from)}" x2="${r2(x2)}" y2="${r2(y + (opt.from < y ? 3 : -3))}"/>` : '';
+  const ty = opt.below ? y + 13 : y - 4;
+  const txt = opt.text !== undefined ? opt.text : tLen(m);
+  return `<g>${ext}<line class="d-dim" x1="${r2(x1)}" y1="${r2(y)}" x2="${r2(x2)}" y2="${r2(y)}" marker-start="url(#arr-${id})" marker-end="url(#arr-${id})"/><text class="d-text-dim" x="${r2((x1 + x2) / 2)}" y="${r2(ty)}" text-anchor="middle">${txt}${opt.suffix || ''}</text></g>`;
+}
+function dimV(id, x, y1, y2, m, opt = {}) {
+  const ext = opt.from !== undefined ? `<line class="d-dim" x1="${r2(opt.from)}" y1="${r2(y1)}" x2="${r2(x + (opt.from < x ? 3 : -3))}" y2="${r2(y1)}"/><line class="d-dim" x1="${r2(opt.from)}" y1="${r2(y2)}" x2="${r2(x + (opt.from < x ? 3 : -3))}" y2="${r2(y2)}"/>` : '';
+  let tx = opt.right ? x + 5 : x - 5, anchor = opt.right ? 'start' : 'end';
+  const txt = opt.text !== undefined ? opt.text : tLen(m);
+  let ty = (y1 + y2) / 2 + 4;
+  if (opt.top) { tx = x; anchor = 'middle'; ty = Math.min(y1, y2) - 6; }
+  return `<g>${ext}<line class="d-dim" x1="${r2(x)}" y1="${r2(y1)}" x2="${r2(x)}" y2="${r2(y2)}" marker-start="url(#arr-${id})" marker-end="url(#arr-${id})"/><text class="d-text-dim" x="${r2(tx)}" y="${r2(ty)}" text-anchor="${anchor}">${txt}${opt.suffix || ''}</text></g>`;
+}
+const rect = (cls, x, y, w, h, extra = '') => `<rect class="${cls}" x="${r2(x)}" y="${r2(y)}" width="${r2(w)}" height="${r2(h)}" ${extra}/>`;
+const text = (cls, x, y, s, anchor = 'start', extra = '') => `<text class="${cls}" x="${r2(x)}" y="${r2(y)}" text-anchor="${anchor}" ${extra}>${s}</text>`;
+const line = (cls, x1, y1, x2, y2, extra = '') => `<line class="${cls}" x1="${r2(x1)}" y1="${r2(y1)}" x2="${r2(x2)}" y2="${r2(y2)}" ${extra}/>`;
+function arcPath(cx, cy, r, a0, a1, n = 14) {
+  const pts = []; for (let i = 0; i <= n; i++) { const a = a0 + (a1 - a0) * i / n; pts.push(`${r2(cx + r * Math.cos(a))},${r2(cy + r * Math.sin(a))}`); }
+  return pts.join(' ');
+}
+
+/* ---------------- Floor plan (sheet A-101) ---------------- */
+function renderPlan(L) {
+  const id = 'p', S = L.D < 4 ? 100 : 72, m = L.m, W = L.W, D = L.D;
+  const zmin = Math.min(L.landing.z0, L.shower && !L.shower.onDeck ? L.shower.z0 : 0) - 0.1;
+  const zmax = D + (L.deck ? L.deck.d : 0) + 0.1;
+  const ml = 185, mr = 40, mt = 70, mb = 130;
+  const X = z => ml + (z - zmin) * S, Y = x => mt + x * S;
+  const vb = { w: ml + (zmax - zmin) * S + mr, h: mt + W * S + mb };
+  let s = '';
+  // Site: landing, shower, deck, plunge, chiller
+  const ld = L.landing;
+  s += rect('d-dash', X(ld.z0), Y(ld.x0), (ld.z1 - ld.z0) * S, (ld.x1 - ld.x0) * S, 'rx="2"');
+  ['Level landing', 'by building:', 'pavers or 1:12 ramp'].forEach((t, i) => s += text('d-text-muted', X(ld.z0 + 0.5), Y(ld.x0 + 0.16 + i * 0.16), t, 'middle'));
+  if (L.deck) {
+    const d = L.deck; s += rect('d-deck', X(d.z0), Y(d.x0), (d.z1 - d.z0) * S, (d.x1 - d.x0) * S);
+    for (let x = d.x0 + 0.14; x < d.x1; x += 0.14) s += line('d-thin', X(d.z0), Y(x), X(d.z1), Y(x), 'opacity=".35"');
+    s += line('d-heavy', X(d.z0), Y(d.x1), X(d.z1), Y(d.x1)); s += text('d-text-sm', X(d.z0 + 0.1), Y(d.x1) + 12, 'Privacy screen, 1.8 m slats');
+    s += text('d-text-room', X((d.z0 + d.z1) / 2), Y(d.x0) + 16, 'Terrace deck', 'middle');
+    s += text('d-text-sm', X((d.z0 + d.z1) / 2), Y(d.x0) + 29, `${tLen(d.x1 - d.x0)} × ${tLen(d.z1 - d.z0)}, level with the floor`, 'middle');
+  }
+  if (L.plunge) {
+    const p = L.plunge, rim = p.rim;
+    s += rect('d-steel-light', X(p.z0 - rim), Y(p.x0 - rim), (p.z1 - p.z0 + 2 * rim) * S, (p.x1 - p.x0 + 2 * rim) * S, 'rx="3"');
+    s += rect('d-water', X(p.z0), Y(p.x0), (p.z1 - p.z0) * S, (p.x1 - p.x0) * S);
+    s += text('d-text', X((p.z0 + p.z1) / 2), Y((p.x0 + p.x1) / 2) - 2, 'Cold plunge', 'middle');
+    s += text('d-text-sm', X((p.z0 + p.z1) / 2), Y((p.x0 + p.x1) / 2) + 11, `<tspan data-l="${p.litres}">${fmtLitres(p.litres)}</tspan>, ${tLen(p.depth)} deep`, 'middle');
+    const c = L.chiller; s += rect('d-steel', X(c.z0), Y(c.x0), (c.z1 - c.z0) * S, (c.x1 - c.x0) * S); s += text('d-text-sm', X((c.z0 + c.z1) / 2), Y((c.x0 + c.x1) / 2) + 3, 'CH', 'middle');
+    s += text('d-text-sm', X(c.z1) + 4, Y((c.x0 + c.x1) / 2) + 3, '2 HP chiller, ozone/AOP');
+    // steps into the plunge
+    s += rect('d-aspen', X(p.z0 - rim - 0.35), Y(p.x0), 0.35 * S, (p.x1 - p.x0) * S); s += line('d-thin', X(p.z0 - rim - 0.175), Y(p.x0), X(p.z0 - rim - 0.175), Y(p.x1));
+  }
+  if (L.shower) {
+    const sh = L.shower; s += rect('d-cool', X(sh.z0), Y(sh.x0), (sh.z1 - sh.z0) * S, (sh.x1 - sh.x0) * S); s += rect('d-thin', X(sh.z0), Y(sh.x0), (sh.z1 - sh.z0) * S, (sh.x1 - sh.x0) * S, `fill="url(#grate-${id})"`);
+    const cx = X((sh.z0 + sh.z1) / 2), cy = Y(sh.x0 + 0.66);
+    s += `<circle class="d-line" cx="${r2(cx)}" cy="${r2(cy)}" r="4"/><line class="d-thin" x1="${r2(cx - 4)}" y1="${r2(cy)}" x2="${r2(cx + 4)}" y2="${r2(cy)}"/><line class="d-thin" x1="${r2(cx)}" y1="${r2(cy - 4)}" x2="${r2(cx)}" y2="${r2(cy + 4)}"/>`;
+    const px = X(sh.z1 - 0.08), py = Y(sh.x0 + 0.08);
+    s += `<circle class="d-accent-fill" cx="${r2(px)}" cy="${r2(py)}" r="3.5"/>`;
+    s += text('d-text-sm', cx, Y(sh.x0 + 0.24), 'Outdoor', 'middle');
+    s += text('d-text-sm', cx, Y(sh.x0 + 0.4), 'shower', 'middle');
+  }
+  // Base frame: footprint outline, cross members, feet pads
+  s += rect('d-dash', X(0) - 2, Y(0) - 2, D * S + 4, W * S + 4);
+  L.memberZ.forEach(z => s += line('d-dot', X(z), Y(0.05), X(z), Y(W - 0.05)));
+  L.feet.forEach(f => s += rect('d-cool', X(f.z - 0.15), Y(f.x - 0.15), 0.3 * S, 0.3 * S, 'opacity=".9"'));
+  const baseNote = ['Base frame: galvanized channels on 300 × 300 pads', `at ${nf1.format((D - 0.1) / (L.memberZ.length - 1))} m centres; ballast trays between members`];
+  // Room floors
+  L.rooms.forEach(r => {
+    const cls = r.kind === 'porch' ? 'd-cool' : 'd-floor';
+    s += rect(cls, X(r.z0), Y(r.x0), r.d * S, (r.x1 - r.x0) * S);
+    if (r.kind === 'porch') s += rect('d-thin', X(r.z0), Y(r.x0), r.d * S, (r.x1 - r.x0) * S, `fill="url(#grate-${id})"`);
+  });
+  // Walls (with openings), glass front
+  L.walls.forEach(w => {
+    if (w.kind === 'glass') {
+      // full-length glass front over the hot room; the heavy line is the privacy-tinted outer face
+      s += rect('d-glass', X(w.z0), Y(w.x0) + 1, (w.z1 - w.z0) * S, (w.x1 - w.x0) * S - 2);
+      s += line('d-tint', X(w.z0), Y(w.x1) - 1.5, X(w.z1), Y(w.x1) - 1.5);
+      L.mullionsZ.forEach(z => s += line('d-line', X(z), Y(w.x0) + 1, X(z), Y(w.x1) - 1));
+      return;
+    }
+    const segs = [];
+    const ops = L.openings.filter(o => o.zone === w.zone);
+    if (ops.length) {
+      let cur = w.x0; ops.sort((a, b) => a.x0 - b.x0).forEach(o => { segs.push([cur, o.x0]); cur = o.x1; }); segs.push([cur, w.x1]);
+    } else segs.push([w.x0, w.x1]);
+    segs.forEach(([a, b]) => {
+      s += rect('d-wall', X(w.z0), Y(a), (w.z1 - w.z0) * S, (b - a) * S);
+      s += rect('d-wall-hatch', X(w.z0), Y(a), (w.z1 - w.z0) * S, (b - a) * S, `fill="url(#hatch-${id})"`);
+    });
+    if (w.kind === 'service') {
+      // extract fan + controller in the service partition
+      s += rect('d-vent', X(w.z0) + 2, Y(L.wp + 0.15), (w.z1 - w.z0) * S - 4, 0.45 * S);
+      s += text('d-text-accent', X((w.z0 + w.z1) / 2), Y(L.wp + 0.4) + 3, 'EF', 'middle');
+    }
+  });
+  // Doors: leaf and swing
+  const door = (x0, x1, zface, outward, label) => {
+    const hx = X(zface), hy = Y(x1), leaf = (x1 - x0);
+    const tip = { x: X(zface + outward * leaf), y: hy };
+    s += line('d-line', hx, hy, tip.x, tip.y, 'stroke-width="2"');
+    // arc from the tip to the closed position (x0 on the wall line)
+    const a0 = outward > 0 ? 0 : Math.PI, a1 = outward > 0 ? -Math.PI / 2 : 3 * Math.PI / 2;
+    s += `<polyline class="d-dash" points="${arcPath(hx, hy, leaf * S, a0, a1)}"/>`;
+    s += text('d-text-sm', X(zface + outward * leaf / 2), hy - 4, label, 'middle');
+  };
+  const sd = L.saunaDoor;
+  door(sd.x0, sd.x1, sd.outward > 0 ? sd.zone.z1 : sd.zone.z0, sd.outward, `${tLen(SHARED.door.clear)} clear`);
+  if (L.entryDoor) door(L.entryDoor.x0, L.entryDoor.x1, 0, -1, 'Entry');
+  // Benches
+  L.benches.forEach(b => {
+    if (b.x1 <= b.x0 || b.z1 <= b.z0) return;
+    s += rect('d-aspen', X(b.z0), Y(b.x0), (b.z1 - b.z0) * S, (b.x1 - b.x0) * S);
+    if (b.removable) s += rect('d-dash', X(b.z0) + 2, Y(b.x0) + 2, (b.z1 - b.z0) * S - 4, (b.x1 - b.x0) * S - 4);
+    const alongZ = (b.z1 - b.z0) >= (b.x1 - b.x0);
+    if (alongZ) { for (let z = b.z0 + 0.1; z < b.z1; z += 0.1) s += line('d-thin', X(z), Y(b.x0), X(z), Y(b.x1), 'opacity=".5"'); }
+    else { for (let x = b.x0 + 0.1; x < b.x1; x += 0.1) s += line('d-thin', X(b.z0), Y(x), X(b.z1), Y(x), 'opacity=".5"'); }
+  });
+  const bU = L.bench('upper'), bL = L.bench('lower'), bA = L.bench('ada'), bS = L.bench('step');
+  s += text('d-text-sm', X((bU.z0 + bU.z1) / 2), Y((bU.x0 + bU.x1) / 2) - 2, 'Upper bench', 'middle');
+  s += text('d-text-sm', X((bU.z0 + bU.z1) / 2), Y((bU.x0 + bU.x1) / 2) + 10, `top ${tLen(bU.top)} · ${tLen(bU.x1 - bU.x0)} deep`, 'middle');
+  if (bL.z1 > bL.z0 + 0.5) { s += text('d-text-sm', X((bL.z0 + bL.z1) / 2), Y((bL.x0 + bL.x1) / 2) - 2, 'Lower', 'middle'); s += text('d-text-sm', X((bL.z0 + bL.z1) / 2), Y((bL.x0 + bL.x1) / 2) + 10, `top ${tLen(bL.top)}`, 'middle'); }
+  s += text('d-text-sm', X((bA.z0 + bA.z1) / 2), Y((bA.x0 + bA.x1) / 2) - 2, 'ADA transfer', 'middle');
+  s += text('d-text-sm', X((bA.z0 + bA.z1) / 2), Y((bA.x0 + bA.x1) / 2) + 10, `top ${tLen(bA.top)}`, 'middle');
+  s += text('d-text-sm', X((bS.z0 + bS.z1) / 2), Y((bS.x0 + bS.x1) / 2) + 3, 'Step', 'middle');
+  // ADA clear floor space at the end of the transfer bench (760 x 1220)
+  const cf = L.clearFloor;
+  s += rect('d-dash', X(cf.z0), Y(cf.x0), (cf.z1 - cf.z0) * S, (cf.x1 - cf.x0) * S, 'opacity=".7"');
+  if (m.planLabels.clear === 'bench') {
+    s += text('d-text-sm', X((cf.z0 + cf.z1) / 2), Y(cf.x0 + SHARED.bench.lowerD / 2) + 3, 'Clear floor', 'middle', 'opacity=".9"');
+  } else {
+    s += text('d-text-sm', X((cf.z0 + cf.z1) / 2), Y((cf.x0 + cf.x1) / 2) - 2, 'Clear floor', 'middle', 'opacity=".8"');
+    s += text('d-text-sm', X((cf.z0 + cf.z1) / 2), Y((cf.x0 + cf.x1) / 2) + 10, `${tLen(0.76)} × ${tLen(1.22)}`, 'middle', 'opacity=".8"');
+  }
+  // Heater(s) with guard
+  L.heaters.forEach((h, i) => {
+    s += rect('d-steel', X(h.z0), Y(h.x0), (h.z1 - h.z0) * S, (h.x1 - h.x0) * S);
+    s += line('d-thin', X(h.z0), Y(h.x0), X(h.z1), Y(h.x1), 'stroke="var(--bg)"'); s += line('d-thin', X(h.z1), Y(h.x0), X(h.z0), Y(h.x1), 'stroke="var(--bg)"');
+    s += rect('d-dash', X(h.z0 - 0.08), Y(h.x0 - 0.08), (h.z1 - h.z0 + 0.16) * S, (h.x1 - h.x0 + 0.08) * S);
+  });
+  const hx0 = Math.min(...L.heaters.map(h => h.x0)), hx1 = Math.max(...L.heaters.map(h => h.x1)), hz0 = L.heaters[0].z0 - 0.08, hzc = (L.heaters[0].z0 + L.heaters[0].z1) / 2;
+  if (m.planLabels.heater === 'above') {
+    s += text('d-text-sm', X(hzc), Y(hx0 - 0.08) - 16, `HTR ${m.heater.label}`, 'middle');
+    s += text('d-text-sm', X(hzc), Y(hx0 - 0.08) - 5, 'with guard', 'middle');
+  } else {
+    s += text('d-text-sm', X(hz0) - 5, Y((hx0 + hx1) / 2) - 2, `HTR ${m.heater.label}`, 'end');
+    s += text('d-text-sm', X(hz0) - 5, Y((hx0 + hx1) / 2) + 10, 'with guard', 'end');
+  }
+  // Vents
+  s += `<circle class="d-vent" cx="${r2(X(L.supply.z))}" cy="${r2(Y(L.supply.x))}" r="${r2(0.14 * S)}" stroke-dasharray="4 3"/>`;
+  s += text('d-text-accent', X(L.supply.z), Y(L.supply.x) + 4, 'S', 'middle');
+  s += rect('d-vent', X(L.extract.z - 0.12), Y(0) + 1, 0.24 * S, L.wp * S - 2);
+  s += text('d-text-accent', X(L.extract.z), Y(L.wp / 2) + 4, 'E', 'middle');
+  s += text('d-text-sm', X(L.extract.z), Y(0) - 5, `Extract, low, ${tFlowRange(L.ventRange[0], L.ventRange[1])}`, 'middle');
+  // Drain
+  const dr = L.drain; s += rect('d-dash', X(dr.z0), Y(dr.x0), (dr.z1 - dr.z0) * S, (dr.x1 - dr.x0) * S);
+  const fd = L.floorDrain; s += `<circle class="d-line" cx="${r2(X(fd.z))}" cy="${r2(Y(fd.x))}" r="5"/><line class="d-thin" x1="${r2(X(fd.z) - 5)}" y1="${r2(Y(fd.x))}" x2="${r2(X(fd.z) + 5)}" y2="${r2(Y(fd.x))}"/><line class="d-thin" x1="${r2(X(fd.z))}" y1="${r2(Y(fd.x) - 5)}" x2="${r2(X(fd.z))}" y2="${r2(Y(fd.x) + 5)}"/>`;
+  s += line('d-dash', X(fd.z), Y(dr.x1), X(fd.z), Y(fd.x) - 5);
+  s += m.planLabels.fd === 'end' ? text('d-text-sm', X(fd.z) - 8, Y(fd.x) + 4, 'FD', 'end') : text('d-text-sm', X(fd.z) + 8, Y(fd.x) + 4, 'FD', 'start');
+  // Turning circle
+  const tc = L.turning; s += `<circle class="d-dash" cx="${r2(X(tc.cz))}" cy="${r2(Y(tc.cx))}" r="${r2(tc.r * S)}"/>`;
+  const tcy = Y(tc.cx + (tc.inside ? -0.30 : 0.42));
+  s += text('d-text-sm', X(tc.cz), tcy, tLen(SHARED.turning), 'middle');
+  s += text('d-text-sm', X(tc.cz), tcy + 12, 'turning circle', 'middle');
+  // Fit-out: changing-room furniture, wall-mounted controller and water station, shower, exterior lockers
+  L.fitout.forEach(f => {
+    if (f.kind === 'bench' || f.kind === 'lockers') { s += rect('d-aspen', X(f.z0), Y(f.x0), (f.z1 - f.z0) * S, (f.x1 - f.x0) * S); s += text('d-text-sm', X((f.z0 + f.z1) / 2), Y((f.x0 + f.x1) / 2) + 3, f.name, 'middle'); }
+    if (f.kind === 'hooks') for (let z = f.z0; z <= f.z1 + 0.001; z += 0.35) s += `<circle class="d-thin" cx="${r2(X(z))}" cy="${r2(Y(f.x) + 3)}" r="2"/>`;
+    if (f.kind === 'panel' || f.kind === 'water') {
+      s += rect(f.kind === 'panel' ? 'd-steel' : 'd-cool', X(f.z0), Y(f.x0), (f.z1 - f.z0) * S, (f.x1 - f.x0) * S);
+      const t = f.kind === 'panel' ? 'Controller' : 'Water';
+      if (f.wall === 'back') s += text('d-text-sm', X(f.z0) - 4, Y((f.x0 + f.x1) / 2) + 3, t, 'end');
+      else if (f.wall === 'front') s += text('d-text-sm', X(f.z1) + 4, Y((f.x0 + f.x1) / 2) + 3, t, 'start');
+      else s += text('d-text-sm', X((f.z0 + f.z1) / 2), Y(f.x0) - 4, t, 'middle');
+    }
+    if (f.kind === 'shower') {
+      s += rect('d-cool', X(f.z0), Y(f.x0), (f.z1 - f.z0) * S, (f.x1 - f.x0) * S);
+      s += rect('d-glass', X(f.z1) - 2, Y(f.x0), 3, (f.x1 - f.x0) * S);
+      s += rect('d-glass', X(f.z0), Y(f.x1) - 2, 0.35 * S, 3);
+      const cx = X((f.z0 + f.z1) / 2);
+      s += `<circle class="d-line" cx="${r2(cx)}" cy="${r2(Y(f.x0 + 0.14))}" r="4"/>`;
+      s += text('d-text-sm', cx, Y((f.x0 + f.x1) / 2) + 8, 'Shower', 'middle');
+    }
+  });
+  if (L.lockers) {
+    const lk = L.lockers;
+    s += rect('d-aspen', X(lk.z0), Y(lk.x0), (lk.z1 - lk.z0) * S, (lk.x1 - lk.x0) * S);
+    for (let x = lk.x0 + 0.4; x < lk.x1 - 0.05; x += 0.4) s += line('d-thin', X(lk.z0), Y(x), X(lk.z1), Y(x));
+    s += text('d-text-sm', X(lk.z0) - 4, Y((lk.x0 + lk.x1) / 2) - 2, 'Exterior', 'end');
+    s += text('d-text-sm', X(lk.z0) - 4, Y((lk.x0 + lk.x1) / 2) + 10, 'lockers', 'end');
+  }
+  // Room labels
+  L.rooms.forEach(r => {
+    const dims = `${tLen(r.w)} × ${tLen(r.d)}`;
+    if (r.kind === 'porch') { const cx = X((r.z0 + r.z1) / 2), cy = Y((r.x0 + r.x1) / 2); s += text('d-text-room', cx, cy, 'Porch', 'middle', `transform="rotate(-90 ${r2(cx)} ${r2(cy)})"`); s += text('d-text-sm', cx + 11, cy, dims, 'middle', `transform="rotate(-90 ${r2(cx + 11)} ${r2(cy)})"`); return; }
+    let cx = X((r.z0 + r.z1) / 2), cy = Y((r.x0 + r.x1) / 2) - 2;
+    if (r.kind === 'sauna') { const p = L.toWorld(m.planLabels.sauna[0], m.planLabels.sauna[1]); cx = X(p.z); cy = Y(p.x); }
+    else if (L.roomLabel) { cx = X(L.roomLabel.z); cy = Y(L.roomLabel.x); }
+    s += text('d-text-room', cx, cy, r.kind === 'vestibule' ? 'Vestibule' : r.kind === 'changing' ? 'Changing' : r.name, 'middle');
+    s += text('d-text-sm', cx, cy + 12, dims, 'middle');
+    if (r.kind === 'sauna') s += text('d-text-sm', cx, cy + 24, `ceiling ${tLen(m.sauna.ceiling)}`, 'middle');
+  });
+  // Glass front label + section mark
+  const g = L.glass; s += text('d-text-sm', X((g.z0 + g.z1) / 2), Y(W) + 24, 'Glass front, privacy-tinted outside', 'middle');
+  const cutZ = L.toWorld(0, L.rd / 2).z, dir = 1;   // looking toward the far side wall and the heaters
+  const yb = Y(W) + 44, yTop = Y(-0.35) - 10, yBot = yb + 50;
+  s += line('d-heavy', X(cutZ), yTop + 8, X(cutZ), yBot - 8, 'stroke-dasharray="10 4 2 4"');
+  [yTop, yBot].forEach(yy => {
+    s += `<circle class="d-mask" cx="${r2(X(cutZ))}" cy="${r2(yy)}" r="8"/><circle class="d-line" cx="${r2(X(cutZ))}" cy="${r2(yy)}" r="8"/>`;
+    s += text('d-text-sm', X(cutZ), yy + 3.5, 'A', 'middle', 'font-weight="600"');
+    s += line('d-line', X(cutZ) + (dir > 0 ? 9 : -9), yy, X(cutZ) + dir * 22, yy, `marker-end="url(#arr-${id})"`);
+  });
+  // Dimensions: overall depth and zone depths (bottom), overall width (left)
+  s += dimH(id, X(0), X(D), yb + 20, D, { from: Y(W) + 6 });
+  L.zones.forEach(z => { if (z.d >= 0.5) s += dimH(id, X(z.z0), X(z.z1), yb, z.d, {}); });
+  if (L.deck) s += dimH(id, X(D), X(D + L.deck.d), yb + 20, L.deck.d, { from: Y(W) + 6 });
+  const xl = X(zmin) - 18;
+  s += dimV(id, xl, Y(0), Y(W), W, { from: X(0) - 6 });
+  s += dimV(id, xl - 66, Y(L.wp), Y(W - L.wp), L.rw, {});
+  s += text('d-text-muted', X(0) + 4, Y(0) - 6, 'Entry end');
+  baseNote.forEach((t, i) => s += text('d-text-muted', X(zmin), yBot + 16 + i * 13, t));
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${r2(vb.w)} ${r2(vb.h)}" role="img" aria-label="${m.name} floor plan drawn to scale with rooms, benches, heater, door swings, vents, drain and turning circle">${svgDefs(id)}${s}</svg>`;
+}
+
+/* ---------------- Cross-section A-A (sheet A-201) ---------------- */
+function renderSection(L) {
+  const id = 's', S = 120, m = L.m, W = L.W, B = SHARED.bench;
+  const ml = 250, mr = 330, mt = 50, mb = 90;
+  const topY = L.eaveHighY + 0.25;
+  const X = x => ml + (W - x) * S;              // looking toward +z: x = 0 (gutter side) on the right
+  const Y = y => mt + (topY - y) * S;
+  const vb = { w: ml + W * S + mr, h: mt + (topY + 0.35) * S + mb };
+  const vcut = L.rd / 2;
+  let s = '';
+  // Existing roof: slab with pavers
+  s += rect('d-thin', X(W + 0.9), Y(0), (W + 1.8) * S, 0.12 * S, `fill="url(#conc-${id})"`);
+  s += line('d-heavy', X(W + 0.9), Y(0), X(-0.9), Y(0));
+  s += text('d-text-muted', X(-0.9), Y(0) + 24, 'Existing roof: slab, insulation, membrane, pavers (by building)', 'end');
+  // Base frame: pads, feet, perimeter channels (cut), ballast tray (beyond)
+  L.feetX.forEach(x => {
+    s += rect('d-steel', X(x + 0.15), Y(SHARED.padT), 0.3 * S, SHARED.padT * S, 'opacity=".6"');
+    s += rect('d-steel', X(x + 0.02), Y(L.baseH - SHARED.frameH), 0.04 * S, L.feetH * S);
+  });
+  [0, W - 0.05].forEach(x => { s += rect('d-steel', X(x + 0.05), Y(L.baseH), 0.05 * S, SHARED.frameH * S); s += rect('d-thin', X(x + 0.05), Y(L.baseH), 0.05 * S, SHARED.frameH * S, `fill="url(#hatch-${id})"`); });
+  s += rect('d-steel-light', X(W - 0.15), Y(L.baseH - 0.02), (W - 0.3) * S, (SHARED.frameH - 0.04) * S, 'stroke-dasharray="4 3"');
+  s += rect('d-thin', X(W - 0.25), Y(L.baseH - 0.03), (W - 0.5) * S, 0.05 * S, `fill="url(#conc-${id})"`);
+  s += text('d-text-sm', X(W / 2), Y(L.baseH - 0.05) + 4, 'Ballast tray with pavers (mass per site)', 'middle');
+  // Floor: grating + decking
+  s += rect('d-cool', X(W - SHARED.wallPlan), Y(L.floorY), (W - 2 * SHARED.wallPlan) * S, SHARED.floorT * S);
+  s += rect('d-thin', X(W - SHARED.wallPlan), Y(L.floorY - 0.035), (W - 2 * SHARED.wallPlan) * S, (SHARED.floorT - 0.035) * S, `fill="url(#grate-${id})"`);
+  s += rect('d-deck', X(W - SHARED.wallPlan), Y(L.floorY), (W - 2 * SHARED.wallPlan) * S, 0.03 * S);
+  // Walls (cut) with layer stripes drawn to the nominal 100 mm, keyed to A-501
+  const wallTop = L.ceilY;
+  // back wall (x = 0, cut, full height) and the glass front (x = W, cut) on a plinth at the floor build-up
+  s += rect('d-wall', X(SHARED.wallPlan), Y(wallTop), SHARED.wallPlan * S, (wallTop - L.baseH) * S);
+  s += rect('d-wall-hatch', X(SHARED.wallPlan), Y(wallTop), SHARED.wallPlan * S, (wallTop - L.baseH) * S, `fill="url(#hatch-${id})"`);
+  s += rect('d-steel', X(W), Y(L.floorY), SHARED.wallPlan * S, (L.floorY - L.baseH) * S);
+  s += rect('d-glass', X(W), Y(wallTop), SHARED.wallPlan * S, (wallTop - L.floorY) * S);
+  s += line('d-tint', X(W) + 1.5, Y(wallTop), X(W) + 1.5, Y(L.floorY));
+  s += text('d-text-sm', X(W - SHARED.wallPlan) + 6, Y(L.floorY + 2.02), 'Glass front (cut), full height,', 'start');
+  s += text('d-text-sm', X(W - SHARED.wallPlan) + 6, Y(L.floorY + 2.02) + 12, 'privacy-tinted outer pane', 'start');
+  // layer stripes on the right-hand (x = 0) wall, scaled into the nominal thickness
+  const tot = SHARED.wallLayers.reduce((a, l) => a + l.t, 0);
+  let acc = 0;
+  SHARED.wallLayers.forEach(l => {
+    const w = l.t / tot * SHARED.wallPlan;
+    const xs = X(acc) ; // outside face at x = 0 -> screen right edge; layers run inward (to the left on screen)
+    const sx0 = X(acc + w);
+    if (l.line) s += line('d-accent', sx0, Y(wallTop), sx0, Y(L.baseH), 'stroke-width="1.2"');
+    else if (l.wool) s += rect('d-thin', sx0, Y(wallTop), w * S, (wallTop - L.baseH) * S, `fill="url(#wool-${id})"`);
+    else if (l.aspen) s += rect('d-aspen', sx0, Y(wallTop), w * S, (wallTop - L.baseH) * S);
+    else if (l.void) s += rect('d-mask', sx0, Y(wallTop), w * S, (wallTop - L.baseH) * S);
+    acc += w; void xs;
+  });
+  // wall layer key (right side)
+  const kx = X(0) + 14, ky0 = Y(wallTop - 0.25);
+  s += text('d-text', kx, ky0, 'Wall panel, outside → in (A-501):');
+  SHARED.wallLayers.forEach((l, i) => s += text('d-text-sm', kx, ky0 + 15 + i * 13, `${l.n}  ${l.short}${l.line ? '' : ', ' + tLen(l.t)}`));
+  s += text('d-text-sm', kx, ky0 + 15 + SHARED.wallLayers.length * 13 + 2, `Total ≈ ${tLen(SHARED.wallPanel)} (drawn at ${tLen(SHARED.wallPlan)} nominal)`, 'start', 'opacity=".8"');
+  s += line('d-thin', X(SHARED.wallPlan / 2), Y(wallTop - 0.4), kx - 4, ky0 + 40);
+  // Ceiling boards and roof wedge (cut)
+  s += rect('d-aspen', X(W - SHARED.wallPlan), Y(L.ceilY + 0.015), (W - 2 * SHARED.wallPlan) * S, 0.015 * S);
+  const roofPts = [[0, L.ceilY], [W, L.ceilY], [W, L.eaveHighY], [0, L.eaveLowY]].map(([x, y]) => `${r2(X(x))},${r2(Y(y))}`).join(' ');
+  s += `<polygon class="d-wall" points="${roofPts}"/><polygon points="${roofPts}" fill="url(#wool-${id})"/>`;
+  const seamPts = [[0, L.eaveLowY], [W, L.eaveHighY]];
+  s += line('d-heavy', X(seamPts[0][0]), Y(seamPts[0][1]), X(seamPts[1][0]), Y(seamPts[1][1]));
+  s += text('d-text', X(W / 2), Y(L.eaveHighY) - 10, `Standing-seam steel roof, ${SHARED.pitchDeg}° pitch, 90 mm mineral wool, foil, battens, aspen ceiling`, 'middle');
+  // gutter and downspout at x = 0 (screen right)
+  s += `<path class="d-steel-light" d="M${r2(X(0))} ${r2(Y(L.eaveLowY - 0.02))} a${0.06 * S} ${0.06 * S} 0 1 0 ${0.12 * S} 0" />`;
+  s += line('d-steel-light', X(-0.09), Y(L.eaveLowY - 0.08), X(-0.09), Y(0.02), 'stroke-dasharray="6 3"');
+  s += text('d-text-sm', X(-0.12), Y(0.7), 'Gutter + downspout to roof drain', 'start');
+  // Far side wall in elevation: solid thermo-aspen, carrying the heater corner
+  s += text('d-text-muted', X(W / 2), Y(L.floorY + 1.75), 'Far side wall beyond: solid thermo-aspen', 'middle');
+  // benches beyond the cut, in elevation (lighter)
+  const beyond = b => b.v1 > vcut;
+  L.benches.forEach(b => {
+    if (b.id === 'upper' || b.u1 <= b.u0 || b.v1 <= b.v0) return;
+    if (!beyond(b) || (b.v0 <= vcut && b.v1 >= vcut)) return;
+    s += rect('d-aspen', X(b.u1 + L.wp), Y(b.top), (b.u1 - b.u0) * S, b.thick * S, 'opacity=".55"');
+    s += line('d-dot', X(b.u1 + L.wp), Y(b.top - b.thick), X(b.u1 + L.wp), Y(L.floorY));
+  });
+  // heater(s) in elevation on the x = W wall (screen left)
+  L.heaters.forEach(h => {
+    s += rect('d-steel', X(h.u1 + L.wp), Y(L.floorY + h.h), (h.u1 - h.u0) * S, h.h * S);
+    for (let i = 0; i < 5; i++) s += `<circle class="d-thin" cx="${r2(X(h.u1 + L.wp) + 6 + (i % 3) * 9)}" cy="${r2(Y(L.floorY + h.h - 0.12) + Math.floor(i / 3) * 9)}" r="3" stroke="var(--bg)"/>`;
+    s += rect('d-steel-light', X(h.u1 + L.wp + 0.08), Y(L.floorY + h.h + 0.05), (h.u1 - h.u0 + 0.08) * S, 0.02 * S);
+    s += rect('d-steel-light', X(h.u1 + L.wp + 0.08), Y(L.floorY + 0.45), (h.u1 - h.u0 + 0.08) * S, 0.02 * S);
+    s += line('d-thin', X(h.u0 + L.wp - 0.08), Y(L.floorY + h.h + 0.05), X(h.u0 + L.wp - 0.08), Y(L.floorY + 0.45));
+  });
+  const h0 = L.heaters[L.heaters.length - 1];   // the heater furthest from the glass
+  const hcx = X(h0.u0 + L.wp) + 8;
+  s += text('d-text', hcx, Y(L.floorY + h0.h + 0.30), `Heater ${m.heater.label}`, 'start');
+  s += text('d-text-sm', hcx, Y(L.floorY + h0.h + 0.19), 'ETL/UL 875 listed, guard rail', 'start');
+  s += text('d-text-sm', hcx, Y(L.floorY + h0.h + 0.09), `cap ${SHARED.tempCapC} °C (${Math.round(SHARED.tempCapC * 9 / 5 + 32)} °F)`, 'start');
+  // sensor at the UL position over the heater
+  s += rect('d-line', X(h0.u1 + L.wp + 0.02), Y(L.ceilY - 0.12), 8, 8); s += text('d-text-sm', X(h0.u1 + L.wp + 0.02) + 11, Y(L.ceilY - 0.12) + 7, 'T sensor');
+  // supply register in the ceiling above the heater, extract low in the cut wall
+  const sx = X(L.supply.u + L.wp);
+  s += rect('d-vent', sx - 0.125 * S, Y(L.ceilY) - 3, 0.25 * S, 6);
+  s += text('d-text-accent', sx, Y(L.ceilY) - 8, 'S supply', 'middle');
+  const ex = X(0), ey = Y(L.extract.y);
+  s += rect('d-vent', ex - SHARED.wallPlan * S, ey - 0.1 * S, SHARED.wallPlan * S, 0.2 * S);
+  s += text('d-text-accent', ex + 6, ey + 4, 'E extract (mechanical)', 'start');
+  // air path arrows: down past the heater, across the floor zone, out low behind the benches
+  const ap = `M${r2(sx)} ${r2(Y(L.ceilY) + 6)} L${r2(sx)} ${r2(Y(L.floorY + h0.h + 0.3))} Q${r2(sx)} ${r2(Y(L.floorY + 0.5))} ${r2(X(L.rw * 0.55 + L.wp))} ${r2(Y(L.floorY + 0.35))} L${r2(X(L.wp + B.upperD))} ${r2(Y(L.floorY + 0.35))} L${r2(ex - SHARED.wallPlan * S - 2)} ${r2(ey)}`;
+  s += `<path d="${ap}" fill="none" stroke="var(--accent)" stroke-width="1.3" stroke-dasharray="6 4" marker-end="url(#arrA-${id})"/>`;
+  // Cut benches on the x = 0 side (screen right): side upper bench, lower / ADA, step if within the cut
+  const cutB = L.benches.filter(b => b.v0 <= vcut && b.v1 >= vcut);
+  cutB.forEach(b => {
+    const x0 = L.wp + b.u0, x1 = L.wp + b.u1;
+    s += rect('d-aspen', X(x1), Y(b.top), (x1 - x0) * S, b.thick * S);
+    for (let u = x0 + 0.1; u < x1; u += 0.1) s += line('d-thin', X(u), Y(b.top), X(u), Y(b.top - b.thick), 'opacity=".6"');
+    // supports and open skirt
+    s += rect('d-aspen', X(x1), Y(b.top - b.thick), 0.04 * S, (b.top - b.thick - L.floorY) * S);
+    s += line('d-dot', X(x1 - 0.02), Y(b.top - 0.25), X(x1 - 0.02), Y(L.floorY + 0.05));
+  });
+  // backrest on the x = 0 wall above the upper bench
+  s += rect('d-aspen', X(SHARED.wallPlan + 0.03), Y(B.upperH + 0.65), 0.03 * S, 0.40 * S);
+  s += text('d-text-sm', X(SHARED.wallPlan + 0.08), Y(B.upperH + 0.45), 'Backrest', 'end');
+  // LED strip under the upper bench edge
+  s += `<circle class="d-accent-fill" cx="${r2(X(SHARED.wallPlan + B.upperD) + 3)}" cy="${r2(Y(B.upperH - 0.09))}" r="2.5"/>`;
+  s += text('d-text-sm', X(SHARED.wallPlan + B.upperD) + 8, Y(B.upperH - 0.09) + 4, 'IP65 LED, 2700 K');
+  // law of löyly headroom line
+  s += line('d-dash', X(W - SHARED.wallPlan), Y(B.upperH), X(SHARED.wallPlan), Y(B.upperH), 'opacity=".6"');
+  // Dimensions (screen left side = x = W side) : overall height, ceiling, bench heights; right: floor level
+  const dxl = X(W) - 30;
+  s += dimV(id, dxl, Y(0), Y(L.eaveHighY), L.eaveHighY, { from: X(W) - 4 });
+  s += dimV(id, dxl - 44, Y(L.floorY), Y(L.ceilY), m.sauna.ceiling, { from: X(W) - 4, text: `${tLen(m.sauna.ceiling)} ceiling` });
+  const bx = X(SHARED.wallPlan + B.upperD) - 8;
+  s += dimV(id, bx, Y(L.floorY), Y(B.upperH), B.upperH, { right: true, text: `${tLen(B.upperH)} upper` });
+  s += dimV(id, bx, Y(B.upperH), Y(L.ceilY), L.ceilY - L.floorY - B.upperH, { right: true, text: `${tLen(m.sauna.ceiling - B.upperH)} headroom` });
+  const lowCut = cutB.find(b => b.tier === 'lower' || b.tier === 'ada');
+  if (lowCut) s += dimV(id, X(SHARED.wallPlan + lowCut.u1) - 10, Y(L.floorY), Y(lowCut.top), lowCut.top, { text: `${tLen(lowCut.top)} ${lowCut.tier === 'ada' ? 'ADA' : 'lower'}` });
+  const dxr = X(0) + 150;
+  s += dimV(id, dxr, Y(0), Y(L.floorY), L.floorY, { right: true, text: `${tLen(L.floorY)} floor above roof` });
+  // bottom: interior width, bench depths
+  const yb = Y(-0.25);
+  s += dimH(id, X(W - SHARED.wallPlan), X(SHARED.wallPlan), yb, L.rw, { from: Y(0) + 4, below: true });
+  s += dimH(id, X(SHARED.wallPlan + B.upperD), X(SHARED.wallPlan), Y(B.upperH) - 14, B.upperD, { text: `${tLen(B.upperD)}` });
+  if (lowCut) s += dimH(id, X(SHARED.wallPlan + lowCut.u1), X(SHARED.wallPlan + lowCut.u0), Y(lowCut.top) - 14, lowCut.u1 - lowCut.u0, {});
+  s += dimH(id, X(W), X(0), yb + 22, W, { from: Y(0) + 4, below: true });
+  s += text('d-text-muted', X(W / 2), Y(-0.25) + 50, 'Section A-A through the hot room, looking toward the heater wall', 'middle');
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${r2(vb.w)} ${r2(vb.h)}" role="img" aria-label="${m.name} cross-section through the hot room showing floor and wall build-ups, bench heights, ceiling height, heater, supply vent above the heater and extract low behind the benches">${svgDefs(id)}${s}</svg>`;
+}
+
+/* ---------------- Front elevation (sheet A-301): the glass side, seen from outside ---------------- */
+function renderElevation(L) {
+  const id = 'e', S = 80, m = L.m, W = L.W, D = L.D, g = L.glass;
+  const zmin = Math.min(L.landing.z0, L.lockers ? L.lockers.z0 : 0) - 0.4;
+  const zmax = D + (L.deck ? L.deck.d : 0) + 0.4;
+  const ml = 120, mr = 60, mt = 50, mb = 120;
+  const topY = L.eaveHighY + 0.3;
+  // Seen from outside the glass (+x) looking toward -x, +z runs to the left: the entry end (z = 0) is on the right.
+  const X = z => ml + (zmax - z) * S;
+  const Y = y => mt + (topY - y) * S;
+  const vb = { w: ml + (zmax - zmin) * S + mr, h: mt + (topY + 0.2) * S + mb };
+  let s = '';
+  // sky and roof surface
+  s += rect('d-sky', 0, 0, vb.w, Y(0), 'opacity=".35"');
+  s += line('d-heavy', X(zmax), Y(0), X(zmin), Y(0));
+  // exterior lockers beside the entry (Lodge), set back behind the landing
+  if (L.lockers) {
+    const lk = L.lockers;
+    s += rect('d-aspen', X(lk.z1), Y(lk.h), (lk.z1 - lk.z0) * S, lk.h * S);
+    s += line('d-thin', X(lk.z1), Y(lk.h / 2), X(lk.z0), Y(lk.h / 2));
+    s += text('d-text-sm', X(lk.z1), Y(lk.h) - 6, 'Exterior lockers', 'start');
+  }
+  // level landing by the building
+  const ld = L.landing;
+  s += rect('d-cool', X(ld.z1), Y(L.floorY), (ld.z1 - ld.z0) * S, L.floorY * S);
+  s += text('d-text-muted', X((ld.z0 + ld.z1) / 2), Y(0) + 16, 'Level landing', 'middle');
+  // terrace deck and privacy screen beyond the far end (Summit)
+  if (L.deck) {
+    const d = L.deck;
+    for (let z = d.z0 + 0.3; z < d.z1; z += 0.6) s += rect('d-steel', X(z) - 2, Y(L.floorY - 0.04), 4, (L.floorY - 0.04) * S);
+    s += rect('d-deck', X(d.z1), Y(L.floorY), (d.z1 - d.z0) * S, 0.04 * S);
+    for (let z = d.z0 + 0.05; z < d.z1 - 0.03; z += 0.12) s += rect('d-aspen', X(z + 0.06), Y(L.floorY + 1.8), 0.06 * S, 1.8 * S);
+    s += rect('d-steel', X(d.z1), Y(L.floorY + 1.85), (d.z1 - d.z0) * S, 0.05 * S);
+    s += text('d-text-sm', X((d.z0 + d.z1) / 2), Y(L.floorY + 1.85) - 8, 'Terrace and cold plunge behind the privacy screen', 'middle');
+  }
+  // base: pads, adjustable feet and the perimeter channel on the near side
+  L.memberZ.forEach(z => {
+    s += rect('d-steel', X(z) - 0.15 * S, Y(SHARED.padT), 0.3 * S, SHARED.padT * S, 'opacity=".6"');
+    s += rect('d-steel', X(z) - 0.02 * S, Y(L.baseH - SHARED.frameH), 0.04 * S, L.feetH * S);
+  });
+  s += rect('d-steel', X(D), Y(L.baseH), D * S, SHARED.frameH * S);
+  // wood-clad walls either side of the glass
+  [[0, g.z0], [g.z1, D]].forEach(([a, b]) => {
+    if (b - a < 0.01) return;
+    s += rect('d-wall', X(b), Y(L.ceilY), (b - a) * S, (L.ceilY - L.baseH) * S);
+    for (let z = a + 0.12; z < b - 0.03; z += 0.12) s += line('d-thin', X(z), Y(L.ceilY), X(z), Y(L.baseH), 'opacity=".35"');
+  });
+  // glass front: plinth, tinted panes with reflection hints, mullions and frame
+  const gl = g.z1 - g.z0, edges = [g.z0, ...L.mullionsZ, g.z1];
+  s += rect('d-steel-light', X(g.z1), Y(L.floorY), gl * S, (L.floorY - L.baseH) * S);
+  s += rect('d-glass-out', X(g.z1), Y(L.ceilY), gl * S, (L.ceilY - L.floorY) * S);
+  for (let i = 0; i < edges.length - 1; i++) {
+    const za = edges[i], w = edges[i + 1] - za;
+    s += line('d-thin', X(za + w * 0.2), Y(L.ceilY - 0.25), X(za + w * 0.55), Y(L.floorY + 0.6), 'style="stroke:#FFFFFF;opacity:.22"');
+    s += line('d-thin', X(za + w * 0.36), Y(L.ceilY - 0.25), X(za + w * 0.71), Y(L.floorY + 0.6), 'style="stroke:#FFFFFF;opacity:.14"');
+  }
+  L.mullionsZ.forEach(z => s += line('d-line', X(z), Y(L.ceilY), X(z), Y(L.floorY), 'stroke-width="2.5"'));
+  s += rect('d-line', X(g.z1), Y(L.ceilY), gl * S, (L.ceilY - L.floorY) * S, 'stroke-width="2.5"');
+  const pz = (edges[0] + edges[1]) / 2;
+  s += text('d-text-on-glass', X(pz), Y(L.floorY + 0.42), 'Tinted outside,', 'middle');
+  s += text('d-text-on-glass', X(pz), Y(L.floorY + 0.42) + 13, 'clear view out', 'middle');
+  // roof: fascia at the high eave; the roof falls away from the glass to the gutter on the back side
+  s += rect('d-steel', X(D), Y(L.eaveHighY), D * S, (L.eaveHighY - L.ceilY) * S);
+  s += line('d-heavy', X(D), Y(L.eaveHighY), X(0), Y(L.eaveHighY));
+  s += text('d-text-sm', X(D / 2), Y(L.eaveHighY) - 8, `Standing-seam steel roof, ${SHARED.pitchDeg}° mono-pitch falling away from the glass`, 'middle');
+  // dimensions
+  s += dimV(id, X(zmax) - 6, Y(0), Y(L.eaveHighY), L.eaveHighY, { from: X(D) - 4, text: `${tLen(m.ext.h)} overall` });
+  const fx = X(g.z0) + 18;
+  s += dimV(id, fx, Y(0), Y(L.floorY), L.floorY, { right: true, text: `${tLen(L.floorY)} floor` });
+  s += dimV(id, fx, Y(L.floorY), Y(L.ceilY), m.sauna.ceiling, { right: true, text: `${tLen(m.sauna.ceiling)} glass` });
+  s += dimH(id, X(g.z1), X(g.z0), Y(-0.28), gl, { from: Y(0) + 4, below: true, text: `${tLen(gl)} glass front` });
+  s += dimH(id, X(D), X(0), Y(-0.62), D, { from: Y(0) + 4, below: true });
+  if (L.deck) s += dimH(id, X(D + L.deck.d), X(D), Y(-0.62), L.deck.d, { from: Y(0) + 4, below: true });
+  s += text('d-text-muted', X(D / 2), Y(-0.62) + 40, 'Seen from outside the glass; the entry end is on the right', 'middle');
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${r2(vb.w)} ${r2(vb.h)}" role="img" aria-label="${m.name} front elevation of the glass side: full-length privacy-tinted glass front over the hot room, wood-clad walls either side, roof fascia and overall height">${svgDefs(id)}${s}</svg>`;
+}
+
+/* ---------------- Wall panel layers (sheet A-501) ---------------- */
+function renderWallDetail() {
+  const id = 'w', k = 2.2;                       // px per mm
+  const layers = SHARED.wallLayers, tot = layers.reduce((a, l) => a + l.t, 0) * 1000;
+  const ml = 150, mt = 120, h = 150, mr = 150;
+  const vb = { w: ml + tot * k + mr, h: mt + h + 130 };
+  let s = '', x = ml;
+  s += text('d-text-room', ml - 12, mt + h / 2 + 4, 'Outside', 'end');
+  s += text('d-text-room', ml + tot * k + 12, mt + h / 2 + 4, 'Hot room', 'start');
+  s += text('d-text-sm', ml - 12, mt + h / 2 + 18, 'rain, wind, fire exposure', 'end');
+  s += text('d-text-sm', ml + tot * k + 12, mt + h / 2 + 18, '90 °C, steam', 'start');
+  layers.forEach((l, i) => {
+    const w = Math.max(l.t * 1000 * k, 3);
+    if (l.line) s += line('d-accent', x + 1.5, mt, x + 1.5, mt + h, 'stroke-width="3"');
+    else if (l.wool) { s += rect('d-thin', x, mt, w, h); s += rect('d-thin', x, mt, w, h, `fill="url(#wool-${id})"`); }
+    else if (l.aspen) { s += rect('d-aspen', x, mt, w, h); for (let yy = mt + 15; yy < mt + h; yy += 15) s += line('d-thin', x, yy, x + w, yy, 'opacity=".5"'); }
+    else if (l.void) { s += rect('d-mask', x, mt, w, h); s += rect('d-thin', x, mt, w, h); s += line('d-dot', x + w / 2, mt + 6, x + w / 2, mt + h - 6); }
+    else { s += rect('d-wall', x, mt, w, h); s += rect('d-wall-hatch', x, mt, w, h, `fill="url(#hatch-${id})"`); if (i === 0) for (let yy = mt + 12; yy < mt + h; yy += 12) s += line('d-thin', x, yy, x + w, yy, 'opacity=".4"'); }
+    // leader and label, alternating above / below
+    const cx = x + w / 2, above = i % 2 === 0;
+    const ly = above ? mt - 18 - (i % 4 === 0 ? 0 : 34) : mt + h + 26 + (i % 4 === 1 ? 0 : 34);
+    s += line('d-thin', cx, above ? mt : mt + h, cx, above ? ly + 6 : ly - 14);
+    s += `<circle class="d-line" cx="${r2(cx)}" cy="${r2(above ? ly - 2 : ly - 6)}" r="8"/>`;
+    s += text('d-text-sm', cx, above ? ly + 1.5 : ly - 2.5, String(l.n), 'middle', 'font-weight="600"');
+    s += text('d-text-sm', cx + 12, above ? ly - 3 : ly - 7, l.short + (l.line ? '' : `, ${tLen(l.t)}`), 'start');
+    if (l.sub) s += text('d-text-muted', cx + 12, above ? ly + 9 : ly + 5, l.sub, 'start');
+    x += w;
+  });
+  s += dimH(id, ml, ml + tot * k, mt + h + 104, tot / 1000, { from: mt + h + 60, text: `${tLen(SHARED.wallPanel)} total wall panel` });
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${r2(vb.w)} ${r2(vb.h)}" role="img" aria-label="Wall panel build-up, eight layers from the outside cladding to the thermo-aspen lining">${svgDefs(id)}${s}</svg>`;
+}
+
+/* ---------------- Base frame on pads with ballast tray and parapet tie-back (sheet A-502) ---------------- */
+function renderBaseDetail() {
+  const id = 'b';
+  const k = 0.4;                                  // px per mm
+  const gy = 400;                                 // membrane line (roof surface) y
+  const px = mm => mm * k;
+  let s = '';
+  // roof build-up: slab, insulation, membrane; parapet at the left
+  s += rect('d-thin', 40, gy + px(80), 760, px(150), `fill="url(#conc-${id})"`);
+  s += rect('d-thin', 40, gy, 760, px(80), `fill="url(#wool-${id})"`);
+  s += line('d-heavy', 40, gy, 800, gy, 'stroke-width="2.5"');
+  s += rect('d-wall', 40, 40, px(300), gy + px(80) - 40); s += rect('d-wall-hatch', 40, 40, px(300), gy + px(80) - 40, `fill="url(#hatch-${id})"`);
+  s += rect('d-steel', 34, 32, px(300) + 12, 10);
+  s += `<path class="d-heavy" d="M160 ${gy} L160 ${gy - px(250)} L150 ${gy - px(250)}" stroke-width="2.5"/>`;
+  s += text('d-text-sm', 100, 28, 'Parapet', 'middle');
+  s += text('d-text-sm', 166, gy - px(250) + 8, 'Membrane flashing', 'start');
+  // existing pavers on pedestals outside the module
+  [200, 236].forEach(x0 => { s += rect('d-cool', x0, gy - px(60), 34, px(40)); s += rect('d-steel', x0 + 13, gy - px(20), 8, px(20)); });
+  s += text('d-text-muted', 218, gy - px(60) - 6, 'Existing pavers', 'middle');
+  // break line (distance to parapet per site)
+  s += `<path class="d-thin" d="M268 ${gy - 110} l6 -8 l-12 -8 l6 -8 M268 ${gy + 2} l6 -8 l-12 -8 l6 -8" />`;
+  // pad, foot, base plate, channel
+  const padY = gy - px(20);
+  s += rect('d-steel', 250, padY, px(300), px(20), 'opacity=".6"');
+  s += text('d-text-sm', 250, padY + 30, 'Rubber pad 300 × 300 × 20', 'start');
+  s += text('d-text-sm', 250, padY + 42, 'over a beam line', 'start');
+  const frameBot = gy - px(20) - px(70), frameTop = frameBot - px(100);
+  s += rect('d-steel', 290, padY - px(10), px(100), px(10));
+  s += rect('d-steel', 302, frameBot, px(40), padY - px(10) - frameBot);
+  s += line('d-thin', 296, frameBot + 8, 348, frameBot + 8, 'stroke-width="3"');
+  s += text('d-text-sm', 440, padY + 30, 'Adjustable foot M30, lock nut, 40–110 mm', 'start');
+  // perimeter channel (cut) and cross member (beyond)
+  s += rect('d-steel', 300, frameTop, px(60), px(100)); s += rect('d-thin', 300, frameTop, px(60), px(100), `fill="url(#hatch-${id})"`);
+  s += rect('d-steel-light', 324, frameTop + 4, 420, px(100) - 8);
+  s += text('d-text-sm', 560, frameBot + 14, 'Cross member beyond: 100 × 50 galvanized channel at 1.2 m max', 'middle');
+  // ballast tray with pavers
+  s += rect('d-steel-light', 380, frameTop + px(30), 330, px(60));
+  s += rect('d-thin', 384, frameTop + px(34), 322, px(52), `fill="url(#conc-${id})"`);
+  s += text('d-text', 545, frameTop + px(60) + 4, 'Ballast tray: concrete pavers, mass per site (ASCE 7-16 29.5.1)', 'middle');
+  // floor: grating + decking
+  const floorBot = frameTop, floorTop = frameTop - px(100);
+  s += rect('d-cool', 300, floorTop + px(30), 500, px(70));
+  s += rect('d-thin', 300, floorTop + px(30), 500, px(70), `fill="url(#grate-${id})"`);
+  s += rect('d-deck', 300, floorTop, 500, px(30));
+  s += text('d-text-sm', 560, floorTop - 6, 'Non-slip composite decking on aluminium grating sub-floor, falls to floor drain', 'middle');
+  // wall panel stub on the frame edge
+  s += rect('d-wall', 296, 60, px(100), floorTop - 60); s += rect('d-wall-hatch', 296, 60, px(100), floorTop - 60, `fill="url(#hatch-${id})"`);
+  s += rect('d-aspen', 290, 60, 6, floorTop - 60 + px(100) + 10);
+  s += `<path class="d-thin" d="M290 70 l8 -6 l-16 -6 l8 -6" />`;
+  s += text('d-text-sm', 344, 56, 'Wall panel (A-501)', 'start');
+  s += text('d-text-sm', 284, 150, 'Cladding over frame edge', 'end');
+  // tie-back bracket and strut
+  s += rect('d-steel', 160, gy - px(190), 14, px(60));
+  s += `<circle class="d-line" cx="167" cy="${r2(gy - px(175))}" r="3"/><circle class="d-line" cx="167" cy="${r2(gy - px(145))}" r="3"/>`;
+  s += line('d-steel', 174, gy - px(160), 302, frameTop + px(50), 'stroke-width="6"');
+  s += line('d-thin', 174, gy - px(160), 302, frameTop + px(50), 'stroke="var(--bg)" stroke-width="1.5"');
+  s += text('d-text', 284, gy - px(190) - 68, 'Parapet tie-back', 'end');
+  s += text('d-text-sm', 284, gy - px(190) - 55, 'galvanized angle, anchored', 'end');
+  s += text('d-text-sm', 284, gy - px(190) - 42, 'to the parapet; strut to frame', 'end');
+  // dims
+  s += dimV(id, 860, gy, floorTop, 0, { from: 804, right: true, text: 'Floor level, per model (A-201)' });
+  s += dimV(id, 830, frameBot, frameTop, 0.1, { top: true, text: `${tLen(0.1)} frame` });
+  s += text('d-text-muted', 520, gy + px(80) + px(150) + 22, 'No fixings through the membrane. Pads bear on beam lines; the engineer of record checks point loads, ballast and tie-back reactions per site.', 'middle');
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 ${gy + px(230) + 40}" role="img" aria-label="Base frame detail: galvanized channel on adjustable feet and rubber pads over the roof membrane, ballast tray with pavers, grating floor and a tie-back strut to the parapet">${svgDefs(id)}${s}</svg>`;
+}
+/* ------------------------------------------------------------------------------------------
+   Spec sheet, model strip, title blocks, captions, controls.
+   ------------------------------------------------------------------------------------------ */
+const usd = n => '$' + nf0.format(n);
+function renderSpecTable() {
+  const keys = ['perch', 'lodge', 'summit'];
+  const Ls = keys.map(k => layout(MODELS[k]));
+  const row = (label, cells, note) => `<tr><th scope="row">${label}${note ? `<small>${note}</small>` : ''}</th>${cells.map((c, i) => `<td class="${keys[i] === STATE.model ? 'sel' : ''}">${c}</td>`).join('')}</tr>`;
+  const group = (label) => `<tr class="group"><th colspan="4">${label}</th></tr>`;
+  const sp = (m) => spanLen(m);
+  const rows = [
+    group('Capacity'),
+    row('Bench seats', Ls.map(L => `${L.m.seats}<small>${L.seats} places drawn at ${sp(SHARED.bench.seatPitch)} on two tiers along the back wall, ADA transfer section included (open item 2)</small>`)),
+    row('Comfort capacity', Ls.map(L => `${L.m.comfort} bathers<small>at ${fmtVol(SHARED.comfortVolume)} per person</small>`), '3 m³ per person'),
+    group('Dimensions'),
+    row('Exterior footprint, W × D', Ls.map(L => `${sp(L.W)} × ${sp(L.D)}<small><span data-m2="${L.footprint}">${fmtArea(L.footprint)}</span>${L.deck ? ` + terrace ${sp(L.m.deck.w)} × ${sp(L.m.deck.d)}` : ''}</small>`)),
+    row('Exterior height', Ls.map(L => `${sp(L.H)}<small>to the high eave; low eave ${sp(L.eaveLowY)}</small>`)),
+    row('Hot room, interior', Ls.map(L => `${sp(L.rw)} × ${sp(L.rd)}<small>${fmtArea(L.rw * L.rd).replace(/ /g, ' ')} floor, <span data-m3="${L.hotVolume}">${fmtVol(L.hotVolume)}</span> air</small>`)),
+    row('Ceiling height', Ls.map(L => `${sp(L.m.sauna.ceiling)}<small>${sp(L.m.sauna.ceiling - SHARED.bench.upperH)} above the upper bench</small>`)),
+    row('Other rooms', Ls.map(L => L.rooms.filter(r => r.kind !== 'sauna').map(r => `${r.name} ${sp(r.w)} × ${sp(r.d)}`).join('<br>') + (L.m.plunge ? `<br>Cold plunge <span data-l="${L.m.plunge.litres}">${fmtLitres(L.m.plunge.litres)}</span>, ${L.m.plunge.chillerHp} HP chiller, ozone/AOP` : '') + (L.m.extras ? '<br>' + L.m.extras : ''))),
+    row('Glass front', Ls.map(L => `${sp(L.rd)} × ${sp(L.m.sauna.ceiling)}<small><span data-m2="${L.glassArea}">${fmtArea(L.glassArea)}</span>, the whole outside wall of the hot room; double-glazed tempered IGU, privacy-tinted reflective outer pane, low-iron inner pane</small>`)),
+    row('Door', Ls.map(() => `${sp(SHARED.door.clear)} clear<small>outward-swinging glass leaf in the near wood side wall, ${sp(SHARED.door.h)} high</small>`)),
+    row('Benches', Ls.map(L => `Two tiers, ${sp(L.rd)} long, along the back wall facing the glass<br>Upper ${sp(SHARED.bench.upperH)} h × ${sp(SHARED.bench.upperD)} d<br>Lower ${sp(SHARED.bench.lowerH)} h × ${sp(SHARED.bench.lowerD)} d<br>Step ${sp(SHARED.bench.stepH)}<small>ADA transfer section ${sp(SHARED.bench.adaL)} × ${sp(SHARED.bench.adaD)} at ${sp(SHARED.bench.adaH)}, far end of the lower tier; the lower section beside it lifts out</small>`)),
+    group('Heating and air'),
+    row('Heater', Ls.map(L => `${L.m.heater.label}<small>commercial electric, ETL/UL 875 listed, remote controller, 60 min timer, door sensor</small>`)),
+    row('Listing path', Ls.map(() => 'ANSI/UL 875 Ed. 10 (2024), heater + prefabricated rigid room, by an NRTL (UL or ETL)')),
+    row('Effective heated volume', Ls.map(L => `≈ <span data-m3="${L.m.effVol}">${fmtVol(L.m.effVol)}</span><small>room volume + 1.2 m³ per m² of glass (Harvia rule)</small>`)),
+    row('Interior temperature cap', Ls.map(() => `${SHARED.tempCapC} °C (${Math.round(SHARED.tempCapC * 9 / 5 + 32)} °F)`)),
+    row('Ventilation', Ls.map(L => `${spanFlowRange(L.ventRange[0], L.ventRange[1])}<small>mechanical, ${SHARED.ventPerPerson[0]}–${SHARED.ventPerPerson[1]} L/s per bather at ${L.m.seatsMax} seats; supply above heater, extract low behind benches; CO₂ &lt; 700 ppm</small>`)),
+    group('Services'),
+    row('Electrical supply', Ls.map(L => L.m.electrical), 'planning values'),
+    row('Water', Ls.map(L => L.m.water)),
+    row('Drain', Ls.map(L => L.m.drain)),
+    group('Weight and structure'),
+    row('Dry weight', Ls.map(L => `~<span data-kg="${L.m.dryKg}">${fmtMass(L.m.dryKg)}</span>${L.m.extraKg ? `<small>+ ~<span data-kg="${L.m.extraKg}">${fmtMass(L.m.extraKg)}</span> ${L.m.extraNote}</small>` : ''}`), 'before ballast'),
+    row('Ballast', Ls.map(L => `~<span data-kg="${L.m.ballastKg}">${fmtMass(L.m.ballastKg)}</span><small>planning estimate; sized per site to ASCE 7-16 29.5.1</small>`)),
+    row('Weight with ballast', Ls.map(L => `~<span data-kg="${L.m.dryKg + L.m.ballastKg}">${fmtMass(L.m.dryKg + L.m.ballastKg)}</span>${L.m.extraKg ? `<small>~<span data-kg="${L.m.dryKg + L.m.ballastKg + L.m.extraKg}">${fmtMass(L.m.dryKg + L.m.ballastKg + L.m.extraKg)}</span> with the filled plunge</small>` : ''}`)),
+    row('Average bearing', Ls.map(L => { const p = (L.m.dryKg + L.m.ballastKg) / L.footprint; return `<span data-kgm2="${p.toFixed(1)}">${fmtPressure(p)}</span><small>module + ballast over its footprint, no occupants</small>`; }), 'computed'),
+    row('Bearing design basis', Ls.map(() => 'Occupiable roofs rated 100 psf (4.8 kPa), NYC BC Table 1607.1; point loads at the feet reviewed by the engineer of record on every site; 60 psf decks need spreader frames or reinforcement')),
+    group('Delivery and programme'),
+    row('Delivery method', Ls.map(L => L.m.delivery)),
+    row('Days on site', Ls.map(L => L.m.days)),
+    row('Lead time', Ls.map(L => `${L.m.lead}<small>signed contract to first session</small>`)),
+    group('Price (installed, from)'),
+    row('Installed from', Ls.map(L => `<b>${usd(L.m.price)}</b>`)),
+    row('Suite hardware', Ls.map(L => usd(L.m.breakdown[0]))),
+    row('Engineering, permits and drawings', Ls.map(L => usd(L.m.breakdown[1]))),
+    row('Delivery, lift and install', Ls.map(L => usd(L.m.breakdown[2]))),
+    row('Electrical connection', Ls.map((L, i) => usd(L.m.breakdown[3]) + (i === 2 ? '<small>electrical and water</small>' : ''))),
+    row('Commissioning, training and launch', Ls.map(L => usd(L.m.breakdown[4])))
+  ];
+  const head = `<thead><tr><th scope="col">Item</th>${keys.map(k => `<th scope="col">${MODELS[k].name}<small>${MODELS[k].seats} seats · ${MODELS[k].heater.label}</small></th>`).join('')}</tr></thead>`;
+  document.getElementById('spec-table').innerHTML = head + '<tbody>' + rows.join('') + '</tbody>';
+  document.getElementById('spec-foot').innerHTML = 'Add-ons: cold plunge for Lodge ($24,500, 1,200 L, 2 HP chiller), terrace decking and privacy screens ($9,000–$24,000), lighting scene pack ($3,500), towel and robe station ($2,200). Lead time and days on site are from the brief; heater clearances, feeder sizes and point loads are confirmed per listed product and per site.';
+}
+
+function renderStrip(L) {
+  const m = L.m;
+  const items = [
+    ['Footprint', `${spanLen(L.W)} × ${spanLen(L.D)}`, L.deck ? `+ ${spanLen(m.deck.w)} × ${spanLen(m.deck.d)} terrace` : `height ${spanLen(L.H)}`],
+    ['Hot room', `${spanLen(L.rw)} × ${spanLen(L.rd)}`, `ceiling ${spanLen(m.sauna.ceiling)}`],
+    ['Seats', `${m.seats}`, `${m.comfort} at full comfort`],
+    ['Heater', m.heater.label, `≈ <span data-m3="${m.effVol}">${fmtVol(m.effVol)}</span> effective`],
+    ['Dry weight', `~<span data-kg="${m.dryKg}">${fmtMass(m.dryKg)}</span>`, m.extraKg ? `+ plunge filled` : 'before ballast'],
+    ['Installed from', usd(m.price), `${m.days} on site`]
+  ];
+  document.getElementById('model-strip').innerHTML = items.map(([k, v, sub]) => `<div><dt>${k}</dt><dd>${v}<small>${sub}</small></dd></div>`).join('');
+}
+
+function titleBlock(host, sheet, title, scale) {
+  const code = STATE.model[0].toUpperCase();
+  document.getElementById(host).innerHTML = [
+    ['Sheet', `${sheet}-${code}`], ['Title', title], ['Scale', scale], ['Units', `<span data-units-label>${STATE.units === 'imperial' ? 'ft-in' : 'mm'}</span>`],
+    ['Rev / date', 'P1 · 1 Nov 2026'], ['Status', 'Design intent, not for construction']
+  ].map(([k, v]) => `<div><span>${k}</span><b>${v}</b></div>`).join('');
+}
+
+function renderDrawings() {
+  const m = MODELS[STATE.model], L = layout(m);
+  document.getElementById('plan-host').innerHTML = renderPlan(L);
+  document.getElementById('section-host').innerHTML = renderSection(L);
+  document.getElementById('elevation-host').innerHTML = renderElevation(L);
+  const tc = L.turning.where;
+  document.getElementById('plan-caption').innerHTML = `${m.name} floor plan at floor level with the roof removed, entry at the left. Both bench tiers run wall to wall along the back wall (top of the plan) and face the glass front along the bottom edge, so every seat looks out; the short side walls are solid thermo-aspen, with the door in the near one and the heater${m.heater.n > 1 ? 's' : ''} in the far corner by the glass. Upper bench ${spanLen(SHARED.bench.upperD)} deep at ${spanLen(SHARED.bench.upperH)}, lower bench ${spanLen(SHARED.bench.lowerD)} deep at ${spanLen(SHARED.bench.lowerH)}, ADA transfer section ${spanLen(SHARED.bench.adaL)} long at ${spanLen(SHARED.bench.adaH)} at the far end, with a lift-out lower section beside it. The ${spanLen(SHARED.turning)} turning circle sits in the ${tc}. Section A-A cuts across the hot room looking toward the heater wall. Base-frame feet are shown as pads; members at ${nf1.format((L.D - 0.1) / (L.memberZ.length - 1))} m centres.`;
+  document.getElementById('section-caption').innerHTML = `Section A-A through the ${m.name} hot room. Floor build-up: base frame ${spanLen(L.baseH)} (adjustable feet ${spanLen(L.feetH)} on 20 mm pads, 100 mm channel) plus ${spanLen(SHARED.floorT)} grating and decking; floor ${spanLen(L.floorY)} above the roof surface. Interior ceiling ${spanLen(m.sauna.ceiling)}, roof build-up ${spanLen(SHARED.roofT)} at the low eave rising ${spanLen(L.rise)} across the width at ${SHARED.pitchDeg}°. Supply register in the ceiling over the heater; mechanical extract ${spanLen(0.15)} above the floor behind the benches; design rate ${spanFlowRange(L.ventRange[0], L.ventRange[1])} at ${m.seatsMax} seats.`;
+  document.getElementById('elevation-caption').innerHTML = `${m.name} front elevation, seen from outside the glass side. The glass front is ${spanLen(L.rd)} long × ${spanLen(m.sauna.ceiling)} high, the whole outside wall of the hot room, double-glazed in a thermally broken frame with a privacy-tinted reflective outer pane: by day bathers see out and people on the roof see a dark pane. Wood-clad walls either side; standing-seam roof falling ${spanLen(L.rise)} away from the glass to the gutter; overall height ${spanLen(L.H)} at the high eave.${L.deck ? ' The terrace deck and cold plunge sit beyond the far end behind a 1.8 m privacy screen.' : ''}${L.lockers ? ' Weatherproof lockers stand outside, beside the entry.' : ''}`;
+  titleBlock('plan-title', 'A-101', `${m.name} floor plan`, '1:50 at full width');
+  titleBlock('section-title', 'A-201', `${m.name} section A-A`, '1:25 at full width');
+  titleBlock('elevation-title', 'A-301', `${m.name} front elevation`, '1:30 at full width');
+}
+
+function renderAll() {
+  const L = layout(MODELS[STATE.model]);
+  renderStrip(L);
+  renderDrawings();
+  renderSpecTable();
+  refreshUnits();
+}
+
+/* ---------------- Controls ---------------- */
+function setModel(key) {
+  if (!MODELS[key]) return;
+  STATE.model = key;
+  document.querySelectorAll('.seg.models button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.model === key)));
+  renderAll();
+  emit('model', key);
+}
+function setUnits(u) {
+  STATE.units = u;
+  document.querySelectorAll('[data-units]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.units === u)));
+  refreshUnits();
+  try { localStorage.setItem('vantage-units', u); } catch (e) { /* storage unavailable */ }
+  emit('units', u);
+}
+function effectiveTheme() {
+  const t = document.documentElement.getAttribute('data-theme');
+  if (t === 'dark' || t === 'light') return t;
+  return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+function applyTheme(t) {
+  if (t) document.documentElement.setAttribute('data-theme', t); else document.documentElement.removeAttribute('data-theme');
+  emit('theme', effectiveTheme());
+}
+document.addEventListener('DOMContentLoaded', () => {
+  try { const t = localStorage.getItem('vantage-theme'); if (t === 'dark' || t === 'light') applyTheme(t); } catch (e) { /* storage unavailable */ }
+  try { const u = localStorage.getItem('vantage-units'); if (u === 'imperial' || u === 'metric') STATE.units = u; } catch (e) { /* storage unavailable */ }
+  document.querySelectorAll('[data-units]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.units === STATE.units)));
+  document.querySelectorAll('.seg.models button').forEach(b => b.addEventListener('click', () => setModel(b.dataset.model)));
+  document.querySelectorAll('[data-units]').forEach(b => b.addEventListener('click', () => setUnits(b.dataset.units)));
+  document.getElementById('theme-toggle').addEventListener('click', () => {
+    const next = effectiveTheme() === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+    try { localStorage.setItem('vantage-theme', next); } catch (e) { /* storage unavailable */ }
+  });
+  if (window.matchMedia) { try { window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => emit('theme', effectiveTheme())); } catch (e) { /* older Safari */ } }
+  document.getElementById('wall-host').innerHTML = renderWallDetail();
+  document.getElementById('base-host').innerHTML = renderBaseDetail();
+  renderAll();
+});
+// Public surface for the 3D module.
+window.VANTAGE = { SHARED, MODELS, STATE, layout, on, emit, fmtLen, fmtDim, fmtMass, refreshUnits, effectiveTheme };
+</script>
+<script type="module">
+/* 3D viewer. Loads Three.js r160 as ES modules through the import map above; if the import fails
+   (no network, blocked CDN, no import-map support) the static fallback message is shown and the
+   rest of the page keeps working. */
+const stageEl = document.getElementById('stage');
+function showFallback() {
+  document.getElementById('stage-fallback').hidden = false;
+  document.getElementById('stage-loading').hidden = true;
+  document.querySelectorAll('.viewer-tools button').forEach(b => { b.disabled = true; b.setAttribute('aria-disabled', 'true'); });
+}
+const watchdog = setTimeout(() => { if (!window.__vantageViewerReady) showFallback(); }, 20000);
+try {
+  const [THREE, { OrbitControls }, { CSS2DRenderer, CSS2DObject }] = await Promise.all([
+    import('three'),
+    import('three/addons/controls/OrbitControls.js'),
+    import('three/addons/renderers/CSS2DRenderer.js')
+  ]);
+  initViewer(THREE, OrbitControls, CSS2DRenderer, CSS2DObject);
+  window.__vantageViewerReady = true;
+  clearTimeout(watchdog);
+} catch (err) {
+  console.warn('Vantage 3D viewer unavailable:', err);
+  clearTimeout(watchdog);
+  showFallback();
+}
+
+function initViewer(THREE, OrbitControls, CSS2DRenderer, CSS2DObject) {
+  const V = window.VANTAGE, S = V.SHARED;
+  const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- renderer, scene, camera ---------- */
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: 'high-performance' });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.0;
+  renderer.localClippingEnabled = true;
+  stageEl.insertBefore(renderer.domElement, stageEl.firstChild);
+  let needs = true; const requestRender = () => { needs = true; };
+  const labelRenderer = new CSS2DRenderer();
+  labelRenderer.domElement.style.position = 'absolute';
+  labelRenderer.domElement.style.inset = '0';
+  labelRenderer.domElement.style.pointerEvents = 'none';
+  document.getElementById('stage-labels').appendChild(labelRenderer.domElement);
+
+  const scene = new THREE.Scene();
+  const SKY = { day: new THREE.Color(0xCFE0EA), night: new THREE.Color(0x0B1420) };
+  scene.background = SKY.day.clone();
+  scene.fog = new THREE.Fog(SKY.day.clone(), 30, 150);
+  const camera = new THREE.PerspectiveCamera(45, 1, 0.05, 500);
+  camera.position.set(9, 5, 9);
+  const controls = new OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true; controls.dampingFactor = 0.08;
+  controls.maxPolarAngle = Math.PI / 2 - 0.01;
+  controls.minDistance = 0.3; controls.maxDistance = 60;
+  controls.autoRotate = !reduced; controls.autoRotateSpeed = 0.6;
+  controls.addEventListener('start', () => { controls.autoRotate = false; });
+
+  /* ---------- lights ---------- */
+  const hemi = new THREE.HemisphereLight(0xE8F0F6, 0x6F6A62, 0.9);
+  scene.add(hemi);
+  const sun = new THREE.DirectionalLight(0xFFF2E2, 2.6);
+  sun.position.set(12, 18, 8);
+  sun.castShadow = true;
+  sun.shadow.mapSize.set(2048, 2048);
+  sun.shadow.camera.near = 1; sun.shadow.camera.far = 70;
+  sun.shadow.camera.left = -16; sun.shadow.camera.right = 16; sun.shadow.camera.top = 16; sun.shadow.camera.bottom = -16;
+  sun.shadow.bias = -0.0006;
+  scene.add(sun); scene.add(sun.target);
+
+  /* ---------- procedural textures ---------- */
+  function canvasTex(w, h, draw, repeatX, repeatY) {
+    const c = document.createElement('canvas'); c.width = w; c.height = h;
+    draw(c.getContext('2d'), w, h);
+    const t = new THREE.CanvasTexture(c);
+    t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(repeatX || 1, repeatY || 1);
+    t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4;
+    return t;
+  }
+  const cladBase = canvasTex(128, 512, (g, w, h) => {
+    g.fillStyle = '#6A4C34'; g.fillRect(0, 0, w, h);
+    for (let b = 0; b < 4; b++) {
+      const x = b * 32; const shade = 128 + ((b * 37) % 18);
+      g.fillStyle = `rgb(${shade + 36},${shade},${shade - 34})`; g.fillRect(x + 1, 0, 30, h);
+      g.strokeStyle = 'rgba(60,35,15,.28)'; g.lineWidth = 1;
+      for (let i = 0; i < 6; i++) { g.beginPath(); const gx = x + 4 + (i * 5 + b * 3) % 24; g.moveTo(gx, 0); g.lineTo(gx + (i % 2 ? 2 : -2), h); g.stroke(); }
+      g.fillStyle = 'rgba(0,0,0,.55)'; g.fillRect(x, 0, 2, h);
+    }
+  });
+  const paverTex = canvasTex(256, 256, (g, w, h) => {
+    g.fillStyle = '#B7B0A4'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 2; i++) for (let j = 0; j < 2; j++) { g.fillStyle = (i + j) % 2 ? '#B2ABA0' : '#BBB4A8'; g.fillRect(i * 128 + 2, j * 128 + 2, 124, 124); }
+    g.strokeStyle = 'rgba(60,55,50,.5)'; g.lineWidth = 3; g.strokeRect(1, 1, w - 2, h - 2); g.beginPath(); g.moveTo(128, 0); g.lineTo(128, h); g.moveTo(0, 128); g.lineTo(w, 128); g.stroke();
+  }, 13, 15);
+  const aspenTex = canvasTex(256, 256, (g, w, h) => {
+    g.fillStyle = '#DCC39C'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 40; i++) { g.strokeStyle = `rgba(120,90,50,${0.08 + (i % 5) * 0.03})`; g.lineWidth = 1 + (i % 3); g.beginPath(); const y = (i * 37) % h; g.moveTo(0, y); g.bezierCurveTo(w / 3, y + 6, 2 * w / 3, y - 6, w, y + 2); g.stroke(); }
+  }, 2, 2);
+  const grateTex = canvasTex(64, 64, (g, w, h) => {
+    g.fillStyle = '#8F979C'; g.fillRect(0, 0, w, h); g.fillStyle = '#4E5559';
+    for (let i = 0; i < 4; i++) for (let j = 0; j < 4; j++) g.fillRect(i * 16 + 3, j * 16 + 3, 10, 10);
+  }, 20, 30);
+
+  /* ---------- materials (suite materials carry the shared clipping array for the section view) ---------- */
+  const clip = [];
+  const std = (o) => new THREE.MeshStandardMaterial(Object.assign({ clippingPlanes: clip }, o));
+  const M = {
+    aspen: std({ map: aspenTex, color: 0xF0E2CC, roughness: 0.75 }),
+    aspenPlain: std({ color: 0xD9BE95, roughness: 0.75 }),
+    benchTop: std({ map: aspenTex, color: 0xE9D7BA, roughness: 0.7 }),
+    steel: std({ color: 0x9AA0A5, metalness: 0.65, roughness: 0.45 }),
+    steelDark: std({ color: 0x4E5358, metalness: 0.6, roughness: 0.5 }),
+    roof: std({ color: 0x3A3F44, metalness: 0.55, roughness: 0.5 }),
+    seam: std({ color: 0x50565C, metalness: 0.6, roughness: 0.45 }),
+    glass: new THREE.MeshPhysicalMaterial({ color: 0xBFDCE8, transparent: true, opacity: 0.28, roughness: 0.05, metalness: 0, side: THREE.DoubleSide, depthWrite: false, clippingPlanes: clip }),
+    tint: new THREE.MeshPhysicalMaterial({ color: 0x2B2722, metalness: 0.55, roughness: 0.07, transparent: true, opacity: 0.86, side: THREE.FrontSide, depthWrite: false, clippingPlanes: clip }),
+    frame: std({ color: 0x24272A, metalness: 0.7, roughness: 0.4 }),
+    decking: std({ color: 0x4B4844, roughness: 0.9 }),
+    grate: std({ map: grateTex, roughness: 0.6, metalness: 0.4 }),
+    heater: std({ color: 0x2A2A2A, roughness: 0.55, metalness: 0.35 }),
+    stones: std({ color: 0x5A554F, roughness: 1, emissive: 0xFF5A1F, emissiveIntensity: 0.0 }),
+    led: new THREE.MeshBasicMaterial({ color: 0xFFC78A, clippingPlanes: clip }),
+    water: std({ color: 0x3C84AA, transparent: true, opacity: 0.8, roughness: 0.08, metalness: 0.1 }),
+    tub: std({ color: 0xD9DDE0, metalness: 0.5, roughness: 0.35 }),
+    deck: std({ color: 0x7A5C44, roughness: 0.85 }),
+    rubber: std({ color: 0x1E1E1E, roughness: 1 }),
+    ballast: std({ color: 0x8E8A83, roughness: 1 }),
+    vent: std({ color: 0xE8E4DC, roughness: 0.6 }),
+    accent: std({ color: 0xC8552B, roughness: 0.8 }),
+    door: std({ map: cladBase.clone(), color: 0xB9B0A3, roughness: 0.8 }),
+    // site materials: no clipping
+    paver: new THREE.MeshStandardMaterial({ map: paverTex, roughness: 0.95 }),
+    concrete: new THREE.MeshStandardMaterial({ color: 0x9B968E, roughness: 0.95 }),
+    parapet: new THREE.MeshStandardMaterial({ color: 0xB9B2A6, roughness: 0.9 }),
+    coping: new THREE.MeshStandardMaterial({ color: 0x8E8880, roughness: 0.8 }),
+    bulkhead: new THREE.MeshStandardMaterial({ color: 0xA8A49C, roughness: 0.9 }),
+    hvac: new THREE.MeshStandardMaterial({ color: 0x8E9398, metalness: 0.4, roughness: 0.6 }),
+    city: new THREE.MeshStandardMaterial({ color: 0x5A6573, roughness: 1 }),
+    figure: new THREE.MeshStandardMaterial({ color: 0xC8552B, roughness: 0.8 }),
+    dim: new THREE.LineBasicMaterial({ color: 0xC8552B })
+  };
+  M.door.map.repeat.set(1.5, 1); M.door.map.needsUpdate = true;
+  function cladMat(lenU, lenV) { const t = cladBase.clone(); t.needsUpdate = true; t.repeat.set(lenU / 0.6, lenV / 2.4); return std({ map: t, color: 0xFFFFFF, roughness: 0.85 }); }
+
+  /* ---------- geometry helpers ---------- */
+  function boxB(x0, x1, y0, y1, z0, z1, mat, opts = {}) {
+    const g = new THREE.BoxGeometry(Math.max(x1 - x0, 0.001), Math.max(y1 - y0, 0.001), Math.max(z1 - z0, 0.001));
+    const m = new THREE.Mesh(g, mat);
+    m.position.set((x0 + x1) / 2, (y0 + y1) / 2, (z0 + z1) / 2);
+    m.castShadow = opts.shadow !== false; m.receiveShadow = true;
+    return m;
+  }
+  function rod(a, b, r, mat) {
+    const d = new THREE.Vector3().subVectors(b, a), len = d.length();
+    const m = new THREE.Mesh(new THREE.CylinderGeometry(r, r, len, 10), mat);
+    m.position.copy(a).addScaledVector(d, 0.5);
+    m.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), d.normalize());
+    m.castShadow = true; return m;
+  }
+  function label(cls, text, x, y, z, extra) {
+    const el = document.createElement('div'); el.className = cls; el.textContent = text;
+    if (extra) Object.assign(el.dataset, extra);
+    const o = new CSS2DObject(el); o.position.set(x, y, z); return o;
+  }
+
+  /* ---------- site: roof, parapet, bulkhead, HVAC, skyline, figure ---------- */
+  const site = new THREE.Group(); scene.add(site);
+  (function buildSite() {
+    const R = S.siteRoof, T = R.parapetT, PH = R.parapetH;
+    const slab = boxB(R.x0 - T, R.x1 + T, -0.35, 0, R.z0 - T, R.z1 + T, [M.concrete, M.concrete, M.paver, M.concrete, M.concrete, M.concrete], { shadow: false });
+    site.add(slab);
+    const par = (x0, x1, z0, z1) => { site.add(boxB(x0, x1, 0, PH, z0, z1, M.parapet)); site.add(boxB(x0 - 0.04, x1 + 0.04, PH, PH + 0.05, z0 - 0.04, z1 + 0.04, M.coping)); };
+    par(R.x0 - T, R.x0, R.z0 - T, R.z1 + T); par(R.x1, R.x1 + T, R.z0 - T, R.z1 + T); par(R.x0, R.x1, R.z0 - T, R.z0); par(R.x0, R.x1, R.z1, R.z1 + T);
+    // stair bulkhead with a door
+    site.add(boxB(-11, -7, 0, 3.2, 7.5, 10.5, M.bulkhead));
+    site.add(boxB(-11, -7, 3.2, 3.3, 7.5, 10.5, M.coping));
+    site.add(boxB(-9.6, -8.6, 0, 2.1, 7.44, 7.5, M.steelDark));
+    // HVAC units on curbs with fan rings
+    [[-6.5, -4.5, -3.6, -2.4], [-9.5, -7.5, -4.0, -2.8]].forEach(([x0, x1, z0, z1]) => {
+      site.add(boxB(x0 + 0.1, x1 - 0.1, 0, 0.3, z0 + 0.1, z1 - 0.1, M.concrete));
+      site.add(boxB(x0, x1, 0.3, 1.3, z0, z1, M.hvac));
+      const ring = new THREE.Mesh(new THREE.TorusGeometry(0.38, 0.05, 8, 24), M.steelDark);
+      ring.rotation.x = Math.PI / 2; ring.position.set((x0 + x1) / 2, 1.33, (z0 + z1) / 2); site.add(ring);
+      const fan = new THREE.Mesh(new THREE.CylinderGeometry(0.34, 0.34, 0.02, 24), M.steelDark); fan.position.set((x0 + x1) / 2, 1.31, (z0 + z1) / 2); site.add(fan);
+    });
+    // roof drain near the suite
+    const drain = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.18, 0.02, 20), M.steelDark); drain.position.set(-1.0, 0.01, 2.2); site.add(drain);
+    // city skyline: deterministic pseudo-random boxes around the roof
+    let seed = 7; const rnd = () => { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
+    const cx = (R.x0 + R.x1) / 2, cz = (R.z0 + R.z1) / 2;
+    for (let i = 0; i < 64; i++) {
+      const a = rnd() * Math.PI * 2, rad = 40 + rnd() * 95;
+      const w = 8 + rnd() * 18, d = 8 + rnd() * 18, h = 12 + rnd() * 70, base = -40;
+      const b = boxB(cx + Math.cos(a) * rad - w / 2, cx + Math.cos(a) * rad + w / 2, base, base + h, cz + Math.sin(a) * rad - d / 2, cz + Math.sin(a) * rad + d / 2, M.city, { shadow: false });
+      b.receiveShadow = false; site.add(b);
+    }
+    // scale figure, 1.75 m
+    const fig = new THREE.Group();
+    const body = new THREE.Mesh(new THREE.CapsuleGeometry(0.16, 1.1, 4, 10), M.figure); body.position.y = 0.16 + 0.55; body.castShadow = true;
+    const head = new THREE.Mesh(new THREE.SphereGeometry(0.11, 12, 10), M.figure); head.position.y = 1.64; head.castShadow = true;
+    fig.add(body, head); fig.name = 'figure'; site.add(fig);
+    site.userData.figure = fig;
+  })();
+
+  /* ---------- suite ---------- */
+  let suite = null, layers = null, disposables = [], labels = [];
+  const EXPLODE = { base: 0, floor: 0.55, interior: 1.2, walls: 2.3, roof: 3.5 };
+  function buildSuite(L) {
+    const m = L.m, W = L.W, D = L.D, wp = L.wp, B = S.bench;
+    const g = new THREE.Group();
+    layers = { base: new THREE.Group(), floor: new THREE.Group(), walls: new THREE.Group(), interior: new THREE.Group(), roof: new THREE.Group(), dims: new THREE.Group() };
+    Object.values(layers).forEach(l => g.add(l));
+    disposables = []; labels = [];
+    const add = (layer, mesh) => { layers[layer].add(mesh); if (mesh.geometry) disposables.push(mesh.geometry); return mesh; };
+
+    /* base frame */
+    const fb = L.baseH - S.frameH, ft = L.baseH;
+    add('base', boxB(0, 0.1, fb, ft, 0, D, M.steel)); add('base', boxB(W - 0.1, W, fb, ft, 0, D, M.steel));
+    add('base', boxB(0, W, fb, ft, 0, 0.1, M.steel)); add('base', boxB(0, W, fb, ft, D - 0.1, D, M.steel));
+    L.memberZ.slice(1, -1).forEach(z => add('base', boxB(0.1, W - 0.1, fb, ft - 0.01, z - 0.04, z + 0.04, M.steel)));
+    L.feet.forEach(f => {
+      add('base', boxB(f.x - 0.15, f.x + 0.15, 0, S.padT, f.z - 0.15, f.z + 0.15, M.rubber));
+      if (L.feetH > 0.005) { const post = new THREE.Mesh(new THREE.CylinderGeometry(0.025, 0.025, L.feetH, 10), M.steelDark); post.position.set(f.x, S.padT + L.feetH / 2, f.z); post.castShadow = true; add('base', post); }
+    });
+    for (let i = 0; i < L.memberZ.length - 1; i++) { const z0 = L.memberZ[i] + 0.1, z1 = L.memberZ[i + 1] - 0.1; if (z1 - z0 > 0.3) add('base', boxB(0.2, W - 0.2, ft - 0.07, ft - 0.015, z0, z1, M.ballast)); }
+    // tie-back struts from the frame's glass-side edge to the near parapet at x = siteRoof.x1
+    const px = S.siteRoof.x1;
+    [0.6, D - 0.6].forEach(z => {
+      add('base', rod(new THREE.Vector3(W - 0.02, ft - 0.05, z), new THREE.Vector3(px - 0.02, 0.62, z), 0.018, M.steelDark));
+      add('base', boxB(px - 0.05, px, 0.45, 0.8, z - 0.08, z + 0.08, M.steelDark));
+    });
+    // landing outside the entry (by building): raised pavers to floor level
+    const ld = L.landing; add('base', boxB(ld.x0, ld.x1, 0, L.floorY - 0.005, ld.z0, ld.z1, [M.concrete, M.concrete, M.paver, M.concrete, M.concrete, M.concrete]));
+    if (L.lockers) {
+      const lk = L.lockers, cols = Math.max(1, Math.round((lk.x1 - lk.x0) / 0.4));
+      add('base', boxB(lk.x0, lk.x1, 0, lk.h, lk.z0, lk.z1, M.door));
+      add('base', boxB(lk.x0 - 0.02, lk.x1 + 0.02, lk.h, lk.h + 0.04, lk.z0 - 0.06, lk.z1, M.seam));
+      for (let i = 1; i < cols; i++) { const x = lk.x0 + i * (lk.x1 - lk.x0) / cols; add('base', boxB(x - 0.004, x + 0.004, 0.02, lk.h - 0.02, lk.z0 - 0.003, lk.z0, M.steelDark)); }
+      add('base', boxB(lk.x0, lk.x1, lk.h / 2 - 0.004, lk.h / 2 + 0.004, lk.z0 - 0.003, lk.z0, M.steelDark));
+      for (let i = 0; i < cols; i++) for (let j = 0; j < 2; j++) {
+        const x = lk.x0 + (i + 0.85) * (lk.x1 - lk.x0) / cols, y = (j + 0.5) * lk.h / 2;
+        add('base', boxB(x - 0.01, x + 0.01, y - 0.06, y + 0.06, lk.z0 - 0.025, lk.z0, M.steelDark));
+      }
+    }
+    // outdoor shower pad + post, terrace deck, plunge, chiller
+    if (L.shower) {
+      const sh = L.shower, y0 = sh.onDeck ? L.floorY : 0;
+      add('base', boxB(sh.x0, sh.x1, y0, y0 + 0.04, sh.z0, sh.z1, M.grate));
+      const postX = sh.onDeck ? sh.x1 - 0.08 : sh.x0 + 0.08, postZ = sh.onDeck ? sh.z1 - 0.08 : sh.z1 - 0.06;
+      const post = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 2.2, 10), M.steelDark); post.position.set(postX, y0 + 1.1, postZ); post.castShadow = true; add('base', post);
+      add('base', rod(new THREE.Vector3(postX, y0 + 2.15, postZ), new THREE.Vector3(postX + (sh.onDeck ? -0.3 : 0.3), y0 + 2.15, postZ), 0.015, M.steelDark));
+      const head = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 0.02, 16), M.steelDark); head.position.set(postX + (sh.onDeck ? -0.3 : 0.3), y0 + 2.13, postZ); add('base', head);
+    }
+    if (L.deck) {
+      const d = L.deck;
+      add('base', boxB(d.x0, d.x1, L.floorY - 0.04, L.floorY, d.z0, d.z1, M.deck));
+      for (let x = d.x0 + 0.3; x < d.x1; x += 0.6) for (let z = d.z0 + 0.3; z < d.z1; z += 0.6) add('base', boxB(x - 0.04, x + 0.04, 0, L.floorY - 0.04, z - 0.04, z + 0.04, M.steelDark));
+      // privacy screen along the x = W edge
+      for (let z = d.z0 + 0.05; z < d.z1; z += 0.12) add('base', boxB(d.x1 - 0.04, d.x1, L.floorY, L.floorY + 1.8, z, z + 0.06, M.aspenPlain));
+      add('base', boxB(d.x1 - 0.06, d.x1 + 0.02, L.floorY + 1.8, L.floorY + 1.85, d.z0, d.z1, M.steelDark));
+    }
+    if (L.plunge) {
+      const p = L.plunge, y0 = L.floorY, ht = p.depth + 0.15;
+      add('base', boxB(p.x0 - p.rim, p.x1 + p.rim, y0, y0 + ht, p.z0 - p.rim, p.z1 + p.rim, M.tub));
+      add('base', boxB(p.x0, p.x1, y0 + ht - 0.12, y0 + ht - 0.08, p.z0, p.z1, M.water));
+      add('base', boxB(p.x0 - p.rim - 0.35, p.x0 - p.rim, y0, y0 + 0.35, p.z0, p.z1, M.aspenPlain));
+      add('base', boxB(p.x0 - p.rim - 0.35, p.x0 - p.rim, y0 + 0.35, y0 + 0.7, p.z0, p.z1 - 0.5, M.aspenPlain));
+      const c = L.chiller; add('base', boxB(c.x0, c.x1, y0, y0 + c.h, c.z0, c.z1, M.hvac));
+    }
+
+    /* floor */
+    add('floor', boxB(wp, W - wp, L.baseH, L.floorY - 0.015, 0, D, M.grate));
+    L.rooms.forEach(r => add('floor', boxB(r.x0 + (r.kind === 'porch' ? wp : 0), r.x1 - (r.kind === 'porch' ? wp : 0), L.floorY - 0.015, L.floorY, r.z0, r.z1, r.kind === 'porch' ? M.grate : M.decking)));
+    const dr = L.drain; add('floor', boxB(dr.x0, dr.x1, L.floorY, L.floorY + 0.004, dr.z0, dr.z1, M.steelDark));
+
+    /* walls */
+    const wallH0 = L.baseH, wallH1 = L.ceilY;
+    const sideW = (x0, x1, outerIsMinus, z0, z1) => {
+      if (z1 - z0 <= 0.001) return;
+      const clad = cladMat(z1 - z0, wallH1 - wallH0);
+      disposables.push(clad.map); disposables.push(clad);
+      const endClad = cladMat(wp, wallH1 - wallH0); disposables.push(endClad.map, endClad);
+      const mats = outerIsMinus ? [M.aspen, clad, M.roof, M.steel, endClad, endClad] : [clad, M.aspen, M.roof, M.steel, endClad, endClad];
+      add('walls', boxB(x0, x1, wallH0, wallH1, z0, z1, mats));
+    };
+    L.walls.filter(w => w.kind === 'side').forEach(w => sideW(w.x0, w.x1, w.x0 === 0, w.z0, w.z1));
+    L.walls.filter(w => w.kind === 'cross' || w.kind === 'service').forEach(w => {
+      const zi = L.zones.indexOf(w.zone), facesPorch = zi > 0 && L.zones[zi - 1].kind === 'porch';
+      const isEnd = w.z0 === 0 || Math.abs(w.z1 - D) < 1e-6 || facesPorch;
+      const outerIsMinusZ = w.z0 === 0 || facesPorch;
+      const clad = cladMat(W, wallH1 - wallH0); disposables.push(clad.map, clad);
+      const mats = isEnd ? (outerIsMinusZ ? [M.aspen, M.aspen, M.roof, M.steel, M.aspen, clad] : [M.aspen, M.aspen, M.roof, M.steel, clad, M.aspen]) : M.aspen;
+      const ops = L.openings.filter(o => o.zone === w.zone);
+      if (!ops.length) { add('walls', boxB(w.x0, w.x1, wallH0, wallH1, w.z0, w.z1, mats)); return; }
+      let cur = w.x0;
+      ops.sort((a, b) => a.x0 - b.x0).forEach(o => {
+        add('walls', boxB(cur, o.x0, wallH0, wallH1, w.z0, w.z1, mats));
+        add('walls', boxB(o.x0, o.x1, L.floorY + S.door.h, wallH1, w.z0, w.z1, mats));
+        add('walls', boxB(o.x0, o.x1, wallH0, L.floorY, w.z0, w.z1, mats));
+        // door leaf: solid entry door or glass sauna door, drawn closed
+        if (o.kind === 'entry') {
+          add('walls', boxB(o.x0 + 0.01, o.x1 - 0.01, L.floorY, L.floorY + S.door.h, w.z0 + 0.02, w.z0 + 0.06, M.door));
+          add('walls', boxB(o.x0 + 0.25, o.x1 - 0.25, L.floorY + 1.0, L.floorY + 1.8, w.z0 + 0.015, w.z0 + 0.065, M.glass));
+          add('walls', boxB(o.x0 + 0.08, o.x0 + 0.11, L.floorY + 0.95, L.floorY + 1.15, w.z0 - 0.03, w.z0 + 0.02, M.steelDark));
+        } else {
+          const zc = (w.z0 + w.z1) / 2;
+          add('walls', boxB(o.x0 + 0.02, o.x1 - 0.02, L.floorY + 0.02, L.floorY + S.door.h - 0.02, zc - 0.006, zc + 0.006, M.glass));
+          [[o.x0, o.x0 + 0.03], [o.x1 - 0.03, o.x1]].forEach(([a, b]) => add('walls', boxB(a, b, L.floorY, L.floorY + S.door.h, zc - 0.03, zc + 0.03, M.frame)));
+          add('walls', boxB(o.x0, o.x1, L.floorY + S.door.h - 0.03, L.floorY + S.door.h, zc - 0.03, zc + 0.03, M.frame));
+          add('walls', boxB(o.x0 + 0.07, o.x0 + 0.1, L.floorY + 0.95, L.floorY + 1.15, zc - 0.05, zc + 0.05, M.steelDark));
+        }
+        cur = o.x1;
+      });
+      add('walls', boxB(cur, w.x1, wallH0, wallH1, w.z0, w.z1, mats));
+    });
+    // glass front over the hot room's x = W side: plinth, sill, head and mullions, a clear inner pane, and a
+    // privacy-tinted outer pane that renders only from outside, so the view out from the benches stays clear
+    const gl = L.glass, xc = (gl.x0 + gl.x1) / 2, glen = gl.z1 - gl.z0, gh = wallH1 - L.floorY;
+    add('walls', boxB(gl.x0, gl.x1, wallH0, L.floorY, gl.z0, gl.z1, M.steelDark));
+    add('walls', boxB(xc - 0.045, xc + 0.045, L.floorY, L.floorY + 0.06, gl.z0, gl.z1, M.frame));
+    add('walls', boxB(xc - 0.045, xc + 0.045, wallH1 - 0.06, wallH1, gl.z0, gl.z1, M.frame));
+    [gl.z0 + 0.03, ...L.mullionsZ, gl.z1 - 0.03].forEach(z => add('walls', boxB(xc - 0.045, xc + 0.045, L.floorY, wallH1, z - 0.03, z + 0.03, M.frame)));
+    add('walls', boxB(xc - 0.03, xc - 0.016, L.floorY + 0.06, wallH1 - 0.06, gl.z0, gl.z1, M.glass));
+    const tint = new THREE.Mesh(new THREE.PlaneGeometry(glen, gh - 0.12), M.tint);
+    tint.rotation.y = Math.PI / 2; tint.position.set(xc + 0.03, L.floorY + gh / 2, (gl.z0 + gl.z1) / 2);
+    add('walls', tint);
+    // ceilings, backrests, vents
+    L.rooms.forEach(r => { if (r.kind !== 'porch') add('roof', boxB(r.x0, r.x1, L.ceilY - 0.015, L.ceilY, r.z0, r.z1, M.aspen)); });
+    const supplyBox = boxB(L.supply.x - 0.125, L.supply.x + 0.125, L.ceilY - 0.022, L.ceilY - 0.016, L.supply.z - 0.125, L.supply.z + 0.125, M.vent); add('roof', supplyBox);
+    const upper = L.bench('upper');
+    add('walls', boxB(upper.x0 + 0.02, upper.x0 + 0.05, L.floorY + B.upperH + 0.25, L.floorY + B.upperH + 0.65, upper.z0, upper.z1, M.aspenPlain));
+    // ADA clear floor space marked on the decking
+    const cf = L.clearFloor; add('floor', boxB(cf.x0, cf.x1, L.floorY, L.floorY + 0.002, cf.z0, cf.z1, M.vent));
+    add('walls', boxB(wp, wp + 0.012, L.extract.y - 0.1, L.extract.y + 0.1, L.extract.z - 0.1, L.extract.z + 0.1, M.vent));
+    // vestibule hooks and controller
+    L.fitout.forEach(f => {
+      if (f.kind === 'hooks') for (let z = f.z0; z <= f.z1 + 0.001; z += 0.35) add('walls', boxB(f.x, f.x + 0.05, L.floorY + 1.6, L.floorY + 1.62, z - 0.01, z + 0.01, M.steelDark));
+      if (f.kind === 'panel') add('walls', boxB(f.x0, f.x1, L.floorY + 1.3, L.floorY + 1.55, f.z0, f.z1, M.steelDark));
+      if (f.kind === 'water') add('walls', boxB(f.x0, f.x1, L.floorY + 0.9, L.floorY + 1.5, f.z0, f.z1, M.vent));
+    });
+
+    /* interior: benches, heater, lighting, fit-out */
+    L.benches.forEach(b => {
+      if (b.x1 <= b.x0 || b.z1 <= b.z0) return;
+      const y1 = L.floorY + b.top, y0 = y1 - b.thick;
+      add('interior', boxB(b.x0, b.x1, y0, y1, b.z0, b.z1, M.benchTop));
+      // slat grooves as thin dark strips across the short direction
+      const alongZ = (b.z1 - b.z0) >= (b.x1 - b.x0);
+      if (alongZ) for (let z = b.z0 + 0.1; z < b.z1; z += 0.1) add('interior', boxB(b.x0, b.x1, y1, y1 + 0.001, z - 0.006, z + 0.006, M.steelDark));
+      else for (let x = b.x0 + 0.1; x < b.x1; x += 0.1) add('interior', boxB(x - 0.006, x + 0.006, y1, y1 + 0.001, b.z0, b.z1, M.steelDark));
+      // legs at the corners and open skirt slats on the exposed edge
+      const legH = y0 - L.floorY;
+      [[b.x0 + 0.03, b.z0 + 0.03], [b.x1 - 0.03, b.z0 + 0.03], [b.x0 + 0.03, b.z1 - 0.03], [b.x1 - 0.03, b.z1 - 0.03]].forEach(([x, z]) => add('interior', boxB(x - 0.02, x + 0.02, L.floorY, y0, z - 0.02, z + 0.02, M.aspenPlain)));
+      if (legH > 0.3 && b.tier !== 'step') {
+        const edgeX = b.x1 - 0.015;
+        for (let y = y0 - 0.12; y > L.floorY + 0.1; y -= 0.16) add('interior', boxB(edgeX, edgeX + 0.015, y - 0.05, y, b.z0, b.z1, M.aspenPlain));
+      }
+      if (b.tier === 'ada') add('interior', boxB(b.x0 + 0.02, b.x0 + 0.045, y1 + 0.05, y1 + 0.46, b.z0, b.z1, M.aspenPlain));
+    });
+    // LED strips under the bench edges
+    [L.bench('upper'), L.bench('lower'), L.bench('lowerRemovable')].forEach(b => { if (b.z1 > b.z0) add('interior', boxB(b.x1 - 0.05, b.x1 - 0.02, L.floorY + b.top - b.thick - 0.015, L.floorY + b.top - b.thick - 0.005, b.z0, b.z1, M.led)); });
+    // heaters with stones and guard rail
+    L.heaters.forEach(h => {
+      add('interior', boxB(h.x0, h.x1, L.floorY + 0.05, L.floorY + h.h, h.z0, h.z1, M.heater));
+      add('interior', boxB(h.x0 + 0.04, h.x1 - 0.04, L.floorY + h.h - 0.12, L.floorY + h.h + 0.03, h.z0 + 0.04, h.z1 - 0.04, M.stones));
+      for (let i = 0; i < 6; i++) { const st = new THREE.Mesh(new THREE.DodecahedronGeometry(0.05, 0), M.stones); st.position.set(h.x0 + 0.1 + (i % 3) * ((h.x1 - h.x0 - 0.2) / 2), L.floorY + h.h + 0.05, h.z0 + 0.1 + Math.floor(i / 3) * (h.z1 - h.z0 - 0.2)); st.castShadow = true; add('interior', st); }
+      const gy = [L.floorY + 0.45, L.floorY + h.h + 0.08], gx0 = h.x0 - 0.08, gz0 = h.z0 - 0.08, gz1 = h.z1 + 0.08;
+      gy.forEach(y => { add('interior', boxB(gx0 - 0.01, gx0 + 0.01, y, y + 0.02, gz0, gz1, M.aspenPlain)); add('interior', boxB(gx0, h.x1, y, y + 0.02, gz0 - 0.01, gz0 + 0.01, M.aspenPlain)); add('interior', boxB(gx0, h.x1, y, y + 0.02, gz1 - 0.01, gz1 + 0.01, M.aspenPlain)); });
+      [[gx0, gz0], [gx0, gz1]].forEach(([x, z]) => add('interior', boxB(x - 0.015, x + 0.015, L.floorY, gy[1] + 0.02, z - 0.015, z + 0.015, M.aspenPlain)));
+    });
+    // vestibule / changing room fit-out
+    L.fitout.forEach(f => {
+      if (f.kind === 'bench') add('interior', boxB(f.x0, f.x1, L.floorY + f.top - 0.04, L.floorY + f.top, f.z0, f.z1, M.benchTop));
+      if (f.kind === 'bench') [[f.x0 + 0.05, f.z0 + 0.05], [f.x1 - 0.05, f.z1 - 0.05]].forEach(([x, z]) => add('interior', boxB(x - 0.02, x + 0.02, L.floorY, L.floorY + f.top - 0.04, z - 0.02, z + 0.02, M.aspenPlain)));
+      if (f.kind === 'lockers') add('interior', boxB(f.x0, f.x1, L.floorY, L.floorY + f.top, f.z0, f.z1, M.aspenPlain));
+      if (f.kind === 'shower') {
+        const zc = (f.z0 + f.z1) / 2;
+        add('interior', boxB(f.x0, f.x1, L.floorY, L.floorY + 0.03, f.z0, f.z1, M.grate));
+        add('interior', boxB(f.x0, f.x1, L.floorY + 0.03, L.floorY + 2.0, f.z1 - 0.012, f.z1, M.glass));
+        add('interior', boxB(f.x1 - 0.012, f.x1, L.floorY + 0.03, L.floorY + 2.0, f.z0, f.z0 + 0.35, M.glass));
+        add('interior', boxB(f.x0 + 0.01, f.x0 + 0.04, L.floorY + 0.9, L.floorY + 2.1, zc - 0.015, zc + 0.015, M.steelDark));
+        add('interior', boxB(f.x0 + 0.04, f.x0 + 0.30, L.floorY + 2.08, L.floorY + 2.1, zc - 0.015, zc + 0.015, M.steelDark));
+        const head = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 0.02, 16), M.steelDark); head.position.set(f.x0 + 0.30, L.floorY + 2.07, zc); add('interior', head);
+      }
+    });
+    // interior lighting: warm point light in the hot room and a dimmer one in the vestibule
+    const hot = L.rooms.find(r => r.kind === 'sauna');
+    const pl = new THREE.PointLight(0xFFB979, 6, 9, 2); pl.position.set((hot.x0 + hot.x1) / 2, L.ceilY - 0.3, (hot.z0 + hot.z1) / 2); layers.interior.add(pl); g.userData.hotLight = pl;
+    const vest = L.rooms.find(r => r.kind === 'vestibule' || r.kind === 'changing');
+    if (vest) { const vl = new THREE.PointLight(0xFFD6B0, 2.5, 6, 2); vl.position.set((vest.x0 + vest.x1) / 2, L.ceilY - 0.3, (vest.z0 + vest.z1) / 2); layers.interior.add(vl); g.userData.vestLight = vl; }
+
+    /* roof: wedge with 3 degree pitch across the width, standing seams, gutter and downspout */
+    const shape = new THREE.Shape();
+    shape.moveTo(0, 0); shape.lineTo(W, 0); shape.lineTo(W, S.roofT + L.rise); shape.lineTo(0, S.roofT); shape.lineTo(0, 0);
+    const wedgeG = new THREE.ExtrudeGeometry(shape, { depth: D, bevelEnabled: false });
+    const wedge = new THREE.Mesh(wedgeG, M.roof); wedge.position.set(0, L.ceilY, 0); wedge.castShadow = true; wedge.receiveShadow = true;
+    add('roof', wedge);
+    const tilt = Math.atan2(L.rise, W);
+    for (let x = 0.225; x < W; x += 0.45) {
+      const seam = boxB(-0.012, 0.012, 0, 0.022, 0, D, M.seam);
+      seam.position.set(x, L.ceilY + S.roofT + (x / W) * L.rise + 0.004, D / 2); seam.rotation.z = tilt; add('roof', seam);
+    }
+    const gutter = new THREE.Mesh(new THREE.CylinderGeometry(0.055, 0.055, D, 12, 1, false, Math.PI, Math.PI), M.seam);
+    gutter.rotation.x = Math.PI / 2; gutter.rotation.z = Math.PI; gutter.position.set(-0.045, L.ceilY + S.roofT - 0.05, D / 2); add('roof', gutter);
+    const ds = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.035, L.ceilY + S.roofT - 0.15, 10), M.seam); ds.position.set(-0.07, (L.ceilY + S.roofT - 0.15) / 2 + 0.05, D - 0.25); add('roof', ds);
+    add('roof', boxB(-0.1, 0.0, L.ceilY + S.roofT - 0.02, L.ceilY + S.roofT + 0.015, 0, D, M.seam));
+
+    /* dimension lines with labels */
+    const dimLine = (a, b, tickDir, text, m) => {
+      const pts = [a, b]; const t = tickDir.clone().multiplyScalar(0.12);
+      pts.push(a.clone().sub(t), a.clone().add(t), b.clone().sub(t), b.clone().add(t));
+      const geo = new THREE.BufferGeometry().setFromPoints(pts); disposables.push(geo);
+      const ls = new THREE.LineSegments(geo, M.dim); layers.dims.add(ls);
+      const mid = a.clone().add(b).multiplyScalar(0.5).add(t.clone().multiplyScalar(0.9));
+      const el = document.createElement('div'); el.className = 'dim-label'; el.textContent = `${text} ${V.fmtLen(m)}`;
+      const o = new CSS2DObject(el); o.position.copy(mid); layers.dims.add(o); labels.push({ el, text, m });
+    };
+    const Dt = D + (L.deck ? L.deck.d : 0), Y0 = 0.05;
+    dimLine(new THREE.Vector3(0, Y0, -2.3), new THREE.Vector3(W, Y0, -2.3), new THREE.Vector3(0, 0, 1), 'Width', W);
+    dimLine(new THREE.Vector3(W + 0.9, Y0, 0), new THREE.Vector3(W + 0.9, Y0, D), new THREE.Vector3(1, 0, 0), 'Depth', D);
+    if (L.deck) dimLine(new THREE.Vector3(W + 0.9, Y0, D), new THREE.Vector3(W + 0.9, Y0, Dt), new THREE.Vector3(1, 0, 0), 'Terrace', L.deck.d);
+    dimLine(new THREE.Vector3(W + 0.5, 0, -0.5), new THREE.Vector3(W + 0.5, L.H, -0.5), new THREE.Vector3(1, 0, 0), 'Height', L.H);
+    const bz = (upper.z0 + upper.z1) / 2;
+    dimLine(new THREE.Vector3(upper.x1 + 0.08, L.floorY, bz), new THREE.Vector3(upper.x1 + 0.08, L.floorY + B.upperH, bz), new THREE.Vector3(1, 0, 0), 'Upper bench', B.upperH);
+    const low = L.bench('lower'); if (low.z1 > low.z0) dimLine(new THREE.Vector3(low.x1 + 0.08, L.floorY, (low.z0 + low.z1) / 2), new THREE.Vector3(low.x1 + 0.08, L.floorY + B.lowerH, (low.z0 + low.z1) / 2), new THREE.Vector3(1, 0, 0), 'Lower bench', B.lowerH);
+    const ada = L.bench('ada'); dimLine(new THREE.Vector3(ada.x1 + 0.08, L.floorY, (ada.z0 + ada.z1) / 2), new THREE.Vector3(ada.x1 + 0.08, L.floorY + B.adaH, (ada.z0 + ada.z1) / 2), new THREE.Vector3(1, 0, 0), 'ADA bench', B.adaH);
+    const cz2 = L.toWorld(L.rw - 0.25, L.rd * 0.5);
+    dimLine(new THREE.Vector3(cz2.x, L.floorY, cz2.z), new THREE.Vector3(cz2.x, L.ceilY, cz2.z), new THREE.Vector3(1, 0, 0), 'Ceiling', m.sauna.ceiling);
+    layers.dims.visible = false;
+
+    /* exploded-view layer labels */
+    const layerLabel = (layer, text, y) => { const o = label('layer-label', text, W + 0.4, y, D * 0.25); o.visible = false; layers[layer].add(o); layers[layer].userData.label = o; };
+    layerLabel('base', 'Base frame: galvanized steel on pads, ballast trays, parapet tie-back', L.baseH + 0.1);
+    layerLabel('floor', 'Floor: aluminium grating, composite decking, linear drain', L.floorY + 0.1);
+    layerLabel('interior', 'Benches, heater, lighting', L.floorY + B.upperH + 0.3);
+    layerLabel('walls', 'Wall panels, glazing, doors, vents', L.ceilY - 0.6);
+    layerLabel('roof', 'Standing-seam roof, 3° pitch, gutter', L.ceilY + S.roofT + 0.3);
+
+    // scale figure placement by the entry
+    const fig = site.userData.figure; const ex = L.entryDoor || L.saunaDoor; fig.position.set((ex.x0 + ex.x1) / 2 + 0.9, 0, -2.1);
+    return g;
+  }
+
+  /* ---------- state: toggles, presets ---------- */
+  const UI = { night: false, explode: false, dims: false, cam: 'exterior' };
+  let L = V.layout(V.MODELS[V.STATE.model]);
+  let tween = null;
+  function setSuite() {
+    try {
+      tween = null;
+      if (suite) {
+        // nested CSS2D labels do not get the 'removed' event, so drop their elements by hand
+        suite.traverse(o => { if (o.isCSS2DObject && o.element && o.element.parentNode) o.element.parentNode.removeChild(o.element); });
+        scene.remove(suite); disposables.forEach(d => d.dispose && d.dispose());
+      }
+      L = V.layout(V.MODELS[V.STATE.model]);
+      suite = buildSuite(L); scene.add(suite);
+      sun.target.position.set(L.W / 2, 0, L.D / 2);
+      applyExplode(true); applyDims(); applyNight(); applyCamera(UI.cam, true);
+      requestRender();
+    } catch (err) { console.error('Vantage 3D: could not build the suite', err); }
+  }
+  function applyExplode(instant) {
+    const target = UI.explode ? EXPLODE : { base: 0, floor: 0, interior: 0, walls: 0, roof: 0 };
+    Object.keys(target).forEach(k => { const lb = layers[k].userData.label; if (lb) lb.visible = UI.explode; });
+    if (instant || reduced) { Object.keys(target).forEach(k => { layers[k].position.y = target[k]; }); tween = null; requestRender(); return; }
+    const from = {}; Object.keys(target).forEach(k => { from[k] = layers[k].position.y; });
+    const t0 = performance.now(); tween = () => {
+      const u = Math.min(1, (performance.now() - t0) / 650), e = 1 - Math.pow(1 - u, 3);
+      Object.keys(target).forEach(k => { layers[k].position.y = from[k] + (target[k] - from[k]) * e; });
+      if (u >= 1) tween = null;
+    };
+  }
+  function applyDims() { layers.dims.visible = UI.dims; layers.dims.traverse(o => { if (o.isCSS2DObject) o.visible = UI.dims; }); requestRender(); }
+  function applyNight() {
+    const n = UI.night;
+    scene.background.copy(n ? SKY.night : SKY.day); scene.fog.color.copy(n ? SKY.night : SKY.day);
+    hemi.intensity = n ? 0.12 : 0.9; sun.intensity = n ? 0.25 : 2.6; sun.color.set(n ? 0x9FB4D6 : 0xFFF2E2);
+    if (suite) { suite.userData.hotLight.intensity = n ? 26 : 6; if (suite.userData.vestLight) suite.userData.vestLight.intensity = n ? 9 : 2.5; }
+    M.stones.emissiveIntensity = n ? 0.9 : 0.15;
+    M.tint.opacity = n ? 0.5 : 0.86;   // reflective tint stops hiding a lit interior after dark
+    M.city.color.set(n ? 0x1A2330 : 0x5A6573);
+    renderer.toneMappingExposure = n ? 0.85 : 1.0;
+    requestRender();
+  }
+  const sectionPlane = new THREE.Plane(new THREE.Vector3(-1, 0, 0), 0);
+  function applyCamera(name, keepIfSame) {
+    UI.cam = name;
+    document.querySelectorAll('[data-cam]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.cam === name)));
+    const W = L.W, D = L.D, Dt = D + (L.deck ? L.deck.d : 0), cz = Dt / 2;
+    clip.length = 0; layers.roof.visible = true; camera.fov = 45; controls.maxPolarAngle = Math.PI / 2 - 0.01; controls.minPolarAngle = 0;
+    if (name === 'exterior') {
+      const R = Math.max(W, Dt) * 0.85 + 3.2, zs = L.far ? 1 : -1;
+      camera.position.set(W / 2 + R * 0.8, R * 0.5 + 0.8, cz + zs * R * 0.8); controls.target.set(W / 2, 1.0, cz);
+    } else if (name === 'interior') {
+      // standing just inside the door at the glass end, looking back at the two tiers
+      const p = L.toWorld(L.rw - 0.35, 0.35), t = L.toWorld(0.4, L.rd * 0.75);
+      camera.fov = 72; camera.position.set(p.x, L.floorY + 1.6, p.z); controls.target.set(t.x, L.floorY + 1.0, t.z);
+    } else if (name === 'bench') {
+      // seated on the upper bench, eyes about 0.8 m above the seat, looking out through the glass
+      const p = L.toWorld(0.35, L.rd * 0.45), t = L.toWorld(L.rw + 6, L.rd * 0.5);
+      camera.fov = 70; camera.position.set(p.x, L.floorY + S.bench.upperH + 0.8, p.z); controls.target.set(t.x, L.floorY + 0.9, t.z);
+    } else if (name === 'plan') {
+      layers.roof.visible = false;
+      const halfFov = Math.tan(THREE.MathUtils.degToRad(22.5));
+      const dist = Math.max(Dt / (2 * halfFov), W / (2 * halfFov * camera.aspect)) * 1.25 + 2;
+      camera.position.set(W / 2, dist, cz - 0.001); controls.target.set(W / 2, 0, cz);
+    } else if (name === 'section') {
+      layers.roof.visible = false;
+      sectionPlane.constant = W - L.wp - 0.02; clip.push(sectionPlane);
+      const hot = L.rooms.find(r => r.kind === 'sauna');
+      const R = Math.max(W, D) * 0.7 + 2.5;
+      camera.position.set(W + R, L.H + R * 0.35, (hot.z0 + hot.z1) / 2 + R * 0.25); controls.target.set(W / 2, L.floorY + 0.9, (hot.z0 + hot.z1) / 2);
+    }
+    camera.updateProjectionMatrix(); controls.update(); requestRender();
+    void keepIfSame;
+  }
+
+  /* ---------- wiring ---------- */
+  document.querySelectorAll('[data-cam]').forEach(b => b.addEventListener('click', () => { controls.autoRotate = false; applyCamera(b.dataset.cam); }));
+  const tgl = (id, key, fn) => { const b = document.getElementById(id); b.addEventListener('click', () => { UI[key] = !UI[key]; b.setAttribute('aria-pressed', String(UI[key])); fn(); }); };
+  tgl('tgl-night', 'night', applyNight);
+  tgl('tgl-explode', 'explode', () => applyExplode(false));
+  tgl('tgl-dims', 'dims', applyDims);
+  V.on('model', () => setSuite());
+  V.on('units', () => { labels.forEach(l => { l.el.textContent = `${l.text} ${V.fmtLen(l.m)}`; }); requestRender(); });
+
+  /* ---------- sizing and render loop ---------- */
+  function resize() {
+    const w = stageEl.clientWidth, h = stageEl.clientHeight; if (!w || !h) return;
+    renderer.setSize(w, h, false); labelRenderer.setSize(w, h);
+    camera.aspect = w / h; camera.updateProjectionMatrix();
+    if (UI.cam === 'plan') applyCamera('plan'); else requestRender();
+  }
+  new ResizeObserver(resize).observe(stageEl);
+  controls.addEventListener('change', requestRender);
+  let first = true;
+  function loop() {
+    requestAnimationFrame(loop);
+    if (tween) { tween(); needs = true; }
+    const moved = controls.update();
+    if (needs || moved || controls.autoRotate) {
+      renderer.render(scene, camera); labelRenderer.render(scene, camera); needs = false;
+      if (first) { first = false; document.getElementById('stage-loading').hidden = true; }
+    }
+  }
+  resize(); setSuite(); loop();
+}
+</script>
+</body>
+</html>

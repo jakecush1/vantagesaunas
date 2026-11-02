@@ -1,0 +1,18 @@
+{
+  "v": 4,
+  "createdOnFiles": {"v": 1, "at": "2026-11-01T18:05:00Z"},
+  "lists": "css",
+  "title": "Vantage Sauna Co. — Seed Pitch",
+  "order": ["cover", "problem", "solution", "product", "why-now", "market", "model", "gtm", "competition", "moat", "financials", "roadmap", "team", "ask", "close"],
+  "sections": {
+    "s1": {"description": "The problem buildings have and the product that answers it", "start": "cover"},
+    "s2": {"description": "Why now, and how big the market is", "start": "why-now"},
+    "s3": {"description": "How Vantage makes money, sells and defends its position", "start": "model"},
+    "s4": {"description": "The five-year plan, the team and the seed ask", "start": "financials"}
+  },
+  "faces": {
+    "fraunces": {"family": "Fraunces", "href": "https://fonts.googleapis.com/css2?family=Fraunces:wght@300..700&display=swap"},
+    "inter": {"family": "Inter", "href": "https://fonts.googleapis.com/css2?family=Inter:wght@400..700&display=swap"}
+  },
+  "designSystems": []
+}

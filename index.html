@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vantage Pitch Package</title>
+<meta name="description" content="Business plan, pitch deck, website, 3D design plans, financial model and research for Vantage Sauna Co., rooftop sauna suites for Canadian hotels, condos and rental buildings.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root {
+  --bg: #F4EFE6; --surface: #FBF8F2; --surface-2: #EAE3D6; --fg: #1F1D1B; --fg-2: #5E5751; --fg-3: #8A827A;
+  --line: rgba(31, 29, 27, .14); --line-strong: rgba(31, 29, 27, .28); --accent: #C8552B; --accent-text: #A84520;
+  --accent-soft: rgba(200, 85, 43, .10); --on-accent: #FFF8F1; --night: #0F1A24;
+  --font-display: "Fraunces", Georgia, serif; --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --bg: #0F1A24; --surface: #162330; --surface-2: #1D2B39; --fg: #EDE7DC; --fg-2: #A9B1B7; --fg-3: #7D878F; --line: rgba(220, 230, 232, .14); --line-strong: rgba(220, 230, 232, .3); --accent-text: #E8744A; --accent-soft: rgba(200, 85, 43, .16); --on-accent: #0F1A24; color-scheme: dark; }
+}
+:root[data-theme="dark"] { --bg: #0F1A24; --surface: #162330; --surface-2: #1D2B39; --fg: #EDE7DC; --fg-2: #A9B1B7; --fg-3: #7D878F; --line: rgba(220, 230, 232, .14); --line-strong: rgba(220, 230, 232, .3); --accent-text: #E8744A; --accent-soft: rgba(200, 85, 43, .16); --on-accent: #0F1A24; color-scheme: dark; }
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.6 var(--font-body); -webkit-font-smoothing: antialiased; }
+a { color: var(--accent-text); text-underline-offset: 2px; }
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 16px; }
+header.top { padding: 22px 0 8px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-size: 1.15rem; }
+.brand .mark { width: 22px; height: 22px; border-radius: 50%; background: var(--accent); box-shadow: inset 0 0 0 4px var(--bg), inset 0 0 0 5px var(--accent); }
+.chip { font-size: 12.5px; color: var(--fg-2); border: 1px solid var(--line-strong); border-radius: 999px; padding: 4px 10px; }
+.hero { padding: 40px 0 28px; display: grid; gap: 16px; max-width: 60rem; }
+.eyebrow { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent-text); font-weight: 600; }
+h1 { font: 400 clamp(2.2rem, 5vw, 3.6rem)/1.05 var(--font-display); letter-spacing: -.015em; margin: 0; text-wrap: balance; }
+h1 em { font-style: italic; font-weight: 300; color: var(--accent-text); }
+.lede { font-size: 1.12rem; color: var(--fg-2); margin: 0; max-width: 46rem; }
+.start { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 999px; border: 1px solid var(--line-strong); background: var(--surface); color: var(--fg); text-decoration: none; font-weight: 500; font-size: 15px; }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.numbers { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px 24px; padding: 22px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin: 12px 0 8px; }
+.numbers dt { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--fg-2); }
+.numbers dd { margin: 2px 0 0; font: 400 1.6rem/1.15 var(--font-display); font-variant-numeric: tabular-nums; }
+.numbers dd small { display: block; font: 13px/1.4 var(--font-body); color: var(--fg-2); }
+h2.section { font: 400 1.7rem/1.2 var(--font-display); margin: 40px 0 6px; }
+.section-lede { color: var(--fg-2); margin: 0 0 18px; max-width: 46rem; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 16px; }
+.card { position: relative; display: grid; grid-template-rows: auto auto 1fr auto; gap: 8px; padding: 20px 22px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; }
+.card:hover { border-color: var(--line-strong); }
+.card .no { font: 600 12px/1 var(--font-body); letter-spacing: .1em; color: var(--accent-text); }
+.card h3 { font: 400 1.45rem/1.2 var(--font-display); margin: 0; }
+.card h3 a { color: var(--fg); text-decoration: none; }
+.card h3 a::after { content: ""; position: absolute; inset: 0; border-radius: 14px; }
+.card p { margin: 0; color: var(--fg-2); font-size: 15px; }
+.card .links { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 14px; position: relative; z-index: 1; padding-top: 6px; border-top: 1px solid var(--line); }
+.card .links a { position: relative; z-index: 2; }
+.card .links span { color: var(--fg-3); }
+.flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 16px; }
+.flow div { padding: 16px 18px; border-left: 3px solid var(--accent); background: var(--surface); border-radius: 0 10px 10px 0; }
+.flow b { display: block; margin-bottom: 4px; }
+.flow p { margin: 0; color: var(--fg-2); font-size: 14.5px; }
+pre { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; overflow-x: auto; font-size: 13.5px; }
+footer { margin-top: 48px; border-top: 1px solid var(--line); padding: 20px 0 40px; color: var(--fg-2); font-size: 13.5px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><span class="mark" aria-hidden="true"></span>Vantage Sauna Co.</div>
+    <span class="chip">Seed pitch package · November 2026 · Confidential</span>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Rooftop sauna suites · Vancouver · Victoria · Toronto</div>
+    <h1>Everything you need to review <em>Vantage</em>, in one place.</h1>
+    <p class="lede">Vantage designs, factory-builds and installs shared rooftop sauna suites for hotels, condo buildings and business-apartment towers. Start with the deck for the short version, or the business plan for the full case.</p>
+    <div class="start">
+      <a class="btn primary" href="02-pitch-deck/index.html">Open the pitch deck</a>
+      <a class="btn" href="01-business-plan/index.html">Read the business plan</a>
+      <a class="btn" href="04-design-plans/index.html">Explore the 3D design</a>
+    </div>
+  </section>
+
+  <!-- KEY-NUMBERS:START -->
+  <dl class="numbers" aria-label="Key numbers">
+    <div><dt>Status</dt><dd>Being updated<small>Canadian figures in progress</small></dd></div>
+  </dl>
+  <!-- KEY-NUMBERS:END -->
+
+  <h2 class="section">The package</h2>
+  <p class="section-lede">Each item opens in your browser; nothing needs an account. The links marked "editable original" are the live versions on claude.ai and only work for people they have been shared with.</p>
+  <div class="grid">
+    <article class="card"><span class="no">01</span><h3><a href="01-business-plan/index.html">Business plan</a></h3><p>The full plan: opportunity, product, market, go-to-market, operations, engineering and code, team, five-year financials, funding ask, roadmap and risks.</p><div class="links"><a href="01-business-plan/business-plan.pdf">PDF</a><a href="01-business-plan/business-plan.md">Markdown</a><a href="https://claude.ai/artifact/1jg9X32pfVjARyWhqY1Sas">Editable original</a></div></article>
+    <article class="card"><span class="no">02</span><h3><a href="02-pitch-deck/index.html">Pitch deck</a></h3><p>Fifteen slides for investors, with speaker notes. Use the arrow keys to move and N to show notes.</p><div class="links"><a href="02-pitch-deck/pitch-deck.pdf">PDF</a><a href="02-pitch-deck/project/">Slide source</a><a href="https://claude.ai/artifact/GXeFrzGzpjB8D6vKRr4g3o">Editable original</a></div></article>
+    <article class="card"><span class="no">03</span><h3><a href="03-website/index.html">Marketing website</a></h3><p>The customer-facing site for building owners and hotel operators, with models, pricing, how it works and a site-assessment request form.</p><div class="links"><a href="https://claude.ai/artifact/2Y5n4dxsgFY6mtCPUTFXik">Live version with lead capture</a></div></article>
+    <article class="card"><span class="no">04</span><h3><a href="04-design-plans/index.html">3D design plans</a></h3><p>An interactive 3D model of all three suites on a rooftop, scaled plans, sections and elevations, build-up details and the spec sheet. Try the Bench view.</p><div class="links"><a href="04-design-plans/README.md">How to edit dimensions</a><a href="https://claude.ai/artifact/XS6wf21tNce8BkvgW6tzaQ">Editable original</a></div></article>
+    <article class="card"><span class="no">05</span><h3><a href="05-financial-model/vantage-financial-model.xlsx">Financial model</a></h3><p>A live-formula Excel model: assumptions, unit economics, five-year P&amp;L, cash flow, funding need and sensitivities. Downloads as .xlsx.</p><div class="links"><a href="05-financial-model/README.md">What is in each sheet</a></div></article>
+    <article class="card"><span class="no">06</span><h3><a href="06-research/index.html">Research</a></h3><p>The sourced research behind the plan: Canadian market sizing, codes and engineering, competition and costs, and the sauna design research.</p><div class="links"><a href="06-research/">Markdown sources</a></div></article>
+    <article class="card"><span class="no">07</span><h3><a href="07-brief/index.html">Project brief</a></h3><p>The single source of truth for names, products, prices, plan and assumptions. Every other document is built from it.</p><div class="links"><a href="07-brief/BRIEF.md">Markdown</a></div></article>
+  </div>
+
+  <h2 class="section">How the pieces fit</h2>
+  <div class="flow">
+    <div><b>Brief</b><p>Products, prices, the five-year plan and market numbers are set once in the brief.</p></div>
+    <div><b>Research</b><p>Market, code and cost research feeds the brief; each claim links its source.</p></div>
+    <div><b>Model</b><p>The Excel model turns the brief's assumptions into the P&amp;L, cash and funding need.</p></div>
+    <div><b>Plan, deck, site, design</b><p>The business plan, deck, website and design plans all quote the same numbers.</p></div>
+  </div>
+
+  <h2 class="section">Viewing it locally</h2>
+  <p class="section-lede">Opening this file directly works for every page. To get the 3D model and fonts exactly as published, serve the folder instead:</p>
+<pre>python3 -m http.server 8080
+# then open http://localhost:8080</pre>
+  <p class="section-lede">To rebuild the HTML and PDF copies after editing a Markdown file or a slide, run <code>python3 tools/build.py --pdf</code> (needs <code>pip install markdown</code> and Google Chrome).</p>
+
+  <footer>Vantage Sauna Co. is a working name. Confidential, for discussion with prospective partners and investors. Figures are planning estimates; design plans are design intent, not for construction.</footer>
+</div>
+</body>
+</html>
