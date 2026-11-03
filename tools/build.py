@@ -18,7 +18,8 @@ ROOT = Path(__file__).resolve().parent.parent
 try:
     import markdown
 except ImportError:
-    sys.exit('This script needs the markdown package: pip install markdown')
+    markdown = None
+    print('The markdown package is not installed (pip install markdown): the Markdown pages keep their last build; the deck and PDFs are still rebuilt.')
 
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
          '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=Inter:wght@400;500;600&display=swap">')
@@ -27,6 +28,7 @@ FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="
 DOCS = [
     ('01-business-plan/business-plan.md', '01-business-plan/index.html', 'Business plan', 'The full business plan.'),
     ('07-brief/BRIEF.md', '07-brief/index.html', 'Project brief', 'The single source of truth every deliverable is built from.'),
+    ('08-launch-plan/launch-plan.md', '08-launch-plan/index.html', 'Launch plan', 'How much to raise, what it costs to start, and the steps to launch.'),
 ]
 RESEARCH_DIR = '06-research'
 RESEARCH_TITLES = {
@@ -34,7 +36,6 @@ RESEARCH_TITLES = {
     'canada-codes-and-engineering.md': ('Canadian codes and engineering', 'BC and Ontario building, electrical, seismic, snow-load and accessibility requirements.'),
     'canada-competition-and-costs.md': ('Canadian competition, costs and funding', 'Competitors, CAD cost inputs, wages, leases, grants and taxes.'),
     'sauna-design-research.md': ('Sauna design research', 'Existing products and precedents, heaters, benches, ventilation, glazing and code research.'),
-    'market-research.md': ('US market research (original)', 'The first, US-focused market research, kept for reference.'),
 }
 
 def page(title, body, depth, extra_head=''):
@@ -52,7 +53,7 @@ def page(title, body, depth, extra_head=''):
 <body>
 <header class="topbar"><div class="in">
   <a class="brand" href="{up}index.html"><span class="mark" aria-hidden="true"></span>Vantage Sauna Co.</a>
-  <nav aria-label="Package"><a href="{up}index.html">All documents</a><a href="{up}01-business-plan/index.html">Business plan</a><a href="{up}02-pitch-deck/index.html">Pitch deck</a><a href="{up}04-design-plans/index.html">Design plans</a><a href="{up}03-website/index.html">Website</a></nav>
+  <nav aria-label="Package"><a href="{up}index.html">All documents</a><a href="{up}01-business-plan/index.html">Business plan</a><a href="{up}08-launch-plan/index.html">Launch plan</a><a href="{up}02-pitch-deck/index.html">Pitch deck</a><a href="{up}04-design-plans/index.html">Design plans</a><a href="{up}03-website/index.html">Website</a></nav>
 </div></header>
 {body}
 <footer class="site"><div class="in">Vantage Sauna Co. · Confidential pitch materials · Generated from Markdown by tools/build.py</div></footer>
@@ -62,7 +63,10 @@ def page(title, body, depth, extra_head=''):
 
 def render_markdown(src: Path, title: str, depth: int, downloads: str = '') -> str:
     md = markdown.Markdown(extensions=['tables', 'toc', 'fenced_code', 'sane_lists', 'attr_list'], extension_configs={'toc': {'toc_depth': '2-3'}})
-    body = md.convert(src.read_text(encoding='utf-8'))
+    text = src.read_text(encoding='utf-8')
+    # Charts in the live Claude Doc export as '[embedded content: caption]' placeholders; show them as a short note.
+    text = re.sub(r'&#91;embedded content: (.*?)\\\]', r'> *Chart in the editable original (claude.ai). Data: \1.*', text)
+    body = md.convert(text)
     body = re.sub(r'<table>', '<div class="table-wrap"><table>', body)
     body = body.replace('</table>', '</table></div>')
     toc = md.toc if md.toc_tokens else ''
@@ -76,6 +80,8 @@ def render_markdown(src: Path, title: str, depth: int, downloads: str = '') -> s
     return page(title, main, depth)
 
 def build_docs():
+    if markdown is None:
+        return
     for src, dst, title, _ in DOCS:
         s, d = ROOT / src, ROOT / dst
         if not s.exists():

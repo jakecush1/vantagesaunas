@@ -283,6 +283,18 @@ section.block > .wrap > header { display: grid; gap: 8px; margin-bottom: 22px; m
 .d-glass-out { fill: var(--glass-out); stroke: var(--glass-line); stroke-width: 1; }
 .d-text-on-glass { font-size: 10.5px; fill: #F4EFE6; }
 .d-ins { fill: none; stroke: var(--fg-3); stroke-width: 1; }
+/* Text masking: drawing labels knock out the linework behind them (section marks, drains, dimension and hidden
+   lines), the way CAD text masking does. maskLabels() puts a box behind each label on the plan, section and
+   detail sheets; the halo covers the elevation. Both take the colour of whatever the label sits on. */
+.sheet .drawing svg text { paint-order: stroke fill; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+.sheet .drawing svg text.on-floor { stroke: var(--surface-2); }
+.sheet .drawing svg text.on-aspen { stroke: var(--aspen); }
+.sheet .drawing svg text.on-cool { stroke: var(--cool); }
+.sheet .drawing svg text.d-text-on-glass, .sheet .drawing svg text.nomask { stroke: none; }
+.t-mask { fill: var(--surface); stroke: none; }
+.t-mask.on-floor { fill: var(--surface-2); }
+.t-mask.on-aspen { fill: var(--aspen); }
+.t-mask.on-cool { fill: var(--cool); }
 
 /* Details */
 .details-grid { display: grid; grid-template-columns: 1fr; gap: 28px; }
@@ -343,10 +355,10 @@ footer.site b { color: var(--fg); font-weight: 500; }
 <header class="wrap mast">
   <div class="title-row">
     <div class="brand"><span class="mark" aria-hidden="true"></span>Vantage Sauna Co.</div>
-    <div class="pkg-meta"><span>Package <b>VSC-DP-02</b></span><span>Rev <b>P1</b></span><span>Issued <b>1 Nov 2026</b></span><span>Status <b>Design intent</b></span></div>
+    <div class="pkg-meta"><span>Package <b>VSC-DP-02</b></span><span>Rev <b>P2</b></span><span>Market <b>Canada (Vancouver, Victoria, Toronto)</b></span><span>Issued <b>1 Nov 2026</b></span><span>Status <b>Design intent</b></span></div>
   </div>
   <h1 class="h1">Vantage rooftop sauna suites: <em>design plans</em></h1>
-  <p class="lede">One interactive package for investors, building owners and the engineers and sauna builders who will build it: a 3D model, scaled plans, sections and elevations, build-up details and the spec sheet for the Perch, Lodge and Summit suites, all driven from one set of dimensions.</p>
+  <p class="lede">One interactive package for investors, building owners and the engineers and sauna builders who will build it: a 3D model, scaled plans, sections and elevations, build-up details and the spec sheet for the Perch, Lodge and Summit suites, all driven from one set of dimensions. Rev P2 is drawn for Canada: the BC Building Code and Vancouver Building By-law in Vancouver and Victoria, the Ontario Building Code in Toronto, and prices in Canadian dollars.</p>
 </header>
 
 <div class="bar" role="region" aria-label="Model, units and theme">
@@ -420,7 +432,7 @@ footer.site b { color: var(--fg); font-weight: 500; }
     <header>
       <div class="sheet-no">Sheets A-101 to A-301 · 2D drawings</div>
       <h2 class="h2">Plan, section and elevation</h2>
-      <p class="muted">Drawn to scale from the same dimension data as the model. Supply and extract vent positions, the drain, the door swing and the 1,525 mm (60 in) turning circle follow the research's ventilation and accessibility findings.</p>
+      <p class="muted">Drawn to scale from the same dimension data as the model. Supply and extract vent positions, the drain, the 850 mm clear door and its swing, and the 1,500 mm turning space (CSA B651) follow the research's ventilation and accessibility findings.</p>
     </header>
     <div class="sheets">
       <article class="sheet" id="sheet-plan">
@@ -486,20 +498,20 @@ footer.site b { color: var(--fg); font-weight: 500; }
         </figure>
         <div class="why">
           <h3>Why this wall</h3>
-          <p>A sauna wall has to do three jobs a normal wall does not: survive 90 °C and steam on the inside, stay non-combustible on a roof, and dry out every day. The thermo-aspen lining and the ventilated batten gap handle the heat and moisture; the aluminium-foil barrier (rated at least 120 °C, 0.1 perm or less) stops vapour reaching the mineral wool; the fiber-cement sheathing and Euroclass A1 wool keep the envelope non-combustible from the outside in; and the ventilated cavity behind the thermally modified cladding lets rain and sun do no harm. At roughly 185 mm it is thicker than a garden sauna wall because a rooftop sees wind, cold and fire exposure a garden does not.</p>
+          <p>A sauna wall has to do three jobs a normal wall does not: survive 90 °C and steam on the inside, stay noncombustible on a roof, and dry out every day. The thermo-aspen lining and the ventilated batten gap handle the heat and moisture; the aluminium-foil barrier (rated at least 120 °C, 0.1 perm or less) stops vapour reaching the mineral wool; the fiber-cement sheathing and Euroclass A1 wool keep the envelope noncombustible from the outside in; and the ventilated cavity behind the thermally modified cladding lets rain and sun do no harm. At roughly 185 mm it is thicker than a garden sauna wall because a rooftop sees wind, cold and fire exposure a garden does not. On towers of noncombustible construction, wood cladding is allowed only if the building is sprinklered and the wall assembly has passed CAN/ULC-S134, so those jobs get a noncombustible wood-look aluminium or steel cladding instead; the ceiling boards are fire-retardant treated or tested to a flame-spread rating of 25 or less.</p>
         </div>
-        <div class="title-block"><div><span>Sheet</span><b>A-501</b></div><div><span>Title</span><b>Wall panel build-up</b></div><div><span>Scale</span><b>1:2 at full width</b></div><div><span>Rev / status</span><b>P1 · Design intent</b></div></div>
+        <div class="title-block"><div><span>Sheet</span><b>A-501</b></div><div><span>Title</span><b>Wall panel build-up</b></div><div><span>Scale</span><b>1:2 at full width</b></div><div><span>Rev / status</span><b>P2 · Design intent</b></div></div>
       </article>
       <article class="sheet">
         <figure>
           <div class="drawing" id="base-host"></div>
-          <figcaption>Base frame on the roof, cut across the module: adjustable feet on rubber load-spreading pads over beam lines, ballast trays between the members, and the tie-back bracket to the parapet. Nothing penetrates the roof membrane.</figcaption>
+          <figcaption>Base frame on the roof, cut across the module, in its two Canadian variants. A, Toronto: adjustable feet on rubber load-spreading pads over beam lines, ballast trays between the members and a parapet tie-back on tall, exposed roofs; nothing penetrates the membrane. B, Vancouver and Victoria: at each of 4 to 8 anchor points the frame bolts to a steel post anchored to the structure, inside a factory-flashed curb that the roofer seals.</figcaption>
         </figure>
         <div class="why">
-          <h3>Why this base</h3>
-          <p>A roof membrane warranty, a landlord's patience and a structural engineer's sign-off all depend on the same thing: no holes, and no surprise loads. The hot-dip galvanized frame spreads the module onto adjustable feet that sit on rubber pads directly over beams and columns, so point loads land where the structure already carries them. Wind is resisted by weight and friction (ballast trays with pavers sized per site from ASCE 7-16 Section 29.5.1, with GC<sub>r</sub> of 1.9 lateral and 1.5 uplift) plus bolted tie-back brackets to the parapet, which take the lateral load on tall, exposed roofs where ballast alone would be too heavy. The grating sub-floor drains to a floor drain that runs to the building's roof drain, so the membrane under the module stays dry and inspectable.</p>
+          <h3>Why two bases</h3>
+          <p>The base has to carry the suite to the structure, keep the membrane watertight and hold the suite in place in wind and earthquakes. The hot-dip galvanized frame sits on adjustable feet and rubber pads placed over beams and columns, so point loads land where the structure already carries them. Vancouver and Victoria are in seismic category SC4, and the codes do not let friction from gravity resist earthquake forces on rooftop components (NBC, BCBC and OBC Article 4.1.8.18). So in BC the frame bolts to the structure through 4 to 8 engineered anchors, each in a factory-flashed curb that the building's roofer seals to keep the membrane warranty, and ballast is kept to a minimum because extra mass adds earthquake load. In Toronto, where the site is SC1 or SC2 and the engineer classes the suite as equipment, a ballasted base with no roof penetrations can still pass: ballast trays with pavers sized for wind to NBC 4.1.7, plus a parapet tie-back on tall, exposed roofs. Either way the grating sub-floor drains to a floor drain that runs to the building's roof drain, so the membrane under the suite stays dry and inspectable.</p>
         </div>
-        <div class="title-block"><div><span>Sheet</span><b>A-502</b></div><div><span>Title</span><b>Base frame, pads and tie-back</b></div><div><span>Scale</span><b>1:10 at full width</b></div><div><span>Rev / status</span><b>P1 · Design intent</b></div></div>
+        <div class="title-block"><div><span>Sheet</span><b>A-502</b></div><div><span>Title</span><b>Base frame: BC anchored, Toronto ballasted</b></div><div><span>Scale</span><b>1:10 at full width</b></div><div><span>Rev / status</span><b>P2 · Design intent</b></div></div>
       </article>
     </div>
   </div>
@@ -510,22 +522,26 @@ footer.site b { color: var(--fg); font-weight: 500; }
     <header>
       <div class="sheet-no">Sheet S-001 · Spec sheet</div>
       <h2 class="h2">Specification, all three models</h2>
-      <p class="muted">Values are the v2 product spec. Electrical supplies are planning values for the building's electrical engineer; the final feeder size follows the listed heater's nameplate and NEC Articles 422 and 424. The selected model is highlighted.</p>
+      <p class="muted">Values are the Canadian product spec from brief v4; prices are in Canadian dollars before GST/PST/HST. Electrical supplies are planning values at 208 V for the building's electrical engineer; the final feeder size follows the certified heater's nameplate and the Canadian Electrical Code (the OESC in Ontario). The selected model is highlighted.</p>
     </header>
     <div class="table-wrap">
       <table class="spec" id="spec-table"></table>
     </div>
     <p class="spec-foot" id="spec-foot"></p>
     <div class="open-items" id="open-items">
-      <h3>Open items for the engineer of record (v2.1 reconciliation)</h3>
+      <h3>Open items for the engineer of record and the code consultant (Rev P2, Canada)</h3>
       <ol>
-        <li><b>Wall thickness vs footprint.</b> The v2 brief's exterior footprints and interior room sizes net to 100 mm walls in plan (for example Lodge: 3.0 m outside, 2.8 m inside). The specified wall panel totals about 185 mm. This package draws the plans at the brief's room sizes with 100 mm nominal walls and shows the full 185 mm panel on sheet A-501. Either the footprint grows by about 170 mm per axis or the hot rooms shrink; decide before production drawings.</li>
-        <li><b>Seat places vs headline ranges.</b> With both tiers along the back wall and the ADA transfer section at the end of the lower tier, the drawn layouts seat 5 / 7 / 11 at 600 mm per place, or 7 / 9 / 13 at 550 mm, against the headline 4–6 / 8–10 / 12–14. Either restate the Lodge and Summit counts or lengthen those hot rooms by about 0.6 m.</li>
-        <li><b>Summit effective volume.</b> The brief's ~37 m³ was computed on a 3.4 × 3.4 m hot room. With the v2 room of 3.4 × 4.0 × 2.4 m and the full-length 4.0 × 2.4 m glass front the Harvia rule gives about 44 m³; confirm that 2 × 12 kW listed units on one controller cover it outdoors, or step up to 2 × 12.5 kW or 1 × 20 kW plus 1 × 12 kW. Perch and Lodge recompute to about 17 and 27 m³ and stay inside their heaters' ratings.</li>
-        <li><b>Heater clearances.</b> The Perch hot room cannot give the recommended 900 mm from heater to foot bench; the layout follows the listed heater's minimum clearances and guard. Confirm against the chosen heater's installation manual.</li>
-        <li><b>Point loads.</b> Publish the foot point loads, ballast mass and tie-back reactions per model once the frame is detailed; this package shows positions only.</li>
-        <li><b>Lodge shower and lockers.</b> The shower now sits inside the changing vestibule, which needs a wet-room floor and a 4.5 kW tank water heater on its own circuit; the lockers move outside as weatherproof units beside the entry. Neither change is in the $139,000 from-price yet.</li>
+        <li><b>Wall thickness vs footprint.</b> The brief's exterior footprints and interior room sizes net to 100 mm walls in plan (for example Lodge: 3.0 m outside, 2.8 m inside). The specified wall panel totals about 185 mm. This package draws the plans at the brief's room sizes with 100 mm nominal walls and shows the full 185 mm panel on sheet A-501. Either the footprint grows by about 170 mm per axis or the hot rooms shrink; decide before production drawings.</li>
+        <li><b>Seat places vs headline ranges.</b> With both tiers along the back wall and the transfer section at the end of the lower tier, the drawn layouts seat 5 / 7 / 11 at 600 mm per place, or 7 / 9 / 13 at 550 mm, against the headline 4–6 / 8–10 / 12–14. Either restate the Lodge and Summit counts or lengthen those hot rooms by about 0.6 m.</li>
+        <li><b>Summit effective volume.</b> The first ~37 m³ figure was computed on a 3.4 × 3.4 m hot room. With the current room of 3.4 × 4.0 × 2.4 m and the full-length 4.0 × 2.4 m glass front, the Harvia rule gives about 44 m³. Confirm that 2 × 12 kW, 208 V certified units on one controller cover it outdoors, or step up (for example 1 × 20 kW plus 1 × 12 kW). Perch and Lodge recompute to about 17 and 27 m³ and stay inside their heaters' ratings.</li>
+        <li><b>Heater clearances.</b> The Perch hot room cannot give the recommended 900 mm from heater to foot bench; the layout follows the certified heater's nameplate clearances and guard, which OESC Rule 62-222 says must be fixed so they cannot be reduced. Confirm against the chosen heater's installation manual.</li>
+        <li><b>Point loads and anchor reactions.</b> Publish the foot point loads, the BC anchor reactions, the Toronto ballast mass and the tie-back reactions per model once the frame is detailed; this package shows positions only. The low-end seismic design force is about 0.8–1.1 × the suite's weight in Vancouver and 1.5–1.8 × in Victoria; run the NRCan hazard tool with the site class for every site, and confirm Toronto sites are SC1 or SC2.</li>
+        <li><b>Lodge shower and lockers.</b> The shower sits inside the changing vestibule, which needs a wet-room floor and a 208 V tank water heater on its own circuit; the lockers stand outside as weatherproof units beside the entry. Confirm both in the first cost build-up against the C$179,000 from-price.</li>
+        <li><b>Lodge shower in BC.</b> Outside a dwelling unit, BC treats even one shower as a group that must include an accessible stall: 1,500 × 900 mm, a 900 mm clear floor, two grab bars and a folding seat (BCBC 3.8.2.8 and 3.8.3.17). A hotel that offers showers to customers also needs a universal dressing and shower room. The 2.8 × 1.6 m vestibule cannot fit this. Choose the BC variant before quoting in BC: a larger vestibule, an outdoor rinse instead of the indoor shower, or a universal room for hotels. Ontario exempts a single shower.</li>
+        <li><b>Clear floor at the door.</b> BC asks for 1,700 × 1,500 mm on the pull side of an accessible door, and both codes use 1,700 mm turning spaces in universal washrooms. The drawings show the brief's 1,500 mm hot-room turning space; check the Perch porch and the Lodge and Summit changing rooms against the 1,700 mm figures.</li>
         <li><b>Tinted glass at night.</b> A reflective tint only hides the interior while it is brighter outside. Confirm the coating, the night lighting scene and whether hotels want an interior blind.</li>
+        <li><b>Glass front in an earthquake.</b> In BC the full-length tempered IGU must not fall out at 1.25 × the design drift (BCBC 4.1.8.18). Specify frame clearance or a laminated inner lite for BC jobs.</li>
+        <li><b>The 1-hour cut-off, the app and heater certificates.</b> Get written interpretations from ESA, the City of Vancouver and the City of Victoria on whether a cycle started from the app counts as an override, and confirm the BC wording in the Canadian Electrical Code (C22.1-24). Collect the Canadian certificate numbers for the chosen 208 V heaters; none were found for the Harvia Virta Pro or the HUUM HIVE.</li>
       </ol>
     </div>
   </div>
@@ -543,35 +559,40 @@ footer.site b { color: var(--fg); font-weight: 500; }
       <article class="note"><h3>The law of löyly sets the bench height</h3><p>Bathers' feet should sit above the stones and out of the cold lower third of the room, and the sitting bench should be 1,100 to 1,200 mm below the ceiling. The upper bench is at 1,150 mm, which leaves 1,150 mm of headroom under the 2.3 m Perch ceiling and 1,250 mm under the 2.4 m Lodge and Summit ceilings. That is why the exterior heights are 2.9, 3.0 and 3.1 m rather than the 2.6 to 2.8 m of the first draft.</p><span class="src">Trumpkin's Notes; Finnleo construction guide (77 to 96 in ceilings)</span></article>
       <article class="note"><h3>Thermo-aspen inside, thermally modified ash or pine outside</h3><p>Aspen is low in resin, stays cool to the touch and does not splinter; heat treatment makes it dimensionally stable in daily wet-dry cycles. Finnish guidance lists aspen, alder, abachi and linden for benches and advises against cedar in the hot room, which most North American kits still use. Kirami's commercial cabins use heat-treated aspen for the same reason.</p><span class="src">Trumpkin's Notes; Kirami FinVision product page</span></article>
       <article class="note"><h3>Mechanical downdraft ventilation, and where the vents go</h3><p>An electric heater does not pull air through the room the way a wood stove does, so the supply sits in the ceiling above the heater and a mechanical extract sits low on the back wall behind the benches. Design rate 9 to 12 L/s per bather at the full bench count: 54 to 72 L/s for Perch, 90 to 120 L/s for Lodge, 126 to 168 L/s for Summit. A CO₂ sensor (target below 700 ppm) drives the extract fan through Vantage Access.</p><span class="src">Trumpkin's Notes; Finnleo construction guide</span></article>
-      <article class="note"><h3>Privacy-tinted double glazing</h3><p>The front wall is a tempered, double-glazed insulated unit with a bronze-tinted reflective outer pane and a low-iron inner pane in a thermally broken frame. By day the outer coating reads as a dark mirror from the roof while bathers see out. After dark, with the lights on inside, the effect reverses, so the night lighting scene keeps the hot room dim and an interior blind is an option. Harvia's sizing rule adds 1.2 m³ of heater volume for every square metre of glass, so the full-length front adds about 6, 8 and 12 m³; the brief's effective volumes of 16, 25 and 37 m³ recompute to about 17, 27 and 44 m³ for these rooms (open item 3).</p><span class="src">Harvia electric heater catalogue (sizing rule); Kirami and Iglucraft product pages</span></article>
-      <article class="note"><h3>A non-combustible envelope</h3><p>A rooftop structure is exposed to wind-driven embers, neighbouring plant and the fire officer's questions. Fiber-cement sheathing, Euroclass A1 mineral wool and a standing-seam steel roof make every layer outside the foil non-combustible, while the thermally modified cladding is a thin rain screen on a ventilated cavity. Hotel rooftop precedents such as Das Weitzer in Graz went the same way with metal slats.</p><span class="src">Research section 5, fire and clearances; Das Weitzer press release</span></article>
-      <article class="note"><h3>No roof penetrations</h3><p>Every bolt through a membrane is a leak and a warranty argument. The suites sit on a galvanized frame with ballast trays and parapet tie-back brackets instead. Wind on rooftop structures is checked to ASCE 7-16 Section 29.5.1 with GC<sub>r</sub> of 1.9 lateral and 1.5 uplift, which sets the ballast mass per site; the ballast is added to the roof load in the structural check.</p><span class="src">STRUCTURE magazine, Wind loads on non-building structures; Roofing Magazine, wind loading rooftop equipment</span></article>
-      <article class="note"><h3>Flat-pack first in dense cities</h3><p>In New York a crane lift means DOB crane permits and inspections, DOT street permits, a licensed rigger and off-hours premiums. Perch and Lodge therefore ship as elevator-sized panel kits (panels no larger than 2.3 × 1.2 m, heaviest piece under 120 kg) and are assembled on the roof in one to three days. The craneable module is optional for those two and required for Summit, whose hot room and plunge do not fit a service elevator.</p><span class="src">NYC DOB Cranes and Derricks permit page; Consigli, Hotel Indigo rooftop pool lift</span></article>
-      <article class="note"><h3>Accessibility is designed in, not added</h3><p>Where a building provides one sauna, that sauna must comply with the 2010 ADA Standards (241, 612). Each suite has an 813 mm (32 in) clear outward-swinging door with a 5 lbf opening force and a threshold no higher than 13 mm, and a 1,525 mm (60 in) turning circle inside the Lodge and Summit hot rooms (on the level landing for Perch, whose room is too narrow). The far end of the lower tier is a transfer section 1,070 mm long, 560 mm deep and 465 mm high, backed by the front of the upper tier; the lower-bench section beside it lifts out to give the 760 × 1,220 mm clear space at its end, as ADA 612.2 allows for a readily removable bench. The level route from the elevator to the door is the building's responsibility and a site-selection filter.</p><span class="src">US Access Board, Chapter 6: Saunas and Steam Rooms</span></article>
-      <article class="note"><h3>Listing the whole module to UL 875</h3><p>UL 875 Edition 10 (2024), Electric Dry-Bath Heaters, covers "a heater unit combined with a prefabricated rigid room". Vantage pursues that configuration with an NRTL (UL or ETL) so the module, not just the heater, carries the mark. Wiring follows NEC Articles 422 and 424 and the listing instructions under 110.3(B), with a disconnect within sight of the heater or lockable.</p><span class="src">UL Standards store, UL 875; Peak Saunas, 2023 NEC sauna requirements; Mike Holt forum threads</span></article>
-      <article class="note"><h3>The 90 °C cap and the hygiene cycle</h3><p>UL and ETL-listed heaters limit at about 194 °F (90 °C), so the controller caps the room there; the 100 °C figure in early drafts is not reachable with a listed unit. After the last booking of the day the controller holds 65 °C at the benches for 15 to 20 minutes to dry the wood before shutting down.</p><span class="src">Haven of Heat, HUUM HIVE review; Trumpkin's Notes</span></article>
-      <article class="note"><h3>Cold plunge sanitation and weight</h3><p>The Summit plunge holds 1,200 L, three times a consumer tub, so it needs a 2 HP commercial chiller, ozone or AOP sanitation and 20 µm filtration, benchmarked on facility units such as Blue Cube's C3X and Modular. Filled it weighs about 1,900 kg and is placed over primary structure, never mid-span, which is why it sits on the terrace deck at the module's end.</p><span class="src">Blue Cube Baths; Plunge technical specifications; Ice Barrel 500</span></article>
-      <article class="note"><h3>Bearing design basis</h3><p>The suites are designed for occupiable roofs rated 100 psf (4.8 kPa), the assembly and roof-garden live load in NYC Building Code Table 1607.1. Planning weight is at least 300 kg/m² dry, heavier than the 200 to 240 kg/m² of lighter insulated cabins on the market, plus ballast and about 90 kg per occupant. Roofs rated lower (60 psf residential decks, 20 psf ordinary roofs) need spreader frames or reinforcement, quoted as site preparation.</p><span class="src">NYC Building Code 2022, Chapter 16 (UpCodes); research section 4, weight per m²</span></article>
+      <article class="note"><h3>Privacy-tinted double glazing</h3><p>The front wall is a tempered, double-glazed insulated unit with a bronze-tinted reflective outer pane and a low-iron inner pane in a thermally broken frame. By day the outer coating reads as a dark mirror from the roof while bathers see out. After dark, with the lights on inside, the effect reverses, so the night lighting scene keeps the hot room dim and an interior blind is an option. Harvia's sizing rule adds 1.2 m³ of heater volume for every square metre of glass, so the full-length front adds about 6, 8 and 12 m³; the effective volumes of 16, 25 and 37 m³ recompute to about 17, 27 and 44 m³ for these rooms (open item 3). On BC jobs the frame gets drift clearance, or the inner pane is laminated, so the unit cannot fall out when the building sways in an earthquake.</p><span class="src">Harvia electric heater catalogue (sizing rule); Kirami and Iglucraft product pages; BCBC 2024 4.1.8.18</span></article>
+      <article class="note"><h3>Fire: noncombustible outside, sprinkler-ready inside</h3><p>Fiber-cement sheathing, Euroclass A1 mineral wool and a standing-seam steel roof make every layer outside the foil noncombustible. Most towers are of noncombustible construction, where wood cladding is allowed only if the building is sprinklered and the wall assembly has passed CAN/ULC-S134. For those jobs the thermally modified cladding is swapped for a noncombustible wood-look aluminium or steel profile, as hotel rooftops such as Das Weitzer in Graz did with metal slats, or Vantage funds an S134 test. Ceiling finishes there need a flame-spread rating of 25 or less, so the hot-room ceiling is fire-retardant treated or tested to CAN/ULC-S102. Every suite is sprinkler-ready, with a high-temperature head in the hot room and a stub for the building's system, and has a horn/strobe tied to the building's fire alarm.</p><span class="src">BCBC 2024 3.1.5 and 3.2.4.18; MeyerFire, saunas and sprinklers; Das Weitzer press release; 06-research/canada-codes-and-engineering.md section 1.4</span></article>
+      <article class="note"><h3>Anchored in BC, ballasted in Toronto</h3><p>Vancouver and Victoria are in seismic category SC4, and the codes do not let friction from gravity resist earthquake forces on rooftop components (NBC, BCBC and OBC Article 4.1.8.18). In BC the base frame therefore bolts to the structure through 4 to 8 engineered anchors, each flashed by the building's roofer to keep the membrane warranty, and ballast is kept to a minimum because extra mass adds earthquake load. In Toronto a ballasted base with no roof penetrations can still pass where the site is SC1 or SC2 and the suite is classed as equipment. Wind is checked to the NBC 4.1.7 static procedure (1-in-50 hourly pressure 0.45 kPa in Vancouver, 0.57 in Victoria, 0.44 in Toronto), which sets the anchor or ballast size per site. Sheet A-502 shows both bases.</p><span class="src">BCBC 2024 and OBC 2024 Part 4 (4.1.7, 4.1.8.18); 06-research/canada-codes-and-engineering.md sections 2.3 to 2.5</span></article>
+      <article class="note"><h3>Flat-pack first in dense cities</h3><p>A crane lift needs a street-use permit in Vancouver (for the street and the air space above it), a Street Occupancy Permit in Victoria or a Street Occupation Permit for hoisting in Toronto, plus a certified operator and traffic control. Perch and Lodge therefore ship as elevator-sized panel kits. No panel is larger than 2.0 × 1.1 m, so it fits flat or on the diagonal in a car sized for the 2,010 × 610 mm stretcher that BCBC 3.5.4.1 requires, and no piece weighs more than 120 kg. A stair-climber or davit covers the last flight where the elevator stops below the roof. The craneable module is optional for those two and the default for Summit.</p><span class="src">City of Vancouver street use permits; City of Victoria Street Occupancy Permit; City of Toronto Street Occupation Permit; BCBC 2024 3.5.4.1</span></article>
+      <article class="note"><h3>Accessibility is designed in, not added</h3><p>The suites follow CSA B651 and Section 3.8 of the BC and Ontario codes. Each has an 850 mm clear outward-swinging door (900 mm glass leaf) with an opening force of 22 N or less and a bevelled threshold no higher than 13 mm. In Ontario the glass leaf carries an opaque contrasting strip at least 50 mm wide, 1,350 to 1,500 mm above the floor. The Lodge and Summit hot rooms keep a 1,500 mm turning space in front of the benches; Perch's is on the level landing, because its room is too narrow. Neither code has a sauna clause, so the ADA-style transfer section is kept as best practice: 1,070 mm long, 560 mm deep and 465 mm high at the far end of the lower tier, with a lift-out section beside it that clears a 760 × 1,220 mm space. The barrier-free route to the roof is the building's responsibility; Ontario requires one to rooftop amenity spaces (OBC 3.8.2.1).</p><span class="src">BCBC 2024 and OBC 2024 Section 3.8; CSA B651-18; US Access Board guide to ADA 612 (best practice)</span></article>
+      <article class="note"><h3>Canadian marks, 208&nbsp;V and a 1-hour cut-off</h3><p>Every heater carries a Canadian mark (cETLus, cULus or CSA) to CSA C22.2 No. 164; a US-only ETL or UL mark is not accepted. That standard covers heaters rated 300 V or less, so the heaters are 208 V three-phase models: a 240 V heater on a 208 V supply gives only about 75% of its output. Where a roof has only 347/600 V service, a transformer kit (30 kVA for Perch and Lodge, 45 kVA for Summit) steps it down to 208Y/120 V as site preparation. Vantage seeks a listing of the whole suite to C22.2 No. 164 Clause 8 (heater with a prefabricated room), with UL 875 for export, and certifies the factory to CSA A277. Wiring follows the Canadian Electrical Code. Ontario's Rule 62-222 requires a hard-wired timed cut-off of at most 1 hour with no override, mounted outside the room. Every suite has one, so each booking is a fresh cycle that the app cannot extend (open item 11).</p><span class="src">CSA C22.2 No. 164:18; ESA and OFMEM Flash 25-20-FL; Technical Safety BC approved marks; 06-research/canada-codes-and-engineering.md section 3</span></article>
+      <article class="note"><h3>The 90 °C cap and the hygiene cycle</h3><p>Certified heaters limit at about 90 °C, and the electrical code keeps combustible materials next to the heater at 90 °C or less (Ontario Rule 62-112), so the controller caps the room there; the 100 °C figure in early drafts is not reachable with a certified unit. After the last booking of the day the controller holds 65 °C at the benches for 15 to 20 minutes, inside the 1-hour cycle, to dry the wood before shutting down.</p><span class="src">Haven of Heat, HUUM HIVE review; ESA Flash 25-20-FL; Trumpkin's Notes</span></article>
+      <article class="note"><h3>The cold plunge is a regulated pool</h3><p>The Summit plunge, and the Lodge add-on, holds 1,200 L at 800 mm deep, so it is a regulated pool in both provinces. In BC it is a commercial pool at a hotel, serviced-apartment business or strata, with a health-authority construction permit (sealed plans) and a yearly operating permit. In Ontario it is a Class B public cold plunge pool, with 14 days' notice to public health before opening. The package therefore adds chlorine or bromine dosing on an automatic controller with logging (ozone or AOP alone does not meet the residual rules), a handrail, a clock visible from the water, the prescribed caution signs, an emergency stop for the pumps and a non-slip deck, alongside the 2 HP chiller and 20 µm filtration. Filled, it weighs about 1,900 kg; it sits over primary structure on the terrace deck and, in BC, is anchored as a tank with its contents.</p><span class="src">BC Pool Regulation (B.C. Reg. 296/2010); Ontario Reg. 565 as amended by O. Reg. 502/24 (Halton operator guide); Blue Cube Baths</span></article>
+      <article class="note"><h3>Bearing design basis</h3><p>The suites are designed for occupied roofs rated 4.8 kPa (100 psf), the assembly live load that NBC, BCBC and OBC Table 4.1.5.3 apply to roofs people use (4.1.5.5). An ordinary roof is designed for only 1.0 kPa or the snow load, so it needs spreader frames to beams or reinforcement, quoted as site preparation; in Ontario, Part 11 requires remedial work where the framing is not adequate. Planning weight is about 300 kg/m² (about 3 kPa) dry, plus any ballast and about 90 kg per occupant. The suite's own roof is designed for 2.0 kPa of snow plus drift (basic roof snow 1.64 kPa in Vancouver, 1.12 kPa in Toronto), and the host roof beside it gets a drift check.</p><span class="src">BCBC 2024 and OBC 2024 Part 4 (4.1.5, 4.1.6) and OBC Part 11; 06-research/sauna-design-research.md section 4, weight per m²</span></article>
       <article class="note"><h3>Seats, and how many people are comfortable</h3><p>Bench seats are counted at 600 mm per place along the two tiers, which run 2.2, 2.8 and 4.0 m from side wall to side wall. The Finnish comfort guideline of 3 m³ per bather gives 4, 6 and 11 at full comfort for the three hot rooms, which is why the spec sheet shows both numbers. The Lodge and Summit upper benches are longer than 1.95 m, so a bather can lie down.</p><span class="src">Trumpkin's Notes (Finnish RT card); Finnleo, 2 ft of upper bench per bather</span></article>
     </div>
-    <h3 class="eyebrow" style="margin: 36px 0 12px">References (from research/sauna-design-research.md, accessed 1 Nov 2026)</h3>
+    <h3 class="eyebrow" style="margin: 36px 0 12px">References (from 06-research/canada-codes-and-engineering.md and 06-research/sauna-design-research.md, accessed 1 Nov 2026)</h3>
     <ol class="refs">
+      <li>British Columbia Building Code 2024, web version revision 2 (3.1.5, 3.2.4.18, 3.5.4.1, 3.8, 4.1.5, 4.1.6, 4.1.8.18, Tables C-2 and C-3): <a href="https://www2.gov.bc.ca/assets/gov/farming-natural-resources-and-industry/construction-industry/building-codes-and-standards/revisions-and-mo/bcbc_2024_web_version_revision2.pdf" rel="noopener">www2.gov.bc.ca/.../bcbc_2024_web_version_revision2.pdf</a></li>
+      <li>City of Vancouver, Guide to 2025 Vancouver Building By-law updates (search excerpt): <a href="https://vancouver.ca/files/cov/guide-to-2025-vbbl-updates.pdf" rel="noopener">vancouver.ca/files/cov/guide-to-2025-vbbl-updates.pdf</a></li>
+      <li>Ontario 2024 Building Code Compendium (O. Reg. 163/24), Part 3 (Section 3.8, which calls up CSA B651-18) and Part 4 with SB-1 climatic and seismic data: <a href="https://www.ontario.ca/document/2024-building-code-compendium/part-3-fire-protection-occupant-safety-and-accessibility" rel="noopener">ontario.ca/.../part-3-fire-protection-occupant-safety-and-accessibility</a>, <a href="https://www.ontario.ca/document/2024-building-code-compendium/part-4-structural-design" rel="noopener">ontario.ca/.../part-4-structural-design</a>, <a href="https://www.ontario.ca/document/2024-building-code-compendium/sb-1-climatic-and-seismic-data" rel="noopener">ontario.ca/.../sb-1-climatic-and-seismic-data</a></li>
+      <li>Ontario 2024 Building Code Compendium, Part 11 Renovation and Division C Part 1 (CSA A277 "deemed to comply", 1.12.1.1): <a href="https://www.ontario.ca/document/2024-building-code-compendium/part-11-renovation" rel="noopener">ontario.ca/.../part-11-renovation</a>, <a href="https://www.ontario.ca/document/2024-building-code-compendium/part-1-general-0" rel="noopener">ontario.ca/.../part-1-general-0</a></li>
+      <li>CSA Group, C22.2 No. 164:18 (R2022), Electric sauna heating equipment: <a href="https://store.csastandards.org/store/product/2425995/" rel="noopener">store.csastandards.org/store/product/2425995</a></li>
+      <li>ESA and Ontario Fire Marshal, Flash 25-20-FL, electric saunas (OESC Rules 62-112, 62-202, 62-222): <a href="https://esasafe.com/assets/files/esasafe/pdf/Electrical_Safety_Products/Flash_Notices/25-20-FL.pdf" rel="noopener">esasafe.com/.../25-20-FL.pdf</a></li>
+      <li>Technical Safety BC, approved certification marks: <a href="https://www.technicalsafetybc.ca/regulatory-resources/regulatory-notices/approved-certification-marks-electrical-products" rel="noopener">technicalsafetybc.ca/.../approved-certification-marks-electrical-products</a>; ESA, recognized certification marks: <a href="https://esasafe.com/electrical-products/recognized-certification-marks/" rel="noopener">esasafe.com/electrical-products/recognized-certification-marks</a></li>
+      <li>BC Hydro, electrical service voltages, 120/208 V and 347/600 V (search excerpt): <a href="https://app.bchydro.com/accounts-billing/electrical-connections/electrical-service-voltages.html" rel="noopener">app.bchydro.com/.../electrical-service-voltages.html</a></li>
+      <li>Harvia, Virta Pro 20 kW 208 V product page and Harvia Spirit (CSA E60335-2-53 for Canada): <a href="https://www.harvia.com/en-US/products/HL20U3UL/virta-pro-20-kw-208v-black" rel="noopener">harvia.com/.../virta-pro-20-kw-208v-black</a>, <a href="https://www.harvia.com/en-US/harvia-spirit-electric-heater/" rel="noopener">harvia.com/en-US/harvia-spirit-electric-heater</a></li>
+      <li>UL Standards, UL 875 Electric Dry-Bath Heaters, Edition 10 (2024), for the export listing: <a href="https://www.shopulstandards.com/ProductDetail.aspx?productId=UL875" rel="noopener">shopulstandards.com/ProductDetail.aspx?productId=UL875</a></li>
+      <li>MeyerFire, saunas and sprinklers (Mar 2024): <a href="https://www.meyerfire.com/daily/saunas-considered-bathrooms-for-sprinklers" rel="noopener">meyerfire.com/daily/saunas-considered-bathrooms-for-sprinklers</a></li>
+      <li>City of Vancouver, construction street use permits (search excerpt): <a href="https://vancouver.ca/home-property-development/construction-street-use-permits.aspx" rel="noopener">vancouver.ca/.../construction-street-use-permits.aspx</a>; City of Victoria, Street Occupancy Permit: <a href="https://www.victoria.ca/media/file/street-occupancy-permitinfo-sheet" rel="noopener">victoria.ca/media/file/street-occupancy-permitinfo-sheet</a>; City of Toronto, Street Occupation Permit: <a href="https://www.toronto.ca/services-payments/building-construction/infrastructure-city-construction/construction-standards-permits/right-of-way-construction-permits/street-occupation-permit/" rel="noopener">toronto.ca/.../street-occupation-permit</a></li>
+      <li>BC Pool Regulation, B.C. Reg. 296/2010: <a href="https://www.bclaws.gov.bc.ca/civix/document/id/complete/statreg/296_2010" rel="noopener">bclaws.gov.bc.ca/.../296_2010</a>; Halton Region, Pool and Spa Operator Guide (Ontario Reg. 565 as amended by O. Reg. 502/24): <a href="https://www.halton.ca/Repository/Pool-Owner-Operator-Information-Package" rel="noopener">halton.ca/Repository/Pool-Owner-Operator-Information-Package</a></li>
+      <li>US Access Board, ADA guide Chapter 6: Saunas and Steam Rooms (best practice for the transfer bench): <a href="https://www.access-board.gov/ada/guides/chapter-6-saunas/" rel="noopener">access-board.gov/ada/guides/chapter-6-saunas</a></li>
       <li>Trumpkin's Notes on Building a Sauna, localmile.org: <a href="https://www.localmile.org/trumpkins-notes-on-building-a-sauna/" rel="noopener">localmile.org/trumpkins-notes-on-building-a-sauna</a></li>
       <li>Finnleo, Sauna construction guide: <a href="https://finnleo.com/sauna-construction" rel="noopener">finnleo.com/sauna-construction</a></li>
-      <li>US Access Board, ADA guide Chapter 6: Saunas and Steam Rooms: <a href="https://www.access-board.gov/ada/guides/chapter-6-saunas/" rel="noopener">access-board.gov/ada/guides/chapter-6-saunas</a></li>
-      <li>NYC Building Code 2022, Chapter 16 Structural Design, Table 1607.1 (UpCodes): <a href="https://up.codes/viewer/new_york_city/nyc-building-code-2022/chapter/16/structural-design" rel="noopener">up.codes/viewer/new_york_city/nyc-building-code-2022/chapter/16</a></li>
-      <li>UL Standards, UL 875 Electric Dry-Bath Heaters, Edition 10 (2024): <a href="https://www.shopulstandards.com/ProductDetail.aspx?productId=UL875" rel="noopener">shopulstandards.com/ProductDetail.aspx?productId=UL875</a></li>
-      <li>STRUCTURE magazine, Wind Loads on Non-Building Structures (ASCE 7-16 29.5.1): <a href="https://www.structuremag.org/article/wind-loads-on-non-building-structures/" rel="noopener">structuremag.org/article/wind-loads-on-non-building-structures</a></li>
-      <li>Roofing Magazine, Wind loading rooftop equipment (search excerpt): <a href="https://roofingmagazine.com/wind-loading-rooftop-equipment/2/" rel="noopener">roofingmagazine.com/wind-loading-rooftop-equipment</a></li>
-      <li>NYC Department of Buildings, Cranes and Derricks permits: <a href="https://www.nyc.gov/site/buildings/property-or-business-owner/cranes-derricks-permit.page" rel="noopener">nyc.gov/site/buildings/.../cranes-derricks-permit.page</a></li>
-      <li>Harvia, Virta Pro 16 kW 240 V and Virta Pro 20 kW 208 V product pages: <a href="https://www.harvia.com/en-US/products/HL16U1UL/virta-pro-16-kw-240v-black" rel="noopener">harvia.com/.../virta-pro-16-kw-240v-black</a>, <a href="https://www.harvia.com/en-US/products/HL20U3UL/virta-pro-20-kw-208v-black" rel="noopener">harvia.com/.../virta-pro-20-kw-208v-black</a></li>
       <li>Harvia electric sauna heaters catalogue, sizing rule (ArchiExpo, search excerpt): <a href="https://pdf.archiexpo.com/pdf/harvia/harvia-electric-sauna-heaters/9998-15185.html" rel="noopener">pdf.archiexpo.com/pdf/harvia/harvia-electric-sauna-heaters</a></li>
-      <li>Haven of Heat, HUUM HIVE review, UL temperature limit (search excerpt): <a href="https://havenofheat.com/blogs/sauna-guides/huum-hive-review" rel="noopener">havenofheat.com/blogs/sauna-guides/huum-hive-review</a></li>
-      <li>Peak Saunas, 2023 NEC sauna requirements (search excerpt): <a href="https://peaksaunas.com/blogs/wellness/2023-nec-sauna-requirements" rel="noopener">peaksaunas.com/blogs/wellness/2023-nec-sauna-requirements</a>; Mike Holt forum, sauna threads: <a href="https://forums.mikeholt.com/threads/sauna.137125/" rel="noopener">forums.mikeholt.com/threads/sauna.137125</a></li>
+      <li>Haven of Heat, HUUM HIVE review, heater temperature limit (search excerpt): <a href="https://havenofheat.com/blogs/sauna-guides/huum-hive-review" rel="noopener">havenofheat.com/blogs/sauna-guides/huum-hive-review</a></li>
       <li>Blue Cube Baths, C3 cold plunge and commercial packages: <a href="https://bluecubebaths.com/" rel="noopener">bluecubebaths.com</a></li>
       <li>Plunge, technical specifications: <a href="https://plunge.com/pages/tech-specs" rel="noopener">plunge.com/pages/tech-specs</a>; Ice Barrel 500: <a href="https://icebarrel.com/products/ice-barrel-500" rel="noopener">icebarrel.com/products/ice-barrel-500</a></li>
       <li>Kirami FinVision at John Lewis: <a href="https://www.johnlewis.com/kirami-finvision-electric-misty-sauna-large-black/p112040095" rel="noopener">johnlewis.com/kirami-finvision-...</a>; Iglucraft Panoramic at Recovery for Athletes: <a href="https://www.recoveryforathletes.com/products/iglucraft-panoramic-iglusauna" rel="noopener">recoveryforathletes.com/products/iglucraft-panoramic-iglusauna</a></li>
-      <li>Consigli, Hotel Indigo Lower East Side rooftop pool lift (search excerpt): <a href="https://www.consigli.com/project/hotel-indigo-lower-east-side-new-york" rel="noopener">consigli.com/project/hotel-indigo-lower-east-side-new-york</a>; Habitat Magazine, Rooftop Sauna: <a href="https://habitatmag.com/layout/set/amphtml/Publication-Content/Building-Operations/2016/2016-April/Rooftop-Sauna" rel="noopener">habitatmag.com/.../Rooftop-Sauna</a></li>
       <li>Das Weitzer, rooftop sauna press release (Graz): <a href="https://hotelweitzer.com/content/uploads/2023/03/2b_Das_Weitzer_rooftop_sauna_press_release_EN_2023.pdf" rel="noopener">hotelweitzer.com/.../Das_Weitzer_rooftop_sauna_press_release_EN_2023.pdf</a></li>
     </ol>
   </div>
@@ -579,8 +600,8 @@ footer.site b { color: var(--fg); font-weight: 500; }
 
 <footer class="site">
   <div class="wrap">
-    <p><b>Design intent package, not for construction.</b> Structural, electrical and fire-code review by licensed engineers is required for every site.</p>
-    <p>Imperial values are converted from the metric design values; the nominal 8′ × 10′, 10′ × 16′ and 12′ × 24′ footprints in marketing copy are rounded. © 2026 Vantage Sauna Co.</p>
+    <p><b>Design intent package, not for construction.</b> Structural, electrical and fire-code review by engineers licensed in BC (EGBC) or Ontario (PEO) is required for every site, with a code consultant's opinion where the building official has to interpret the code.</p>
+    <p>Prices are in Canadian dollars (C$) before GST/PST/HST. Imperial values are converted from the metric design values. © 2026 Vantage Sauna Co.</p>
   </div>
 </footer>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
@@ -589,9 +610,10 @@ footer.site b { color: var(--fg); font-weight: 500; }
    VANTAGE SUITE DIMENSION DATA
    ------------------------------------------------------------------------------------------
    Every drawing on this page (3D model, plan, section, elevation), the model strip and the
-   spec sheet are generated from SHARED and MODELS. Edit here only; nothing is hard-coded in
-   the renderers. Units: metres, kilograms, kilowatts, litres, m3, USD. Source: BRIEF.md
-   section 2 (v2 spec, 2026-11-01). Axes: x = width (0 at the gutter / low-eave side),
+   spec sheet are generated from SHARED, PRICING and MODELS. Edit here only; nothing is hard-coded
+   in the renderers. Units: metres, kilograms, kilowatts, litres, m3, Canadian dollars (C$, before
+   GST/PST/HST). Source: 07-brief/BRIEF.md section 2 (v4, Canada, 2026-11-01) and
+   06-research/canada-codes-and-engineering.md. Axes: x = width (0 at the gutter / low-eave side),
    z = depth (0 at the entry end), y = height (0 at the roof surface).
    ========================================================================================== */
 const SHARED = {
@@ -608,12 +630,14 @@ const SHARED = {
     upperH: 1.15, upperD: 0.70,     // upper (sitting) bench
     lowerH: 0.70, lowerD: 0.50,     // lower bench
     stepH: 0.35, stepD: 0.30, stepL: 0.60,
-    adaH: 0.465, adaL: 1.07, adaD: 0.56, // ADA transfer bench at the lower tier (450-480 high, 510-610 deep)
+    adaH: 0.465, adaL: 1.07, adaD: 0.56, // ADA-style transfer section at the lower tier (best practice; no Canadian sauna clause)
     seatPitch: 0.60,                // bench seats at 600 mm per place
     backrestH: 0.45
   },
-  door: { clear: 0.813, leaf: 0.90, h: 2.00 },   // 32 in clear, outward swing, glass leaf
-  turning: 1.525,      // 60 in turning circle (ADA 612)
+  door: { clear: 0.85, leaf: 0.90, h: 2.00 },    // 850 mm clear (BCBC 3.8.3.6, OBC 3.8.3.3), outward swing, glass leaf
+                                                  // with an opaque contrasting strip for Ontario (OBC 3.8.3.3.(14))
+  turning: 1.50,       // 1,500 mm turning space (CSA B651), inside the Lodge and Summit hot rooms
+  panelMax: { l: 2.0, w: 1.1, kg: 120 },  // flat-pack panel limit: fits a stretcher-size elevator car (BCBC 3.5.4.1)
   comfortVolume: 3,    // m3 per person, Finnish RT card
   ventPerPerson: [9, 12],  // L/s per person, mechanical downdraft: supply above heater, extract low behind benches
   tempCapC: 90,
@@ -621,13 +645,18 @@ const SHARED = {
     { n: 1, name: 'Thermally modified ash/pine cladding, vertical', short: 'Thermo-ash/pine cladding', sub: 'vertical boards', t: 0.020 },
     { n: 2, name: 'Ventilated cavity', short: 'Ventilated cavity', t: 0.025, void: true },
     { n: 3, name: 'Breathable membrane', short: 'Breathable membrane', t: 0.001, line: true },
-    { n: 4, name: 'Fiber-cement sheathing, non-combustible', short: 'Fiber-cement sheathing', sub: 'non-combustible', t: 0.012 },
+    { n: 4, name: 'Fiber-cement sheathing, noncombustible', short: 'Fiber-cement sheathing', sub: 'noncombustible', t: 0.012 },
     { n: 5, name: 'Mineral-wool insulation, Euroclass A1', short: 'Mineral-wool insulation', sub: 'Euroclass A1', t: 0.090, wool: true },
     { n: 6, name: 'Aluminium-foil vapour barrier, rated 120 °C or more, 0.1 perm or less', short: 'Foil vapour barrier', sub: '≥ 120 °C, ≤ 0.1 perm', t: 0.001, line: true, foil: true },
     { n: 7, name: 'Ventilated batten gap', short: 'Ventilated batten gap', t: 0.022, void: true },
     { n: 8, name: 'Thermo-aspen interior panelling', short: 'Thermo-aspen lining', t: 0.015, aspen: true }
   ],
   siteRoof: { x0: -12.4, x1: 5.4, z0: -6.0, z1: 12.0, parapetH: 1.0, parapetT: 0.3 } // typical rooftop in the 3D scene; the glass side faces the near parapet and the skyline
+};
+
+const PRICING = {     // C$, before GST/PST/HST (brief v4 section 2)
+  addOns: { plungeLodge: 34500, terrace: [12500, 34000], lighting: 5000, towel: 3000 },
+  sitePrep: { bcAnchorage: [8000, 15000], transformer: [10000, 25000] }
 };
 
 const MODELS = {
@@ -644,16 +673,16 @@ const MODELS = {
       { kind: 'sauna', d: 2.20, name: 'Sauna' },
       { kind: 'wall',  d: 0.10 }                        // far side wall: heater corner
     ],
-    heater: { n: 1, kwEach: 10.5, label: '1 × 10.5 kW', w: 0.45, d: 0.45, h: 0.95 },
+    heater: { n: 1, kwEach: 10.5, volts: 208, label: '1 × 10.5 kW', w: 0.45, d: 0.45, h: 0.95 },
     entry: false,                                       // the sauna door is the entry
     planLabels: { sauna: [1.72, 1.15], heater: 'above', clear: 'bench', fd: 'end' }, // plan label positions in hot-room (u, v) metres
     effVol: 16, dryKg: 2300, ballastKg: 600, extraKg: 0, extraNote: '',
-    price: 78000, breakdown: [44000, 8000, 16000, 6000, 4000],
-    electrical: '208–240 V, 3-phase, 40 A feeder (planning value)',
-    water: 'None required; optional outdoor shower add-on needs a ½ in cold feed',
+    price: 99000, breakdown: [56000, 10000, 20500, 7500, 5000],   // hardware, engineering/permits, delivery+install, electrical, commissioning
+    electrical: '208 V 3-phase, 40 A heater feeder (about 29 A load)', xfmrKva: 30,
+    water: 'None required',
     drain: 'Floor drain to the building roof drain',
-    delivery: 'Flat-pack panel kit (default), 1 elevator trip; craneable module optional',
-    days: '1–2 days', lead: '6–10 weeks',
+    kit: true, delivery: 'Flat-pack panel kit by elevator (default); craneable module optional',
+    days: '1–2 days', lead: '12–20 weeks', plungeAddOn: 0,
     fitout: [], lockers: null, extras: '',
     shower: null, deck: null, plunge: null
   },
@@ -668,16 +697,16 @@ const MODELS = {
       { kind: 'sauna', d: 2.80, name: 'Sauna' },
       { kind: 'wall',  d: 0.10 }                          // far side wall: heater corner
     ],
-    heater: { n: 1, kwEach: 18, label: '1 × 18 kW', w: 0.60, d: 0.60, h: 1.05 },
+    heater: { n: 1, kwEach: 18, volts: 208, label: '1 × 18 kW', w: 0.60, d: 0.60, h: 1.05 },
     entry: true,                                         // entry door in the end wall, in line with the sauna door
-    planLabels: { sauna: [1.62, 2.32], heater: 'left', clear: 'center', fd: 'start' },
+    planLabels: { sauna: [1.55, 2.30], heater: 'left', clear: 'bench', fd: 'start' },
     effVol: 25, dryKg: 4500, ballastKg: 1000, extraKg: 0, extraNote: '',
-    price: 139000, breakdown: [82000, 11000, 26000, 9000, 11000],
-    electrical: '208–240 V, 3-phase, 60 A heater feeder plus a 30 A circuit for the shower water heater (planning values)',
-    water: '½ in cold feed to a 4.5 kW tank water heater for the indoor shower; drinking-water station',
+    price: 179000, breakdown: [105500, 14000, 33500, 11500, 14500],
+    electrical: '208 V 3-phase, 70 A heater feeder (about 50 A load), plus a 30 A, 208 V circuit for the shower water heater', xfmrKva: 30,
+    water: '½ in cold feed to a 208 V tank water heater (about 4.5 kW) for the indoor shower; drinking-water station',
     drain: 'Floor drain and shower drain to the building roof drain',
-    delivery: 'Flat-pack panel kit (default), 2 elevator trips; craneable module optional',
-    days: '2–3 days', lead: '6–10 weeks',
+    kit: true, delivery: 'Flat-pack panel kit by elevator (default); craneable module optional',
+    days: '2–3 days', lead: '12–20 weeks', plungeAddOn: PRICING.addOns.plungeLodge,
     // Changing-room fit-out in metres from the room's inner corner (x from the back wall, z from the entry side).
     // wall: 'front' = entry-side wall, 'back' = wall shared with the sauna, 'side' = the x = W outside wall.
     fitout: [
@@ -703,16 +732,16 @@ const MODELS = {
       { kind: 'sauna', d: 4.00, name: 'Sauna' },
       { kind: 'wall',  d: 0.10 }
     ],
-    heater: { n: 2, kwEach: 12, label: '2 × 12 kW', w: 0.50, d: 0.50, h: 1.00 },
+    heater: { n: 2, kwEach: 12, volts: 208, label: '2 × 12 kW', w: 0.50, d: 0.50, h: 1.00 },
     entry: true,
-    planLabels: { sauna: [2.30, 0.80], heater: 'left', clear: 'center', fd: 'start' },
+    planLabels: { sauna: [2.30, 0.70], heater: 'left', clear: 'bench', fd: 'start' },
     effVol: 37, dryKg: 8000, ballastKg: 1600, extraKg: 1900, extraNote: 'cold plunge, filled',
-    price: 249000, breakdown: [152000, 16000, 44000, 17000, 20000],
-    electrical: '208–240 V, 3-phase, 2 × 50 A heater feeders plus 20 A chiller circuit (planning values)',
+    price: 329000, breakdown: [201000, 21000, 58000, 22500, 26500],
+    electrical: '208 V 3-phase, 2 × 50 A heater feeders (about 33 A each), plus a 20 A circuit for the chiller and plunge dosing', xfmrKva: 45,
     water: '¾ in cold feed: plunge fill, outdoor shower, drinking-water station',
     drain: 'Floor, shower and plunge drains to the building roof drain; plunge drain valved',
-    delivery: 'Craneable module (required); DOB crane permit and DOT street permit',
-    days: '4–6 days', lead: '10–14 weeks',
+    kit: false, delivery: 'Craneable module (default)',
+    days: '4–6 days', lead: '16–26 weeks', plungeAddOn: 0,
     fitout: [
       { kind: 'lockers', name: 'Lockers', x0: 0.00, x1: 1.40, z0: 0.00, z1: 0.40, top: 1.8 },
       { kind: 'bench', name: 'Bench', x0: 0.00, x1: 0.40, z0: 0.60, z1: 2.70, top: 0.45 },
@@ -756,9 +785,9 @@ function layout(m) {
     return { x0: Math.min(a.x, b.x), x1: Math.max(a.x, b.x), z0: Math.min(a.z, b.z), z1: Math.max(a.z, b.z) };
   };
 
-  // Benches: two tiers along the back wall, side wall to side wall, facing the glass. The ADA transfer section is
+  // Benches: two tiers along the back wall, side wall to side wall, facing the glass. The ADA-style transfer section is
   // the far end of the lower tier; the lower-tier section beside it lifts out to give the 760 x 1,220 mm clear floor
-  // at its end (ADA 903.2, with the 612.2 exception for a readily removable bench). The step sits by the door.
+  // at its end (ADA 903.2 and the 612.2 removable-bench exception, kept as best practice). The step sits by the door.
   const lowerU0 = B.upperD, lowerU1 = B.upperD + B.lowerD;
   const adaV0 = rd - B.adaL;
   const clearFloor = { u0: B.upperD, u1: B.upperD + 1.22, v0: Math.max(0, adaV0 - 0.76), v1: adaV0 };
@@ -767,7 +796,7 @@ function layout(m) {
     { id: 'upper', name: 'Upper bench', u0: 0, u1: B.upperD, v0: 0, v1: rd, top: B.upperH, thick: 0.06, tier: 'upper' },
     { id: 'lower', name: 'Lower bench', u0: lowerU0, u1: lowerU1, v0: 0, v1: clearFloor.v0, top: B.lowerH, thick: 0.05, tier: 'lower' },
     { id: 'lowerRemovable', name: 'Lower bench, lift-out section', u0: lowerU0, u1: lowerU1, v0: clearFloor.v0, v1: adaV0, top: B.lowerH, thick: 0.05, tier: 'lower', removable: true },
-    { id: 'ada', name: 'ADA transfer section', u0: lowerU0, u1: lowerU0 + B.adaD, v0: adaV0, v1: rd, top: B.adaH, thick: 0.05, tier: 'ada' },
+    { id: 'ada', name: 'Transfer section (ADA-style)', u0: lowerU0, u1: lowerU0 + B.adaD, v0: adaV0, v1: rd, top: B.adaH, thick: 0.05, tier: 'ada' },
     { id: 'step', name: 'Step', u0: lowerU1, u1: lowerU1 + B.stepD, v0: stepV0, v1: stepV1, top: B.stepH, thick: 0.04, tier: 'step', removable: stepV1 > clearFloor.v0 }
   ].map(b => Object.assign(b, rectW(b.u0, b.u1, b.v0, b.v1)));
   const bench = id => benches.find(b => b.id === id);
@@ -811,7 +840,7 @@ function layout(m) {
   const mullionsZ = Array.from({ length: panes - 1 }, (_, i) => sauna.z0 + rd * (i + 1) / panes);
   const openings = [{ x0: saunaDoor.x0, x1: saunaDoor.x1, zone: doorZone, kind: 'sauna' }];
   if (entryDoor) openings.push({ x0: entryDoor.x0, x1: entryDoor.x1, zone: zones[0], kind: 'entry' });
-  // Turning circle (ADA 612.3): inside the hot room in front of the benches, clear of the step and the heater guard.
+  // Turning space (CSA B651, 1,500 mm): inside the hot room in front of the benches, clear of the step and heater guard.
   // The Perch room is too narrow, so its circle is on the level landing outside the porch.
   const tr = S.turning / 2;
   let turning;
@@ -849,7 +878,7 @@ function layout(m) {
   const shower = m.shower ? { x0: m.shower.x, x1: m.shower.x + m.shower.w, z0: (m.shower.onDeck ? D : 0) + m.shower.z, z1: (m.shower.onDeck ? D : 0) + m.shower.z + m.shower.d, onDeck: !!m.shower.onDeck } : null;
   const entryX = entryDoor ? entryDoor : saunaDoor;
   const landing = { x0: entryX.x0 - 0.40, x1: entryX.x1 + 0.40, z0: -1.60, z1: 0, note: 'Level landing by building: raised pavers or 1:12 ramp' };
-  // Seats: 600 mm per place on each tier; the ADA transfer section counts as one place.
+  // Seats: 600 mm per place on each tier; the transfer section counts as one place.
   const seats = Math.floor(rd / B.seatPitch) + Math.floor(adaV0 / B.seatPitch) + 1;
   const hotVolume = rw * rd * m.sauna.ceiling;
   const glassArea = rd * m.sauna.ceiling;
@@ -910,7 +939,35 @@ function refreshUnits(root) {
   r.querySelectorAll('[data-lps]').forEach(el => { el.textContent = fmtFlow(+el.dataset.lps); });
   r.querySelectorAll('[data-lps-range]').forEach(el => { const [a, b] = el.dataset.lpsRange.split(',').map(Number); el.textContent = fmtFlowRange(a, b); });
   r.querySelectorAll('[data-units-label]').forEach(el => { el.textContent = STATE.units === 'imperial' ? 'ft-in' : 'mm'; });
+  maskAll();
 }
+/* Text masks (CAD-style): within each group of a drawing, a box the colour of the label's ground is drawn behind
+   every label, and labels and masks move to the top of the group, so no line strikes through text. Needs
+   layout (getBBox), so it runs in the browser after each render, after a units change and once fonts load. */
+function maskLabels(host) {
+  const svg = host && host.querySelector ? host.querySelector('svg') : null;
+  if (!svg || typeof svg.getBBox !== 'function') return;
+  svg.querySelectorAll('rect.t-mask').forEach(el => el.remove());
+  const parents = new Set(Array.from(svg.querySelectorAll('text')).map(t => t.parentNode));
+  parents.forEach(p => {
+    const texts = Array.from(p.children).filter(c => c.tagName.toLowerCase() === 'text');
+    const masks = [];
+    texts.forEach(t => {
+      if (t.classList.contains('nomask') || t.classList.contains('d-text-on-glass')) return;
+      let b; try { b = t.getBBox(); } catch (e) { return; }
+      if (!b || !b.width) return;
+      const r = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+      const tone = ['on-floor', 'on-aspen', 'on-cool'].find(c => t.classList.contains(c));
+      r.setAttribute('class', 't-mask' + (tone ? ' ' + tone : ''));
+      r.setAttribute('x', r2(b.x - 2)); r.setAttribute('y', r2(b.y + 1)); r.setAttribute('width', r2(b.width + 4)); r.setAttribute('height', r2(Math.max(1, b.height - 2)));
+      const tr = t.getAttribute('transform'); if (tr) r.setAttribute('transform', tr);
+      masks.push(r);
+    });
+    masks.forEach(r => p.appendChild(r));
+    texts.forEach(t => p.appendChild(t));
+  });
+}
+function maskAll() { ['plan-host', 'section-host', 'wall-host', 'base-host'].forEach(id => maskLabels(document.getElementById(id))); }
 // Inline span helpers for generated HTML and SVG text.
 const spanLen = (m, cls) => `<span${cls ? ` class="${cls}"` : ''} data-m="${m}">${fmtLen(m)}</span>`;
 const tLen = (m) => `<tspan data-m="${m}" data-fmt="dim">${fmtDim(m)}</tspan>`;
@@ -964,22 +1021,25 @@ function renderPlan(L) {
   // Site: landing, shower, deck, plunge, chiller
   const ld = L.landing;
   s += rect('d-dash', X(ld.z0), Y(ld.x0), (ld.z1 - ld.z0) * S, (ld.x1 - ld.x0) * S, 'rx="2"');
-  ['Level landing', 'by building:', 'pavers or 1:12 ramp'].forEach((t, i) => s += text('d-text-muted', X(ld.z0 + 0.5), Y(ld.x0 + 0.16 + i * 0.16), t, 'middle'));
+  s += text('d-text-muted', X(ld.z0), Y(ld.x1) + 13, 'Level landing by building: pavers or 1:12 ramp');
   if (L.deck) {
     const d = L.deck; s += rect('d-deck', X(d.z0), Y(d.x0), (d.z1 - d.z0) * S, (d.x1 - d.x0) * S);
     for (let x = d.x0 + 0.14; x < d.x1; x += 0.14) s += line('d-thin', X(d.z0), Y(x), X(d.z1), Y(x), 'opacity=".35"');
     s += line('d-heavy', X(d.z0), Y(d.x1), X(d.z1), Y(d.x1)); s += text('d-text-sm', X(d.z0 + 0.1), Y(d.x1) + 12, 'Privacy screen, 1.8 m slats');
-    s += text('d-text-room', X((d.z0 + d.z1) / 2), Y(d.x0) + 16, 'Terrace deck', 'middle');
-    s += text('d-text-sm', X((d.z0 + d.z1) / 2), Y(d.x0) + 29, `${tLen(d.x1 - d.x0)} × ${tLen(d.z1 - d.z0)}, level with the floor`, 'middle');
+    const dz = L.plunge ? (L.plunge.z1 + L.plunge.rim + d.z1) / 2 : (d.z0 + d.z1) / 2;   // label in the free deck beyond the plunge
+    s += text('d-text-room on-floor', X(dz), Y(d.x0) + 16, 'Terrace deck', 'middle');
+    s += text('d-text-sm on-floor', X(dz), Y(d.x0) + 29, `${tLen(d.x1 - d.x0)} × ${tLen(d.z1 - d.z0)},`, 'middle');
+    s += text('d-text-sm on-floor', X(dz), Y(d.x0) + 41, 'level with the floor', 'middle');
   }
   if (L.plunge) {
     const p = L.plunge, rim = p.rim;
     s += rect('d-steel-light', X(p.z0 - rim), Y(p.x0 - rim), (p.z1 - p.z0 + 2 * rim) * S, (p.x1 - p.x0 + 2 * rim) * S, 'rx="3"');
     s += rect('d-water', X(p.z0), Y(p.x0), (p.z1 - p.z0) * S, (p.x1 - p.x0) * S);
-    s += text('d-text', X((p.z0 + p.z1) / 2), Y((p.x0 + p.x1) / 2) - 2, 'Cold plunge', 'middle');
-    s += text('d-text-sm', X((p.z0 + p.z1) / 2), Y((p.x0 + p.x1) / 2) + 11, `<tspan data-l="${p.litres}">${fmtLitres(p.litres)}</tspan>, ${tLen(p.depth)} deep`, 'middle');
-    const c = L.chiller; s += rect('d-steel', X(c.z0), Y(c.x0), (c.z1 - c.z0) * S, (c.x1 - c.x0) * S); s += text('d-text-sm', X((c.z0 + c.z1) / 2), Y((c.x0 + c.x1) / 2) + 3, 'CH', 'middle');
-    s += text('d-text-sm', X(c.z1) + 4, Y((c.x0 + c.x1) / 2) + 3, '2 HP chiller, ozone/AOP');
+    s += text('d-text nomask', X((p.z0 + p.z1) / 2), Y((p.x0 + p.x1) / 2) - 6, 'Cold plunge', 'middle');   // three short lines fit the water
+    s += text('d-text-sm nomask', X((p.z0 + p.z1) / 2), Y((p.x0 + p.x1) / 2) + 7, `<tspan data-l="${p.litres}">${fmtLitres(p.litres)}</tspan>`, 'middle');
+    s += text('d-text-sm nomask', X((p.z0 + p.z1) / 2), Y((p.x0 + p.x1) / 2) + 19, `${tLen(p.depth)} deep`, 'middle');
+    const c = L.chiller; s += rect('d-steel', X(c.z0), Y(c.x0), (c.z1 - c.z0) * S, (c.x1 - c.x0) * S); s += text('d-text-sm nomask', X((c.z0 + c.z1) / 2), Y((c.x0 + c.x1) / 2) + 3, 'CH', 'middle');
+    s += text('d-text-sm on-floor', X(c.z1) + 4, Y((c.x0 + c.x1) / 2) + 3, '2 HP chiller, Cl/Br dosing');
     // steps into the plunge
     s += rect('d-aspen', X(p.z0 - rim - 0.35), Y(p.x0), 0.35 * S, (p.x1 - p.x0) * S); s += line('d-thin', X(p.z0 - rim - 0.175), Y(p.x0), X(p.z0 - rim - 0.175), Y(p.x1));
   }
@@ -989,14 +1049,14 @@ function renderPlan(L) {
     s += `<circle class="d-line" cx="${r2(cx)}" cy="${r2(cy)}" r="4"/><line class="d-thin" x1="${r2(cx - 4)}" y1="${r2(cy)}" x2="${r2(cx + 4)}" y2="${r2(cy)}"/><line class="d-thin" x1="${r2(cx)}" y1="${r2(cy - 4)}" x2="${r2(cx)}" y2="${r2(cy + 4)}"/>`;
     const px = X(sh.z1 - 0.08), py = Y(sh.x0 + 0.08);
     s += `<circle class="d-accent-fill" cx="${r2(px)}" cy="${r2(py)}" r="3.5"/>`;
-    s += text('d-text-sm', cx, Y(sh.x0 + 0.24), 'Outdoor', 'middle');
-    s += text('d-text-sm', cx, Y(sh.x0 + 0.4), 'shower', 'middle');
+    s += text('d-text-sm on-cool', cx, Y(sh.x0 + 0.24), 'Outdoor', 'middle');
+    s += text('d-text-sm on-cool', cx, Y(sh.x0 + 0.4), 'shower', 'middle');
   }
   // Base frame: footprint outline, cross members, feet pads
   s += rect('d-dash', X(0) - 2, Y(0) - 2, D * S + 4, W * S + 4);
   L.memberZ.forEach(z => s += line('d-dot', X(z), Y(0.05), X(z), Y(W - 0.05)));
   L.feet.forEach(f => s += rect('d-cool', X(f.z - 0.15), Y(f.x - 0.15), 0.3 * S, 0.3 * S, 'opacity=".9"'));
-  const baseNote = ['Base frame: galvanized channels on 300 × 300 pads', `at ${nf1.format((D - 0.1) / (L.memberZ.length - 1))} m centres; ballast trays between members`];
+  const baseNote = ['Base frame: galvanized channels on 300 × 300 pads', `at ${nf1.format((D - 0.1) / (L.memberZ.length - 1))} m centres; BC: 4–8 flashed anchors; Toronto: ballast trays (A-502)`];
   // Room floors
   L.rooms.forEach(r => {
     const cls = r.kind === 'porch' ? 'd-cool' : 'd-floor';
@@ -1050,20 +1110,21 @@ function renderPlan(L) {
     else { for (let x = b.x0 + 0.1; x < b.x1; x += 0.1) s += line('d-thin', X(b.z0), Y(x), X(b.z1), Y(x), 'opacity=".5"'); }
   });
   const bU = L.bench('upper'), bL = L.bench('lower'), bA = L.bench('ada'), bS = L.bench('step');
-  s += text('d-text-sm', X((bU.z0 + bU.z1) / 2), Y((bU.x0 + bU.x1) / 2) - 2, 'Upper bench', 'middle');
-  s += text('d-text-sm', X((bU.z0 + bU.z1) / 2), Y((bU.x0 + bU.x1) / 2) + 10, `top ${tLen(bU.top)} · ${tLen(bU.x1 - bU.x0)} deep`, 'middle');
-  if (bL.z1 > bL.z0 + 0.5) { s += text('d-text-sm', X((bL.z0 + bL.z1) / 2), Y((bL.x0 + bL.x1) / 2) - 2, 'Lower', 'middle'); s += text('d-text-sm', X((bL.z0 + bL.z1) / 2), Y((bL.x0 + bL.x1) / 2) + 10, `top ${tLen(bL.top)}`, 'middle'); }
-  s += text('d-text-sm', X((bA.z0 + bA.z1) / 2), Y((bA.x0 + bA.x1) / 2) - 2, 'ADA transfer', 'middle');
-  s += text('d-text-sm', X((bA.z0 + bA.z1) / 2), Y((bA.x0 + bA.x1) / 2) + 10, `top ${tLen(bA.top)}`, 'middle');
-  s += text('d-text-sm', X((bS.z0 + bS.z1) / 2), Y((bS.x0 + bS.x1) / 2) + 3, 'Step', 'middle');
-  // ADA clear floor space at the end of the transfer bench (760 x 1220)
+  const ta = 'd-text-sm on-aspen', tf = 'd-text-sm on-floor';
+  s += text(ta, X((bU.z0 + bU.z1) / 2), Y((bU.x0 + bU.x1) / 2) - 2, 'Upper bench', 'middle');
+  s += text(ta, X((bU.z0 + bU.z1) / 2), Y((bU.x0 + bU.x1) / 2) + 10, `top ${tLen(bU.top)} · ${tLen(bU.x1 - bU.x0)} deep`, 'middle');
+  if (bL.z1 > bL.z0 + 0.5) { s += text(ta, X((bL.z0 + bL.z1) / 2), Y((bL.x0 + bL.x1) / 2) - 2, 'Lower', 'middle'); s += text(ta, X((bL.z0 + bL.z1) / 2), Y((bL.x0 + bL.x1) / 2) + 10, `top ${tLen(bL.top)}`, 'middle'); }
+  s += text(ta, X((bA.z0 + bA.z1) / 2), Y((bA.x0 + bA.x1) / 2) - 2, 'Transfer', 'middle');
+  s += text(ta, X((bA.z0 + bA.z1) / 2), Y((bA.x0 + bA.x1) / 2) + 10, `top ${tLen(bA.top)}`, 'middle');
+  s += text(ta, X((bS.z0 + bS.z1) / 2), Y((bS.x0 + bS.x1) / 2) + 3, 'Step', 'middle');
+  // Clear floor space at the end of the transfer bench (760 x 1220, ADA-style best practice)
   const cf = L.clearFloor;
   s += rect('d-dash', X(cf.z0), Y(cf.x0), (cf.z1 - cf.z0) * S, (cf.x1 - cf.x0) * S, 'opacity=".7"');
   if (m.planLabels.clear === 'bench') {
-    s += text('d-text-sm', X((cf.z0 + cf.z1) / 2), Y(cf.x0 + SHARED.bench.lowerD / 2) + 3, 'Clear floor', 'middle', 'opacity=".9"');
+    s += text(ta, X((cf.z0 + cf.z1) / 2), Y(cf.x0 + SHARED.bench.lowerD / 2) + 3, 'Clear floor', 'middle', 'opacity=".9"');
   } else {
-    s += text('d-text-sm', X((cf.z0 + cf.z1) / 2), Y((cf.x0 + cf.x1) / 2) - 2, 'Clear floor', 'middle', 'opacity=".8"');
-    s += text('d-text-sm', X((cf.z0 + cf.z1) / 2), Y((cf.x0 + cf.x1) / 2) + 10, `${tLen(0.76)} × ${tLen(1.22)}`, 'middle', 'opacity=".8"');
+    s += text(tf, X((cf.z0 + cf.z1) / 2), Y((cf.x0 + cf.x1) / 2) - 2, 'Clear floor', 'middle', 'opacity=".8"');
+    s += text(tf, X((cf.z0 + cf.z1) / 2), Y((cf.x0 + cf.x1) / 2) + 10, `${tLen(0.76)} × ${tLen(1.22)}`, 'middle', 'opacity=".8"');
   }
   // Heater(s) with guard
   L.heaters.forEach((h, i) => {
@@ -1073,11 +1134,11 @@ function renderPlan(L) {
   });
   const hx0 = Math.min(...L.heaters.map(h => h.x0)), hx1 = Math.max(...L.heaters.map(h => h.x1)), hz0 = L.heaters[0].z0 - 0.08, hzc = (L.heaters[0].z0 + L.heaters[0].z1) / 2;
   if (m.planLabels.heater === 'above') {
-    s += text('d-text-sm', X(hzc), Y(hx0 - 0.08) - 16, `HTR ${m.heater.label}`, 'middle');
-    s += text('d-text-sm', X(hzc), Y(hx0 - 0.08) - 5, 'with guard', 'middle');
+    s += text(tf, X(hzc), Y(hx0 - 0.08) - 14, `HTR ${m.heater.label}`, 'middle');   // clear of the transfer bench edge
+    s += text(tf, X(hzc), Y(hx0 - 0.08) - 3, 'with guard', 'middle');
   } else {
-    s += text('d-text-sm', X(hz0) - 5, Y((hx0 + hx1) / 2) - 2, `HTR ${m.heater.label}`, 'end');
-    s += text('d-text-sm', X(hz0) - 5, Y((hx0 + hx1) / 2) + 10, 'with guard', 'end');
+    s += text(tf, X(hz0) - 5, Y((hx0 + hx1) / 2) - 2, `HTR ${m.heater.label}`, 'end');
+    s += text(tf, X(hz0) - 5, Y((hx0 + hx1) / 2) + 10, 'with guard', 'end');
   }
   // Vents
   s += `<circle class="d-vent" cx="${r2(X(L.supply.z))}" cy="${r2(Y(L.supply.x))}" r="${r2(0.14 * S)}" stroke-dasharray="4 3"/>`;
@@ -1089,22 +1150,23 @@ function renderPlan(L) {
   const dr = L.drain; s += rect('d-dash', X(dr.z0), Y(dr.x0), (dr.z1 - dr.z0) * S, (dr.x1 - dr.x0) * S);
   const fd = L.floorDrain; s += `<circle class="d-line" cx="${r2(X(fd.z))}" cy="${r2(Y(fd.x))}" r="5"/><line class="d-thin" x1="${r2(X(fd.z) - 5)}" y1="${r2(Y(fd.x))}" x2="${r2(X(fd.z) + 5)}" y2="${r2(Y(fd.x))}"/><line class="d-thin" x1="${r2(X(fd.z))}" y1="${r2(Y(fd.x) - 5)}" x2="${r2(X(fd.z))}" y2="${r2(Y(fd.x) + 5)}"/>`;
   s += line('d-dash', X(fd.z), Y(dr.x1), X(fd.z), Y(fd.x) - 5);
-  s += m.planLabels.fd === 'end' ? text('d-text-sm', X(fd.z) - 8, Y(fd.x) + 4, 'FD', 'end') : text('d-text-sm', X(fd.z) + 8, Y(fd.x) + 4, 'FD', 'start');
+  s += m.planLabels.fd === 'end' ? text(tf, X(fd.z) - 8, Y(fd.x) + 4, 'FD', 'end') : text(tf, X(fd.z) + 8, Y(fd.x) + 4, 'FD', 'start');
   // Turning circle
   const tc = L.turning; s += `<circle class="d-dash" cx="${r2(X(tc.cz))}" cy="${r2(Y(tc.cx))}" r="${r2(tc.r * S)}"/>`;
-  const tcy = Y(tc.cx + (tc.inside ? -0.30 : 0.42));
-  s += text('d-text-sm', X(tc.cz), tcy, tLen(SHARED.turning), 'middle');
-  s += text('d-text-sm', X(tc.cz), tcy + 12, 'turning circle', 'middle');
+  // inside a hot room the label sits above the centre; on the Perch landing it sits at the centre, clear of the door swing
+  const tcy = tc.inside ? Y(tc.cx - 0.30) : Y(tc.cx) + 2, tcz = X(tc.cz - (tc.inside ? 0 : 0.15)), tcl = tc.inside ? tf : 'd-text-sm';
+  s += text(tcl, tcz, tcy, tLen(SHARED.turning), 'middle');
+  s += text(tcl, tcz, tcy + 12, 'turning space', 'middle');
   // Fit-out: changing-room furniture, wall-mounted controller and water station, shower, exterior lockers
   L.fitout.forEach(f => {
-    if (f.kind === 'bench' || f.kind === 'lockers') { s += rect('d-aspen', X(f.z0), Y(f.x0), (f.z1 - f.z0) * S, (f.x1 - f.x0) * S); s += text('d-text-sm', X((f.z0 + f.z1) / 2), Y((f.x0 + f.x1) / 2) + 3, f.name, 'middle'); }
+    if (f.kind === 'bench' || f.kind === 'lockers') { s += rect('d-aspen', X(f.z0), Y(f.x0), (f.z1 - f.z0) * S, (f.x1 - f.x0) * S); s += text(ta, X((f.z0 + f.z1) / 2), Y((f.x0 + f.x1) / 2) + 3, f.name, 'middle'); }
     if (f.kind === 'hooks') for (let z = f.z0; z <= f.z1 + 0.001; z += 0.35) s += `<circle class="d-thin" cx="${r2(X(z))}" cy="${r2(Y(f.x) + 3)}" r="2"/>`;
     if (f.kind === 'panel' || f.kind === 'water') {
       s += rect(f.kind === 'panel' ? 'd-steel' : 'd-cool', X(f.z0), Y(f.x0), (f.z1 - f.z0) * S, (f.x1 - f.x0) * S);
       const t = f.kind === 'panel' ? 'Controller' : 'Water';
-      if (f.wall === 'back') s += text('d-text-sm', X(f.z0) - 4, Y((f.x0 + f.x1) / 2) + 3, t, 'end');
-      else if (f.wall === 'front') s += text('d-text-sm', X(f.z1) + 4, Y((f.x0 + f.x1) / 2) + 3, t, 'start');
-      else s += text('d-text-sm', X((f.z0 + f.z1) / 2), Y(f.x0) - 4, t, 'middle');
+      if (f.wall === 'back') s += text(tf, X(f.z0) - 4, Y((f.x0 + f.x1) / 2) + 3, t, 'end');
+      else if (f.wall === 'front') s += text(tf, X(f.z1) + 4, Y((f.x0 + f.x1) / 2) + 3, t, 'start');
+      else s += text(tf, X((f.z0 + f.z1) / 2), Y(f.x0) - 4, t, 'middle');
     }
     if (f.kind === 'shower') {
       s += rect('d-cool', X(f.z0), Y(f.x0), (f.z1 - f.z0) * S, (f.x1 - f.x0) * S);
@@ -1112,7 +1174,7 @@ function renderPlan(L) {
       s += rect('d-glass', X(f.z0), Y(f.x1) - 2, 0.35 * S, 3);
       const cx = X((f.z0 + f.z1) / 2);
       s += `<circle class="d-line" cx="${r2(cx)}" cy="${r2(Y(f.x0 + 0.14))}" r="4"/>`;
-      s += text('d-text-sm', cx, Y((f.x0 + f.x1) / 2) + 8, 'Shower', 'middle');
+      s += text('d-text-sm on-cool', cx, Y((f.x0 + f.x1) / 2) + 8, 'Shower', 'middle');
     }
   });
   if (L.lockers) {
@@ -1125,13 +1187,13 @@ function renderPlan(L) {
   // Room labels
   L.rooms.forEach(r => {
     const dims = `${tLen(r.w)} × ${tLen(r.d)}`;
-    if (r.kind === 'porch') { const cx = X((r.z0 + r.z1) / 2), cy = Y((r.x0 + r.x1) / 2); s += text('d-text-room', cx, cy, 'Porch', 'middle', `transform="rotate(-90 ${r2(cx)} ${r2(cy)})"`); s += text('d-text-sm', cx + 11, cy, dims, 'middle', `transform="rotate(-90 ${r2(cx + 11)} ${r2(cy)})"`); return; }
+    if (r.kind === 'porch') { const cx = X((r.z0 + r.z1) / 2), cy = Y((r.x0 + r.x1) / 2); s += text('d-text-room on-cool', cx, cy, 'Porch', 'middle', `transform="rotate(-90 ${r2(cx)} ${r2(cy)})"`); s += text('d-text-sm on-cool', cx + 11, cy, dims, 'middle', `transform="rotate(-90 ${r2(cx + 11)} ${r2(cy)})"`); return; }
     let cx = X((r.z0 + r.z1) / 2), cy = Y((r.x0 + r.x1) / 2) - 2;
     if (r.kind === 'sauna') { const p = L.toWorld(m.planLabels.sauna[0], m.planLabels.sauna[1]); cx = X(p.z); cy = Y(p.x); }
     else if (L.roomLabel) { cx = X(L.roomLabel.z); cy = Y(L.roomLabel.x); }
-    s += text('d-text-room', cx, cy, r.kind === 'vestibule' ? 'Vestibule' : r.kind === 'changing' ? 'Changing' : r.name, 'middle');
-    s += text('d-text-sm', cx, cy + 12, dims, 'middle');
-    if (r.kind === 'sauna') s += text('d-text-sm', cx, cy + 24, `ceiling ${tLen(m.sauna.ceiling)}`, 'middle');
+    s += text('d-text-room on-floor', cx, cy, r.kind === 'vestibule' ? 'Vestibule' : r.kind === 'changing' ? 'Changing' : r.name, 'middle');
+    s += text(tf, cx, cy + 12, dims, 'middle');
+    if (r.kind === 'sauna') s += text(tf, cx, cy + 24, `ceiling ${tLen(m.sauna.ceiling)}`, 'middle');
   });
   // Glass front label + section mark
   const g = L.glass; s += text('d-text-sm', X((g.z0 + g.z1) / 2), Y(W) + 24, 'Glass front, privacy-tinted outside', 'middle');
@@ -1150,9 +1212,9 @@ function renderPlan(L) {
   const xl = X(zmin) - 18;
   s += dimV(id, xl, Y(0), Y(W), W, { from: X(0) - 6 });
   s += dimV(id, xl - 66, Y(L.wp), Y(W - L.wp), L.rw, {});
-  s += text('d-text-muted', X(0) + 4, Y(0) - 6, 'Entry end');
+  s += text('d-text-muted', X(0) + 4, Y(-0.10) - 5, 'Entry end');    // above the corner pads
   baseNote.forEach((t, i) => s += text('d-text-muted', X(zmin), yBot + 16 + i * 13, t));
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${r2(vb.w)} ${r2(vb.h)}" role="img" aria-label="${m.name} floor plan drawn to scale with rooms, benches, heater, door swings, vents, drain and turning circle">${svgDefs(id)}${s}</svg>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${r2(vb.w)} ${r2(vb.h)}" role="img" aria-label="${m.name} floor plan drawn to scale with rooms, benches, heater, door swings, vents, drain and turning space">${svgDefs(id)}${s}</svg>`;
 }
 
 /* ---------------- Cross-section A-A (sheet A-201) ---------------- */
@@ -1177,7 +1239,7 @@ function renderSection(L) {
   [0, W - 0.05].forEach(x => { s += rect('d-steel', X(x + 0.05), Y(L.baseH), 0.05 * S, SHARED.frameH * S); s += rect('d-thin', X(x + 0.05), Y(L.baseH), 0.05 * S, SHARED.frameH * S, `fill="url(#hatch-${id})"`); });
   s += rect('d-steel-light', X(W - 0.15), Y(L.baseH - 0.02), (W - 0.3) * S, (SHARED.frameH - 0.04) * S, 'stroke-dasharray="4 3"');
   s += rect('d-thin', X(W - 0.25), Y(L.baseH - 0.03), (W - 0.5) * S, 0.05 * S, `fill="url(#conc-${id})"`);
-  s += text('d-text-sm', X(W / 2), Y(L.baseH - 0.05) + 4, 'Ballast tray with pavers (mass per site)', 'middle');
+  s += text('d-text-sm', X(W / 2), Y(L.baseH - 0.05) + 4, 'Ballast tray, Toronto base (BC: anchors, A-502)', 'middle');
   // Floor: grating + decking
   s += rect('d-cool', X(W - SHARED.wallPlan), Y(L.floorY), (W - 2 * SHARED.wallPlan) * S, SHARED.floorT * S);
   s += rect('d-thin', X(W - SHARED.wallPlan), Y(L.floorY - 0.035), (W - 2 * SHARED.wallPlan) * S, (SHARED.floorT - 0.035) * S, `fill="url(#grate-${id})"`);
@@ -1243,7 +1305,7 @@ function renderSection(L) {
   const h0 = L.heaters[L.heaters.length - 1];   // the heater furthest from the glass
   const hcx = X(h0.u0 + L.wp) + 8;
   s += text('d-text', hcx, Y(L.floorY + h0.h + 0.30), `Heater ${m.heater.label}`, 'start');
-  s += text('d-text-sm', hcx, Y(L.floorY + h0.h + 0.19), 'ETL/UL 875 listed, guard rail', 'start');
+  s += text('d-text-sm', hcx, Y(L.floorY + h0.h + 0.19), `${m.heater.volts} V, cETLus/cULus/CSA, guard rail`, 'start');
   s += text('d-text-sm', hcx, Y(L.floorY + h0.h + 0.09), `cap ${SHARED.tempCapC} °C (${Math.round(SHARED.tempCapC * 9 / 5 + 32)} °F)`, 'start');
   // sensor at the UL position over the heater
   s += rect('d-line', X(h0.u1 + L.wp + 0.02), Y(L.ceilY - 0.12), 8, 8); s += text('d-text-sm', X(h0.u1 + L.wp + 0.02) + 11, Y(L.ceilY - 0.12) + 7, 'T sensor');
@@ -1283,7 +1345,7 @@ function renderSection(L) {
   s += dimV(id, bx, Y(L.floorY), Y(B.upperH), B.upperH, { right: true, text: `${tLen(B.upperH)} upper` });
   s += dimV(id, bx, Y(B.upperH), Y(L.ceilY), L.ceilY - L.floorY - B.upperH, { right: true, text: `${tLen(m.sauna.ceiling - B.upperH)} headroom` });
   const lowCut = cutB.find(b => b.tier === 'lower' || b.tier === 'ada');
-  if (lowCut) s += dimV(id, X(SHARED.wallPlan + lowCut.u1) - 10, Y(L.floorY), Y(lowCut.top), lowCut.top, { text: `${tLen(lowCut.top)} ${lowCut.tier === 'ada' ? 'ADA' : 'lower'}` });
+  if (lowCut) s += dimV(id, X(SHARED.wallPlan + lowCut.u1) - 10, Y(L.floorY), Y(lowCut.top), lowCut.top, { text: `${tLen(lowCut.top)} ${lowCut.tier === 'ada' ? 'transfer' : 'lower'}` });
   const dxr = X(0) + 150;
   s += dimV(id, dxr, Y(0), Y(L.floorY), L.floorY, { right: true, text: `${tLen(L.floorY)} floor above roof` });
   // bottom: interior width, bench depths
@@ -1393,7 +1455,8 @@ function renderWallDetail() {
     else { s += rect('d-wall', x, mt, w, h); s += rect('d-wall-hatch', x, mt, w, h, `fill="url(#hatch-${id})"`); if (i === 0) for (let yy = mt + 12; yy < mt + h; yy += 12) s += line('d-thin', x, yy, x + w, yy, 'opacity=".4"'); }
     // leader and label, alternating above / below
     const cx = x + w / 2, above = i % 2 === 0;
-    const ly = above ? mt - 18 - (i % 4 === 0 ? 0 : 34) : mt + h + 26 + (i % 4 === 1 ? 0 : 34);
+    // rows chosen so no leader crosses a neighbour's label: near row for layers 3, 4, 7, 8; far row for 1, 2, 5, 6
+    const ly = above ? mt - 18 - (i % 4 === 2 ? 0 : 34) : mt + h + 26 + (i % 4 === 3 ? 0 : 34);
     s += line('d-thin', cx, above ? mt : mt + h, cx, above ? ly + 6 : ly - 14);
     s += `<circle class="d-line" cx="${r2(cx)}" cy="${r2(above ? ly - 2 : ly - 6)}" r="8"/>`;
     s += text('d-text-sm', cx, above ? ly + 1.5 : ly - 2.5, String(l.n), 'middle', 'font-weight="600"');
@@ -1401,129 +1464,198 @@ function renderWallDetail() {
     if (l.sub) s += text('d-text-muted', cx + 12, above ? ly + 9 : ly + 5, l.sub, 'start');
     x += w;
   });
-  s += dimH(id, ml, ml + tot * k, mt + h + 104, tot / 1000, { from: mt + h + 60, text: `${tLen(SHARED.wallPanel)} total wall panel` });
+  s += dimH(id, ml, ml + tot * k, mt + h + 104, tot / 1000, { from: mt + h + 76, text: `${tLen(SHARED.wallPanel)} total wall panel` });
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${r2(vb.w)} ${r2(vb.h)}" role="img" aria-label="Wall panel build-up, eight layers from the outside cladding to the thermo-aspen lining">${svgDefs(id)}${s}</svg>`;
 }
 
-/* ---------------- Base frame on pads with ballast tray and parapet tie-back (sheet A-502) ---------------- */
+/* ---------------- Base frame, the two Canadian variants (sheet A-502) ----------------
+   Detail A: the frame, pads, feet and floor shared by both bases, with the Toronto ballast tray and parapet
+   tie-back. Detail B: the BC anchor point, a steel post in a flashed curb bolted to the structure. */
 function renderBaseDetail() {
   const id = 'b';
   const k = 0.4;                                  // px per mm
-  const gy = 400;                                 // membrane line (roof surface) y
   const px = mm => mm * k;
-  let s = '';
-  // roof build-up: slab, insulation, membrane; parapet at the left
-  s += rect('d-thin', 40, gy + px(80), 760, px(150), `fill="url(#conc-${id})"`);
-  s += rect('d-thin', 40, gy, 760, px(80), `fill="url(#wool-${id})"`);
-  s += line('d-heavy', 40, gy, 800, gy, 'stroke-width="2.5"');
-  s += rect('d-wall', 40, 40, px(300), gy + px(80) - 40); s += rect('d-wall-hatch', 40, 40, px(300), gy + px(80) - 40, `fill="url(#hatch-${id})"`);
-  s += rect('d-steel', 34, 32, px(300) + 12, 10);
-  s += `<path class="d-heavy" d="M160 ${gy} L160 ${gy - px(250)} L150 ${gy - px(250)}" stroke-width="2.5"/>`;
-  s += text('d-text-sm', 100, 28, 'Parapet', 'middle');
-  s += text('d-text-sm', 166, gy - px(250) + 8, 'Membrane flashing', 'start');
+  const roof = (gy, x0, x1) =>                    // existing roof: slab, insulation, membrane line
+    rect('d-thin', x0, gy + px(80), x1 - x0, px(150), `fill="url(#conc-${id})"`) +
+    rect('d-thin', x0, gy, x1 - x0, px(80), `fill="url(#wool-${id})"`) +
+    line('d-heavy', x0, gy, x1, gy, 'stroke-width="2.5"');
+  const floor = (x0, x1, top) =>                  // grating sub-floor + decking, 100 mm
+    rect('d-cool', x0, top + px(30), x1 - x0, px(70)) + rect('d-thin', x0, top + px(30), x1 - x0, px(70), `fill="url(#grate-${id})"`) + rect('d-deck', x0, top, x1 - x0, px(30));
+  const brk = (x, y0, y1) => `<path class="d-thin" d="M${x} ${y0} L${x} ${(y0 + y1) / 2 - 8} l6 4 l-12 8 l6 4 L${x} ${y1}" />`;
+  let a = '', b = '';
+
+  /* ---- Detail A: Toronto, ballasted ---- */
+  const gy = 400;                                 // membrane line (roof surface) y, detail A local
+  a += roof(gy, 40, 800);
+  a += rect('d-wall', 40, 40, px(300), gy + px(80) - 40); a += rect('d-wall-hatch', 40, 40, px(300), gy + px(80) - 40, `fill="url(#hatch-${id})"`);
+  a += rect('d-steel', 34, 32, px(300) + 12, 10);
+  a += `<path class="d-heavy" d="M160 ${gy} L160 ${gy - px(250)} L150 ${gy - px(250)}" stroke-width="2.5"/>`;
+  a += text('d-text-sm', 100, 26, 'Parapet', 'middle');
+  a += text('d-text-sm', 166, gy - px(250) + 8, 'Membrane flashing', 'start');
   // existing pavers on pedestals outside the module
-  [200, 236].forEach(x0 => { s += rect('d-cool', x0, gy - px(60), 34, px(40)); s += rect('d-steel', x0 + 13, gy - px(20), 8, px(20)); });
-  s += text('d-text-muted', 218, gy - px(60) - 6, 'Existing pavers', 'middle');
-  // break line (distance to parapet per site)
-  s += `<path class="d-thin" d="M268 ${gy - 110} l6 -8 l-12 -8 l6 -8 M268 ${gy + 2} l6 -8 l-12 -8 l6 -8" />`;
+  [200, 236].forEach(x0 => { a += rect('d-cool', x0, gy - px(60), 34, px(40)); a += rect('d-steel', x0 + 13, gy - px(20), 8, px(20)); });
+  a += text('d-text-muted', 218, gy - px(60) - 6, 'Existing pavers', 'middle');
+  a += `<path class="d-thin" d="M268 ${gy - 110} l6 -8 l-12 -8 l6 -8 M268 ${gy + 2} l6 -8 l-12 -8 l6 -8" />`;
   // pad, foot, base plate, channel
   const padY = gy - px(20);
-  s += rect('d-steel', 250, padY, px(300), px(20), 'opacity=".6"');
-  s += text('d-text-sm', 250, padY + 30, 'Rubber pad 300 × 300 × 20', 'start');
-  s += text('d-text-sm', 250, padY + 42, 'over a beam line', 'start');
+  a += rect('d-steel', 250, padY, px(300), px(20), 'opacity=".6"');
+  a += text('d-text-sm', 250, padY + 22, 'Rubber pad 300 × 300 × 20', 'start');
+  a += text('d-text-sm', 250, padY + 34, 'over a beam line', 'start');
   const frameBot = gy - px(20) - px(70), frameTop = frameBot - px(100);
-  s += rect('d-steel', 290, padY - px(10), px(100), px(10));
-  s += rect('d-steel', 302, frameBot, px(40), padY - px(10) - frameBot);
-  s += line('d-thin', 296, frameBot + 8, 348, frameBot + 8, 'stroke-width="3"');
-  s += text('d-text-sm', 440, padY + 30, 'Adjustable foot M30, lock nut, 40–110 mm', 'start');
+  a += rect('d-steel', 290, padY - px(10), px(100), px(10));
+  a += rect('d-steel', 302, frameBot, px(40), padY - px(10) - frameBot);
+  a += line('d-thin', 296, frameBot + 8, 348, frameBot + 8, 'stroke-width="3"');
+  a += text('d-text-sm', 440, padY + 22, 'Adjustable foot M30, lock nut, 40–110 mm', 'start');
   // perimeter channel (cut) and cross member (beyond)
-  s += rect('d-steel', 300, frameTop, px(60), px(100)); s += rect('d-thin', 300, frameTop, px(60), px(100), `fill="url(#hatch-${id})"`);
-  s += rect('d-steel-light', 324, frameTop + 4, 420, px(100) - 8);
-  s += text('d-text-sm', 560, frameBot + 14, 'Cross member beyond: 100 × 50 galvanized channel at 1.2 m max', 'middle');
-  // ballast tray with pavers
-  s += rect('d-steel-light', 380, frameTop + px(30), 330, px(60));
-  s += rect('d-thin', 384, frameTop + px(34), 322, px(52), `fill="url(#conc-${id})"`);
-  s += text('d-text', 545, frameTop + px(60) + 4, 'Ballast tray: concrete pavers, mass per site (ASCE 7-16 29.5.1)', 'middle');
-  // floor: grating + decking
-  const floorBot = frameTop, floorTop = frameTop - px(100);
-  s += rect('d-cool', 300, floorTop + px(30), 500, px(70));
-  s += rect('d-thin', 300, floorTop + px(30), 500, px(70), `fill="url(#grate-${id})"`);
-  s += rect('d-deck', 300, floorTop, 500, px(30));
-  s += text('d-text-sm', 560, floorTop - 6, 'Non-slip composite decking on aluminium grating sub-floor, falls to floor drain', 'middle');
+  a += rect('d-steel', 300, frameTop, px(60), px(100)); a += rect('d-thin', 300, frameTop, px(60), px(100), `fill="url(#hatch-${id})"`);
+  a += rect('d-steel-light', 324, frameTop + 4, 420, px(100) - 8);
+  a += text('d-text-sm', 560, frameBot + 14, 'Cross member beyond: 100 × 50 galvanized channel at 1.2 m max', 'middle');
+  // ballast tray with pavers (Toronto)
+  a += rect('d-steel-light', 380, frameTop + px(30), 330, px(60));
+  a += rect('d-thin', 384, frameTop + px(34), 322, px(52), `fill="url(#conc-${id})"`);
+  a += text('d-text', 545, frameTop + px(60) + 4, 'Ballast tray: pavers sized for wind (NBC 4.1.7)', 'middle');
+  // floor
+  const floorTop = frameTop - px(100);
+  a += floor(300, 800, floorTop);
+  a += text('d-text-sm', 560, floorTop - 6, 'Non-slip composite decking on aluminium grating sub-floor, falls to floor drain', 'middle');
   // wall panel stub on the frame edge
-  s += rect('d-wall', 296, 60, px(100), floorTop - 60); s += rect('d-wall-hatch', 296, 60, px(100), floorTop - 60, `fill="url(#hatch-${id})"`);
-  s += rect('d-aspen', 290, 60, 6, floorTop - 60 + px(100) + 10);
-  s += `<path class="d-thin" d="M290 70 l8 -6 l-16 -6 l8 -6" />`;
-  s += text('d-text-sm', 344, 56, 'Wall panel (A-501)', 'start');
-  s += text('d-text-sm', 284, 150, 'Cladding over frame edge', 'end');
+  a += rect('d-wall', 296, 60, px(100), floorTop - 60); a += rect('d-wall-hatch', 296, 60, px(100), floorTop - 60, `fill="url(#hatch-${id})"`);
+  a += rect('d-aspen', 290, 60, 6, floorTop - 60 + px(100) + 10);
+  a += `<path class="d-thin" d="M290 70 l8 -6 l-16 -6 l8 -6" />`;
+  a += text('d-text-sm', 344, 56, 'Wall panel (A-501)', 'start');
+  a += text('d-text-sm', 284, 150, 'Cladding over frame edge', 'end');
   // tie-back bracket and strut
-  s += rect('d-steel', 160, gy - px(190), 14, px(60));
-  s += `<circle class="d-line" cx="167" cy="${r2(gy - px(175))}" r="3"/><circle class="d-line" cx="167" cy="${r2(gy - px(145))}" r="3"/>`;
-  s += line('d-steel', 174, gy - px(160), 302, frameTop + px(50), 'stroke-width="6"');
-  s += line('d-thin', 174, gy - px(160), 302, frameTop + px(50), 'stroke="var(--bg)" stroke-width="1.5"');
-  s += text('d-text', 284, gy - px(190) - 68, 'Parapet tie-back', 'end');
-  s += text('d-text-sm', 284, gy - px(190) - 55, 'galvanized angle, anchored', 'end');
-  s += text('d-text-sm', 284, gy - px(190) - 42, 'to the parapet; strut to frame', 'end');
+  a += rect('d-steel', 160, gy - px(190), 14, px(60));
+  a += `<circle class="d-line" cx="167" cy="${r2(gy - px(175))}" r="3"/><circle class="d-line" cx="167" cy="${r2(gy - px(145))}" r="3"/>`;
+  a += line('d-steel', 174, gy - px(160), 302, frameTop + px(50), 'stroke-width="6"');
+  a += line('d-thin', 174, gy - px(160), 302, frameTop + px(50), 'stroke="var(--bg)" stroke-width="1.5"');
+  a += text('d-text', 284, gy - px(190) - 81, 'Parapet tie-back', 'end');
+  a += text('d-text-sm', 284, gy - px(190) - 68, 'tall, exposed roofs:', 'end');
+  a += text('d-text-sm', 284, gy - px(190) - 55, 'galvanized angle,', 'end');
+  a += text('d-text-sm', 284, gy - px(190) - 42, 'strut to the frame', 'end');
   // dims
-  s += dimV(id, 860, gy, floorTop, 0, { from: 804, right: true, text: 'Floor level, per model (A-201)' });
-  s += dimV(id, 830, frameBot, frameTop, 0.1, { top: true, text: `${tLen(0.1)} frame` });
-  s += text('d-text-muted', 520, gy + px(80) + px(150) + 22, 'No fixings through the membrane. Pads bear on beam lines; the engineer of record checks point loads, ballast and tie-back reactions per site.', 'middle');
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 ${gy + px(230) + 40}" role="img" aria-label="Base frame detail: galvanized channel on adjustable feet and rubber pads over the roof membrane, ballast tray with pavers, grating floor and a tie-back strut to the parapet">${svgDefs(id)}${s}</svg>`;
+  a += dimV(id, 860, gy, floorTop, 0, { from: 804, right: true, text: 'Floor level, per model (A-201)' });
+  a += dimV(id, 830, frameBot, frameTop, 0.1, { top: true, text: `${tLen(0.1)} frame` });
+  a += text('d-text-muted', 520, gy + px(80) + px(150) + 22, 'Pads bear on beam lines. Where the site is SC1 or SC2 and the suite is classed as equipment, nothing is fixed through the membrane.', 'middle');
+
+  /* ---- Detail B: Vancouver and Victoria, anchored ---- */
+  const gb = 160;                                 // membrane line, detail B local
+  const fBot = gb - px(90), fTop = fBot - px(100), flTop = fTop - px(100);
+  b += roof(gb, 40, 440);
+  b += brk(440, gb - 4, gb + px(230) + 4);
+  // floor and frame stub, as detail A
+  b += floor(300, 420, flTop);
+  b += rect('d-steel', 300, fTop, px(60), px(100)); b += rect('d-thin', 300, fTop, px(60), px(100), `fill="url(#hatch-${id})"`);
+  b += rect('d-steel-light', 324, fTop + 4, 90, px(100) - 8);
+  b += brk(420, flTop - 4, fBot + 4);
+  b += text('d-text-sm', 360, flTop - 6, 'Floor and frame as detail A', 'middle');
+  // post: cap plate under the channel, steel post through the insulation, base plate on the slab, anchors
+  const slabTop = gb + px(80);
+  b += rect('d-steel', 290, fBot, 48, 5);                                   // cap plate
+  b += rect('d-steel', 300, fBot + 5, 28, slabTop - 6 - fBot - 5);          // post
+  b += rect('d-steel', 286, slabTop - 6, 56, 6);                            // base plate
+  [296, 332].forEach(x => {
+    b += line('d-heavy', x, slabTop - 12, x, slabTop + 44, 'stroke-width="2.5"');
+    b += rect('d-steel', x - 4, slabTop - 11, 8, 5);
+  });
+  // factory-flashed curb, membrane turned up, storm collar
+  b += rect('d-steel-light', 282, gb - 18, 64, 18);
+  b += `<path class="d-heavy" d="M248 ${gb} L282 ${gb} L282 ${gb - 20} L300 ${gb - 20} M380 ${gb} L346 ${gb} L346 ${gb - 20} L328 ${gb - 20}" stroke-width="2.5"/>`;
+  b += rect('d-steel', 296, gb - 26, 36, 6);                                // storm collar
+  // labels with leaders
+  const lab = (y, x2, y2, t1, t2) => {             // label right of the cut roof, leader back to the part
+    let o = line('d-thin', x2, y2, 476, y - 4) + `<circle class="d-accent-fill" cx="${r2(x2)}" cy="${r2(y2)}" r="2"/>`;
+    o += text('d-text-sm', 480, y, t1, 'start'); if (t2) o += text('d-text-muted', 480, y + 12, t2, 'start');
+    return o;
+  };
+  b += lab(gb - 30, 338, fBot + 2, 'Cap plate bolted to the frame', '4 to 8 anchor points per suite');
+  b += lab(gb + 4, 346, gb - 12, 'Factory-flashed curb and storm collar', 'sealed by the building’s roofer');
+  b += lab(slabTop + 30, 342, slabTop - 3, 'Steel post on a base plate, seismically', 'qualified anchors into the slab or beam');
+  b += text('d-text-muted', 40, gb + px(230) + 22, 'Friction may not resist earthquake forces on an occupied roof (BCBC 4.1.8.18), so ballast is kept to a minimum. Low-end design force: about', 'start');
+  b += text('d-text-muted', 40, gb + px(230) + 36, '0.8–1.1 × the suite’s weight in Vancouver and 1.5–1.8 × in Victoria. The engineer of record sizes posts, anchors and reactions per site.', 'start');
+
+  const hA = gy + px(230) + 30, oB = 34 + hA + 30, hB = gb + px(230) + 48;
+  let s = '';
+  s += text('d-text-room', 40, 20, 'A · Toronto: ballasted, no roof penetrations (SC1/SC2 sites)');
+  s += `<g transform="translate(0 34)">${a}</g>`;
+  s += line('d-thin', 20, oB - 16, 1020, oB - 16, 'opacity=".35"');
+  s += text('d-text-room', 40, oB + 6, 'B · Vancouver and Victoria: anchored (seismic category SC4)');
+  s += `<g transform="translate(0 ${oB + 24})">${b}</g>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 ${r2(oB + 24 + hB)}" role="img" aria-label="Base frame detail in two variants. A, Toronto: galvanized channel on adjustable feet and rubber pads over the membrane, ballast tray with pavers, grating floor and a tie-back strut to the parapet, with no membrane penetrations. B, Vancouver and Victoria: the frame bolted through a cap plate to a steel post in a factory-flashed curb, on a base plate anchored to the slab">${svgDefs(id)}${s}</svg>`;
 }
 /* ------------------------------------------------------------------------------------------
    Spec sheet, model strip, title blocks, captions, controls.
    ------------------------------------------------------------------------------------------ */
-const usd = n => '$' + nf0.format(n);
+const cad = n => 'C$' + nf0.format(n);
+const cadRange = ([a, b]) => `C$${nf0.format(a)}–${nf0.format(b)}`;
 function renderSpecTable() {
   const keys = ['perch', 'lodge', 'summit'];
   const Ls = keys.map(k => layout(MODELS[k]));
   const row = (label, cells, note) => `<tr><th scope="row">${label}${note ? `<small>${note}</small>` : ''}</th>${cells.map((c, i) => `<td class="${keys[i] === STATE.model ? 'sel' : ''}">${c}</td>`).join('')}</tr>`;
   const group = (label) => `<tr class="group"><th colspan="4">${label}</th></tr>`;
   const sp = (m) => spanLen(m);
+  const all = c => keys.map(() => c);
+  const B = SHARED.bench, Dr = SHARED.door, PM = SHARED.panelMax, SP = PRICING.sitePrep;
+  const lit = l => `<span data-l="${l}">${fmtLitres(l)}</span>`;
+  const plungeRules = 'regulated as a pool: in BC a commercial pool (health-authority construction and operating permits), in Ontario a Class B public cold plunge pool (14 days’ notice to public health); chlorine or bromine dosing with logging, handrail, clock, caution signs, emergency stop';
+  const cranePermits = 'Vancouver street-use permit (street and the air space above it); Victoria Street Occupancy Permit; Toronto Street Occupation Permit for hoisting; certified crane operator';
   const rows = [
     group('Capacity'),
-    row('Bench seats', Ls.map(L => `${L.m.seats}<small>${L.seats} places drawn at ${sp(SHARED.bench.seatPitch)} on two tiers along the back wall, ADA transfer section included (open item 2)</small>`)),
+    row('Bench seats', Ls.map(L => `${L.m.seats}<small>${L.seats} places drawn at ${sp(B.seatPitch)} on two tiers along the back wall, transfer section included (open item 2)</small>`)),
     row('Comfort capacity', Ls.map(L => `${L.m.comfort} bathers<small>at ${fmtVol(SHARED.comfortVolume)} per person</small>`), '3 m³ per person'),
     group('Dimensions'),
     row('Exterior footprint, W × D', Ls.map(L => `${sp(L.W)} × ${sp(L.D)}<small><span data-m2="${L.footprint}">${fmtArea(L.footprint)}</span>${L.deck ? ` + terrace ${sp(L.m.deck.w)} × ${sp(L.m.deck.d)}` : ''}</small>`)),
     row('Exterior height', Ls.map(L => `${sp(L.H)}<small>to the high eave; low eave ${sp(L.eaveLowY)}</small>`)),
     row('Hot room, interior', Ls.map(L => `${sp(L.rw)} × ${sp(L.rd)}<small>${fmtArea(L.rw * L.rd).replace(/ /g, ' ')} floor, <span data-m3="${L.hotVolume}">${fmtVol(L.hotVolume)}</span> air</small>`)),
-    row('Ceiling height', Ls.map(L => `${sp(L.m.sauna.ceiling)}<small>${sp(L.m.sauna.ceiling - SHARED.bench.upperH)} above the upper bench</small>`)),
-    row('Other rooms', Ls.map(L => L.rooms.filter(r => r.kind !== 'sauna').map(r => `${r.name} ${sp(r.w)} × ${sp(r.d)}`).join('<br>') + (L.m.plunge ? `<br>Cold plunge <span data-l="${L.m.plunge.litres}">${fmtLitres(L.m.plunge.litres)}</span>, ${L.m.plunge.chillerHp} HP chiller, ozone/AOP` : '') + (L.m.extras ? '<br>' + L.m.extras : ''))),
+    row('Ceiling height', Ls.map(L => `${sp(L.m.sauna.ceiling)}<small>${sp(L.m.sauna.ceiling - B.upperH)} above the upper bench</small>`)),
+    row('Other rooms', Ls.map(L => L.rooms.filter(r => r.kind !== 'sauna').map(r => `${r.name} ${sp(r.w)} × ${sp(r.d)}`).join('<br>') + (L.m.plunge ? `<br>Cold plunge ${lit(L.m.plunge.litres)}, ${L.m.plunge.chillerHp} HP chiller, chlorine or bromine dosing` : '') + (L.m.extras ? '<br>' + L.m.extras : ''))),
     row('Glass front', Ls.map(L => `${sp(L.rd)} × ${sp(L.m.sauna.ceiling)}<small><span data-m2="${L.glassArea}">${fmtArea(L.glassArea)}</span>, the whole outside wall of the hot room; double-glazed tempered IGU, privacy-tinted reflective outer pane, low-iron inner pane</small>`)),
-    row('Door', Ls.map(() => `${sp(SHARED.door.clear)} clear<small>outward-swinging glass leaf in the near wood side wall, ${sp(SHARED.door.h)} high</small>`)),
-    row('Benches', Ls.map(L => `Two tiers, ${sp(L.rd)} long, along the back wall facing the glass<br>Upper ${sp(SHARED.bench.upperH)} h × ${sp(SHARED.bench.upperD)} d<br>Lower ${sp(SHARED.bench.lowerH)} h × ${sp(SHARED.bench.lowerD)} d<br>Step ${sp(SHARED.bench.stepH)}<small>ADA transfer section ${sp(SHARED.bench.adaL)} × ${sp(SHARED.bench.adaD)} at ${sp(SHARED.bench.adaH)}, far end of the lower tier; the lower section beside it lifts out</small>`)),
+    row('Door', all(`${sp(Dr.clear)} clear, ${sp(Dr.leaf)} glass leaf<small>outward-swinging, in the near wood side wall, ${sp(Dr.h)} high; opening force 22 N (5 lbf) or less; bevelled threshold ${sp(0.013)} or less; Ontario: an opaque contrasting strip ${sp(0.05)} wide, between ${sp(1.35)} and ${sp(1.5)} above the floor</small>`), 'CSA B651; BCBC 3.8.3.6; OBC 3.8.3.3'),
+    row('Turning space', Ls.map(L => `${sp(SHARED.turning)}<small>${L.turning.inside ? 'in the hot room, in front of the benches' : 'on the level landing outside the porch; the hot room is too narrow'}</small>`), 'CSA B651'),
+    row('Benches', Ls.map(L => `Two tiers, ${sp(L.rd)} long, along the back wall facing the glass<br>Upper ${sp(B.upperH)} h × ${sp(B.upperD)} d<br>Lower ${sp(B.lowerH)} h × ${sp(B.lowerD)} d<br>Step ${sp(B.stepH)}<small>ADA-style transfer section (best practice) ${sp(B.adaL)} × ${sp(B.adaD)} at ${sp(B.adaH)}, far end of the lower tier; the lower section beside it lifts out</small>`)),
     group('Heating and air'),
-    row('Heater', Ls.map(L => `${L.m.heater.label}<small>commercial electric, ETL/UL 875 listed, remote controller, 60 min timer, door sensor</small>`)),
-    row('Listing path', Ls.map(() => 'ANSI/UL 875 Ed. 10 (2024), heater + prefabricated rigid room, by an NRTL (UL or ETL)')),
+    row('Heater', Ls.map(L => `${L.m.heater.label}, ${L.m.heater.volts} V 3-phase<small>commercial electric; cETLus, cULus or CSA mark to CSA C22.2 No. 164; remote controller, door sensor</small>`)),
+    row('Session timer', all('Hard-wired 60 min cut-off, no override<small>mounted outside the hot room; required in Ontario (OESC Rule 62-222) and fitted on every suite; the app cannot extend a session</small>')),
+    row('Certification path', all('Suite listing to CSA C22.2 No. 164 Clause 8 (heater with a prefabricated room), plus UL 875 for export<small>factory and panel kit certified to CSA A277</small>')),
     row('Effective heated volume', Ls.map(L => `≈ <span data-m3="${L.m.effVol}">${fmtVol(L.m.effVol)}</span><small>room volume + 1.2 m³ per m² of glass (Harvia rule)</small>`)),
-    row('Interior temperature cap', Ls.map(() => `${SHARED.tempCapC} °C (${Math.round(SHARED.tempCapC * 9 / 5 + 32)} °F)`)),
+    row('Interior temperature cap', all(`${SHARED.tempCapC} °C (${Math.round(SHARED.tempCapC * 9 / 5 + 32)} °F)<small>combustibles next to the heater kept at ${SHARED.tempCapC}&nbsp;°C or less (OESC Rule 62-112)</small>`)),
     row('Ventilation', Ls.map(L => `${spanFlowRange(L.ventRange[0], L.ventRange[1])}<small>mechanical, ${SHARED.ventPerPerson[0]}–${SHARED.ventPerPerson[1]} L/s per bather at ${L.m.seatsMax} seats; supply above heater, extract low behind benches; CO₂ &lt; 700 ppm</small>`)),
     group('Services'),
-    row('Electrical supply', Ls.map(L => L.m.electrical), 'planning values'),
+    row('Electrical supply', Ls.map(L => `${L.m.electrical}<small>roof with only 347/600 V service: ${L.m.xfmrKva} kVA transformer kit, 600 V to 208Y/120 V, quoted as site preparation</small>`), 'planning values at 208 V; Canadian Electrical Code'),
     row('Water', Ls.map(L => L.m.water)),
     row('Drain', Ls.map(L => L.m.drain)),
+    row('Cold plunge', Ls.map(L => L.m.plunge ? `Included, ${lit(L.m.plunge.litres)}, ${sp(L.m.plunge.depth)} deep<small>${plungeRules}</small>` : L.m.plungeAddOn ? `Add-on, ${cad(L.m.plungeAddOn)}<small>the same ${lit(MODELS.summit.plunge.litres)} unit and the same pool rules as Summit</small>` : 'Not offered')),
+    group('Fire and life safety'),
+    row('Cladding', all('Thermally modified ash or pine on a ventilated cavity<small>towers of noncombustible construction: noncombustible wood-look aluminium or steel option, or a CAN/ULC-S134 test of the assembly</small>')),
+    row('Hot-room ceiling', all('Thermo-aspen, fire-retardant treated or tested<small>flame-spread rating 25 or less (CAN/ULC-S102) in noncombustible buildings</small>')),
+    row('Sprinkler and alarm', Ls.map(L => `Sprinkler-ready<small>high-temperature head in the hot room${L.m.entry ? ', standard head in the changing room' : ''}, stub to the building system; horn/strobe tied to the building fire alarm</small>`)),
     group('Weight and structure'),
     row('Dry weight', Ls.map(L => `~<span data-kg="${L.m.dryKg}">${fmtMass(L.m.dryKg)}</span>${L.m.extraKg ? `<small>+ ~<span data-kg="${L.m.extraKg}">${fmtMass(L.m.extraKg)}</span> ${L.m.extraNote}</small>` : ''}`), 'before ballast'),
-    row('Ballast', Ls.map(L => `~<span data-kg="${L.m.ballastKg}">${fmtMass(L.m.ballastKg)}</span><small>planning estimate; sized per site to ASCE 7-16 29.5.1</small>`)),
-    row('Weight with ballast', Ls.map(L => `~<span data-kg="${L.m.dryKg + L.m.ballastKg}">${fmtMass(L.m.dryKg + L.m.ballastKg)}</span>${L.m.extraKg ? `<small>~<span data-kg="${L.m.dryKg + L.m.ballastKg + L.m.extraKg}">${fmtMass(L.m.dryKg + L.m.ballastKg + L.m.extraKg)}</span> with the filled plunge</small>` : ''}`)),
-    row('Average bearing', Ls.map(L => { const p = (L.m.dryKg + L.m.ballastKg) / L.footprint; return `<span data-kgm2="${p.toFixed(1)}">${fmtPressure(p)}</span><small>module + ballast over its footprint, no occupants</small>`; }), 'computed'),
-    row('Bearing design basis', Ls.map(() => 'Occupiable roofs rated 100 psf (4.8 kPa), NYC BC Table 1607.1; point loads at the feet reviewed by the engineer of record on every site; 60 psf decks need spreader frames or reinforcement')),
+    row('Base, Vancouver and Victoria', all('Bolted to the structure with 4–8 engineered anchors, flashed by a roofer<small>seismic category SC4: friction may not resist earthquake forces (BCBC 4.1.8.18); design force at least about 0.8–1.1 × the suite’s weight in Vancouver and 1.5–1.8 × in Victoria; ballast kept to a minimum</small>'), 'sheet A-502, detail B'),
+    row('Base, Toronto', Ls.map(L => `Ballasted, no roof penetrations, ~<span data-kg="${L.m.ballastKg}">${fmtMass(L.m.ballastKg)}</span> ballast<small>where the site is SC1 or SC2 and the suite is classed as equipment; ballast sized per site for wind to NBC 4.1.7</small>`), 'sheet A-502, detail A'),
+    row('Weight with ballast', Ls.map(L => `~<span data-kg="${L.m.dryKg + L.m.ballastKg}">${fmtMass(L.m.dryKg + L.m.ballastKg)}</span>${L.m.extraKg ? `<small>~<span data-kg="${L.m.dryKg + L.m.ballastKg + L.m.extraKg}">${fmtMass(L.m.dryKg + L.m.ballastKg + L.m.extraKg)}</span> with the filled plunge</small>` : ''}`), 'Toronto base'),
+    row('Average bearing', Ls.map(L => { const p = (L.m.dryKg + L.m.ballastKg) / L.footprint; return `<span data-kgm2="${p.toFixed(1)}">${fmtPressure(p)}</span><small>module + ballast over its footprint, no occupants</small>`; }), 'computed, Toronto base'),
+    row('Bearing design basis', all('Occupied roofs rated 4.8 kPa (100 psf), NBC, BCBC and OBC Table 4.1.5.3<small>point loads at the feet and anchor reactions reviewed by the engineer of record on every site; ordinary roofs (1.0 kPa) need spreader frames or reinforcement</small>')),
+    row('Module roof', all('Snow 2.0 kPa plus drift<small>basic roof snow 1.64 kPa Vancouver, 1.08–1.50 kPa Victoria, 1.12 kPa Toronto (NBC 4.1.6)</small>')),
+    row('Wind', all('NBC 4.1.7 static procedure<small>1-in-50 hourly wind pressure 0.45 kPa Vancouver, 0.57 kPa Victoria, 0.44 kPa Toronto</small>')),
     group('Delivery and programme'),
-    row('Delivery method', Ls.map(L => L.m.delivery)),
+    row('Delivery method', Ls.map(L => `${L.m.delivery}<small>${L.m.kit ? `panels no larger than ${sp(PM.l)} × ${sp(PM.w)}, heaviest piece under ${PM.kg} kg (265 lb)` : 'needs a staging street and a crane-lift permit'}</small>`)),
+    row('Crane lift permits', Ls.map(L => `${L.m.kit ? 'Only for the optional module' : 'Required for the module'}<small>${cranePermits}</small>`)),
     row('Days on site', Ls.map(L => L.m.days)),
-    row('Lead time', Ls.map(L => `${L.m.lead}<small>signed contract to first session</small>`)),
-    group('Price (installed, from)'),
-    row('Installed from', Ls.map(L => `<b>${usd(L.m.price)}</b>`)),
-    row('Suite hardware', Ls.map(L => usd(L.m.breakdown[0]))),
-    row('Engineering, permits and drawings', Ls.map(L => usd(L.m.breakdown[1]))),
-    row('Delivery, lift and install', Ls.map(L => usd(L.m.breakdown[2]))),
-    row('Electrical connection', Ls.map((L, i) => usd(L.m.breakdown[3]) + (i === 2 ? '<small>electrical and water</small>' : ''))),
-    row('Commissioning, training and launch', Ls.map(L => usd(L.m.breakdown[4])))
+    row('Lead time', Ls.map(L => `${L.m.lead}<small>signed contract to first session, including permits and owner votes${L.m.plunge ? ' and the pool permit' : ''}</small>`)),
+    group('Price (installed, from, C$ before GST/PST/HST)'),
+    row('Installed from', Ls.map(L => `<b>${cad(L.m.price)}</b>`)),
+    row('Suite hardware', Ls.map(L => cad(L.m.breakdown[0]))),
+    row('Engineering, permits and drawings', Ls.map(L => cad(L.m.breakdown[1]))),
+    row('Delivery and install', Ls.map(L => cad(L.m.breakdown[2]))),
+    row('Electrical connection', Ls.map((L, i) => cad(L.m.breakdown[3]) + (i === 2 ? '<small>electrical and water</small>' : ''))),
+    row('Commissioning, training and launch', Ls.map(L => cad(L.m.breakdown[4]))),
+    row('Site preparation', all(`Quoted separately<small>BC seismic anchorage and roofing/flashing ${cadRange(SP.bcAnchorage)}; 600 V transformer kit ${cadRange(SP.transformer)}; roof reinforcement where the roof is not rated 4.8 kPa; street-use and crane permits for module lifts</small>`))
   ];
   const head = `<thead><tr><th scope="col">Item</th>${keys.map(k => `<th scope="col">${MODELS[k].name}<small>${MODELS[k].seats} seats · ${MODELS[k].heater.label}</small></th>`).join('')}</tr></thead>`;
   document.getElementById('spec-table').innerHTML = head + '<tbody>' + rows.join('') + '</tbody>';
-  document.getElementById('spec-foot').innerHTML = 'Add-ons: cold plunge for Lodge ($24,500, 1,200 L, 2 HP chiller), terrace decking and privacy screens ($9,000–$24,000), lighting scene pack ($3,500), towel and robe station ($2,200). Lead time and days on site are from the brief; heater clearances, feeder sizes and point loads are confirmed per listed product and per site.';
+  const A = PRICING.addOns;
+  document.getElementById('spec-foot').innerHTML = `Add-ons: cold plunge for Lodge (${cad(A.plungeLodge)}: ${lit(MODELS.summit.plunge.litres)}, 2 HP chiller and dosing, regulated as a pool), terrace decking and privacy screens (${cadRange(A.terrace)}), lighting scene pack (${cad(A.lighting)}), towel and robe station (${cad(A.towel)}). All prices are in Canadian dollars before GST/PST/HST. Lead times and days on site are from the brief; heater clearances, feeder sizes, anchors and point loads are confirmed per certified product and per site.`;
 }
 
 function renderStrip(L) {
@@ -1534,7 +1666,7 @@ function renderStrip(L) {
     ['Seats', `${m.seats}`, `${m.comfort} at full comfort`],
     ['Heater', m.heater.label, `≈ <span data-m3="${m.effVol}">${fmtVol(m.effVol)}</span> effective`],
     ['Dry weight', `~<span data-kg="${m.dryKg}">${fmtMass(m.dryKg)}</span>`, m.extraKg ? `+ plunge filled` : 'before ballast'],
-    ['Installed from', usd(m.price), `${m.days} on site`]
+    ['Installed from', cad(m.price), `+ tax · ${m.days} on site`]
   ];
   document.getElementById('model-strip').innerHTML = items.map(([k, v, sub]) => `<div><dt>${k}</dt><dd>${v}<small>${sub}</small></dd></div>`).join('');
 }
@@ -1543,7 +1675,7 @@ function titleBlock(host, sheet, title, scale) {
   const code = STATE.model[0].toUpperCase();
   document.getElementById(host).innerHTML = [
     ['Sheet', `${sheet}-${code}`], ['Title', title], ['Scale', scale], ['Units', `<span data-units-label>${STATE.units === 'imperial' ? 'ft-in' : 'mm'}</span>`],
-    ['Rev / date', 'P1 · 1 Nov 2026'], ['Status', 'Design intent, not for construction']
+    ['Code basis', 'BCBC 2024 / VBBL 2025 / OBC 2024'], ['Rev / date', 'P2 · 1 Nov 2026'], ['Status', 'Design intent, not for construction']
   ].map(([k, v]) => `<div><span>${k}</span><b>${v}</b></div>`).join('');
 }
 
@@ -1553,7 +1685,7 @@ function renderDrawings() {
   document.getElementById('section-host').innerHTML = renderSection(L);
   document.getElementById('elevation-host').innerHTML = renderElevation(L);
   const tc = L.turning.where;
-  document.getElementById('plan-caption').innerHTML = `${m.name} floor plan at floor level with the roof removed, entry at the left. Both bench tiers run wall to wall along the back wall (top of the plan) and face the glass front along the bottom edge, so every seat looks out; the short side walls are solid thermo-aspen, with the door in the near one and the heater${m.heater.n > 1 ? 's' : ''} in the far corner by the glass. Upper bench ${spanLen(SHARED.bench.upperD)} deep at ${spanLen(SHARED.bench.upperH)}, lower bench ${spanLen(SHARED.bench.lowerD)} deep at ${spanLen(SHARED.bench.lowerH)}, ADA transfer section ${spanLen(SHARED.bench.adaL)} long at ${spanLen(SHARED.bench.adaH)} at the far end, with a lift-out lower section beside it. The ${spanLen(SHARED.turning)} turning circle sits in the ${tc}. Section A-A cuts across the hot room looking toward the heater wall. Base-frame feet are shown as pads; members at ${nf1.format((L.D - 0.1) / (L.memberZ.length - 1))} m centres.`;
+  document.getElementById('plan-caption').innerHTML = `${m.name} floor plan at floor level with the roof removed, entry at the left. Both bench tiers run wall to wall along the back wall (top of the plan) and face the glass front along the bottom edge, so every seat looks out; the short side walls are solid thermo-aspen, with the door in the near one and the heater${m.heater.n > 1 ? 's' : ''} in the far corner by the glass. Upper bench ${spanLen(SHARED.bench.upperD)} deep at ${spanLen(SHARED.bench.upperH)}, lower bench ${spanLen(SHARED.bench.lowerD)} deep at ${spanLen(SHARED.bench.lowerH)}, ADA-style transfer section (best practice) ${spanLen(SHARED.bench.adaL)} long at ${spanLen(SHARED.bench.adaH)} at the far end, with a lift-out lower section beside it. The door gives ${spanLen(SHARED.door.clear)} clear and the ${spanLen(SHARED.turning)} turning space (CSA B651) sits in the ${tc}. Section A-A cuts across the hot room looking toward the heater wall. Base-frame feet are shown as pads; members at ${nf1.format((L.D - 0.1) / (L.memberZ.length - 1))} m centres. The BC anchor posts and the Toronto ballast trays are detailed on sheet A-502.`;
   document.getElementById('section-caption').innerHTML = `Section A-A through the ${m.name} hot room. Floor build-up: base frame ${spanLen(L.baseH)} (adjustable feet ${spanLen(L.feetH)} on 20 mm pads, 100 mm channel) plus ${spanLen(SHARED.floorT)} grating and decking; floor ${spanLen(L.floorY)} above the roof surface. Interior ceiling ${spanLen(m.sauna.ceiling)}, roof build-up ${spanLen(SHARED.roofT)} at the low eave rising ${spanLen(L.rise)} across the width at ${SHARED.pitchDeg}°. Supply register in the ceiling over the heater; mechanical extract ${spanLen(0.15)} above the floor behind the benches; design rate ${spanFlowRange(L.ventRange[0], L.ventRange[1])} at ${m.seatsMax} seats.`;
   document.getElementById('elevation-caption').innerHTML = `${m.name} front elevation, seen from outside the glass side. The glass front is ${spanLen(L.rd)} long × ${spanLen(m.sauna.ceiling)} high, the whole outside wall of the hot room, double-glazed in a thermally broken frame with a privacy-tinted reflective outer pane: by day bathers see out and people on the roof see a dark pane. Wood-clad walls either side; standing-seam roof falling ${spanLen(L.rise)} away from the glass to the gutter; overall height ${spanLen(L.H)} at the high eave.${L.deck ? ' The terrace deck and cold plunge sit beyond the far end behind a 1.8 m privacy screen.' : ''}${L.lockers ? ' Weatherproof lockers stand outside, beside the entry.' : ''}`;
   titleBlock('plan-title', 'A-101', `${m.name} floor plan`, '1:50 at full width');
@@ -1608,6 +1740,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('wall-host').innerHTML = renderWallDetail();
   document.getElementById('base-host').innerHTML = renderBaseDetail();
   renderAll();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(maskAll).catch(() => {});   // re-measure once Inter has loaded
 });
 // Public surface for the 3D module.
 window.VANTAGE = { SHARED, MODELS, STATE, layout, on, emit, fmtLen, fmtDim, fmtMass, refreshUnits, effectiveTheme };
@@ -2038,14 +2171,14 @@ function initViewer(THREE, OrbitControls, CSS2DRenderer, CSS2DObject) {
     const bz = (upper.z0 + upper.z1) / 2;
     dimLine(new THREE.Vector3(upper.x1 + 0.08, L.floorY, bz), new THREE.Vector3(upper.x1 + 0.08, L.floorY + B.upperH, bz), new THREE.Vector3(1, 0, 0), 'Upper bench', B.upperH);
     const low = L.bench('lower'); if (low.z1 > low.z0) dimLine(new THREE.Vector3(low.x1 + 0.08, L.floorY, (low.z0 + low.z1) / 2), new THREE.Vector3(low.x1 + 0.08, L.floorY + B.lowerH, (low.z0 + low.z1) / 2), new THREE.Vector3(1, 0, 0), 'Lower bench', B.lowerH);
-    const ada = L.bench('ada'); dimLine(new THREE.Vector3(ada.x1 + 0.08, L.floorY, (ada.z0 + ada.z1) / 2), new THREE.Vector3(ada.x1 + 0.08, L.floorY + B.adaH, (ada.z0 + ada.z1) / 2), new THREE.Vector3(1, 0, 0), 'ADA bench', B.adaH);
+    const ada = L.bench('ada'); dimLine(new THREE.Vector3(ada.x1 + 0.08, L.floorY, (ada.z0 + ada.z1) / 2), new THREE.Vector3(ada.x1 + 0.08, L.floorY + B.adaH, (ada.z0 + ada.z1) / 2), new THREE.Vector3(1, 0, 0), 'Transfer bench', B.adaH);
     const cz2 = L.toWorld(L.rw - 0.25, L.rd * 0.5);
     dimLine(new THREE.Vector3(cz2.x, L.floorY, cz2.z), new THREE.Vector3(cz2.x, L.ceilY, cz2.z), new THREE.Vector3(1, 0, 0), 'Ceiling', m.sauna.ceiling);
     layers.dims.visible = false;
 
     /* exploded-view layer labels */
     const layerLabel = (layer, text, y) => { const o = label('layer-label', text, W + 0.4, y, D * 0.25); o.visible = false; layers[layer].add(o); layers[layer].userData.label = o; };
-    layerLabel('base', 'Base frame: galvanized steel on pads, ballast trays, parapet tie-back', L.baseH + 0.1);
+    layerLabel('base', 'Base frame: galvanized steel on pads; anchored in BC, ballasted in Toronto', L.baseH + 0.1);
     layerLabel('floor', 'Floor: aluminium grating, composite decking, linear drain', L.floorY + 0.1);
     layerLabel('interior', 'Benches, heater, lighting', L.floorY + B.upperH + 0.3);
     layerLabel('walls', 'Wall panels, glazing, doors, vents', L.ceilY - 0.6);

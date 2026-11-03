@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Vantage Sauna Co.</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Vantage designs, builds and installs turnkey rooftop sauna suites for apartment buildings, hotels and offices.">
+<meta name="description" content="Vantage designs, factory-builds and installs shared rooftop sauna suites for hotels, rental towers and business apartments, and condo buildings in Vancouver, Victoria and Toronto.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Inter:wght@400;500;600&display=swap">
@@ -414,6 +414,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .product-name { font-family: var(--font-display); font-size: 2rem; line-height: 1; font-variation-settings: "opsz" 72; }
 .product-price { font-size: 15px; color: var(--fg-2); }
 .product-price strong { color: var(--fg); font-weight: 600; }
+.product-note { font-size: 14.5px; color: var(--fg-2); }
 .plan { padding: 18px 26px 6px; }
 .plan svg { width: 100%; height: auto; }
 .plan-cap { font-size: 12px; color: var(--fg-2); letter-spacing: .04em; text-transform: uppercase; margin-top: 6px; }
@@ -460,6 +461,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 /* Engineering */
 .eng { display: grid; gap: 32px; }
 @media (min-width: 900px) { .eng { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 64px; } }
+.eng > .section-head { align-self: start; }
 .eng-list { display: grid; }
 .eng-list li { display: grid; gap: 6px; padding: 22px 0; border-top: 1px solid var(--line); }
 .eng-list li:last-child { border-bottom: 1px solid var(--line); }
@@ -614,9 +616,9 @@ td small, th small { display: block; font-size: 13px; color: var(--fg-2); font-w
   <div class="wrap">
     <div class="hero-grid">
       <div class="hero-copy">
-        <p class="eyebrow">Rooftop sauna suites · New York City, 2027</p>
+        <p class="eyebrow">Rooftop sauna suites · Vancouver and Victoria from 2027</p>
         <h1 class="h1">The amenity <em>above</em> everything.</h1>
-        <p class="hero-sub">Vantage designs, builds, and installs turnkey rooftop sauna suites for apartment buildings, hotels, and offices, turning unused roof space into the most-loved amenity in the building.</p>
+        <p class="hero-sub">Vantage designs, factory-builds and installs shared rooftop sauna suites for hotels, rental towers and business apartments, and condo buildings, turning unused roof space into the most-loved amenity in the building.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#assess">Request a site assessment</a>
           <a class="btn btn-secondary" href="../04-design-plans/index.html" data-live-href="https://claude.ai/artifact/XS6wf21tNce8BkvgW6tzaQ">Explore the 3D design plans
@@ -627,7 +629,7 @@ td small, th small { display: block; font-size: 13px; color: var(--fg-2); font-w
       <div class="hero-art">
         <svg viewBox="0 0 1200 760" role="img" aria-labelledby="hero-title hero-desc">
           <title id="hero-title">A Vantage rooftop sauna at dusk</title>
-          <desc id="hero-desc">A glass-fronted sauna cabin glowing warmly on a flat roof, with a parapet, rooftop equipment and a city skyline behind.</desc>
+          <desc id="hero-desc">A glass-fronted sauna cabin glowing warmly on a flat roof, with a parapet, rooftop equipment, a city skyline and a mountain ridge behind.</desc>
           <defs>
             <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0" stop-color="var(--il-sky-1)"/>
@@ -677,6 +679,9 @@ td small, th small { display: block; font-size: 13px; color: var(--fg-2); font-w
           </g>
           <circle cx="1010" cy="112" r="22" fill="var(--il-moon)"/>
 
+          <!-- mountain ridge behind the city -->
+          <path d="M0 318 L80 262 L140 290 L250 206 L330 254 L420 228 L520 284 L610 220 L700 262 L800 198 L880 244 L980 222 L1080 270 L1200 232 V480 H0 Z" fill="var(--il-far)" opacity=".5"/>
+
           <!-- skyline -->
           <use href="#far" fill="var(--il-far)"/>
           <rect x="0" y="150" width="1200" height="330" fill="url(#win)" clip-path="url(#farclip)"/>
@@ -685,11 +690,6 @@ td small, th small { display: block; font-size: 13px; color: var(--fg-2); font-w
             <rect x="124" y="424" width="84" height="60"/>
             <rect x="1040" y="364" width="160" height="120"/>
             <rect x="992" y="404" width="60" height="80"/>
-            <!-- water tower -->
-            <rect x="1108" y="356" width="48" height="3"/>
-            <rect x="1114" y="352" width="3" height="10"/><rect x="1147" y="352" width="3" height="10"/>
-            <rect x="1110" y="308" width="44" height="46" rx="3"/>
-            <polygon points="1105,308 1159,308 1132,292"/>
           </g>
 
           <!-- parapet and roof -->
@@ -768,10 +768,10 @@ td small, th small { display: block; font-size: 13px; color: var(--fg-2); font-w
     </div>
 
     <ul class="stats" aria-label="Key facts">
-      <li class="stat"><span class="stat-num">6–10 weeks</span><span class="stat-label">from contract to first session</span></li>
-      <li class="stat"><span class="stat-num">0</span><span class="stat-label">roof penetrations</span></li>
-      <li class="stat"><span class="stat-num">100%</span><span class="stat-label">electric</span></li>
+      <li class="stat"><span class="stat-num">12–20 weeks</span><span class="stat-label">from contract to first session (Perch, Lodge)</span></li>
       <li class="stat"><span class="stat-num">1–3 days</span><span class="stat-label">on-site install (Perch, Lodge)</span></li>
+      <li class="stat"><span class="stat-num">Every seat</span><span class="stat-label">faces the view through privacy-tinted glass</span></li>
+      <li class="stat"><span class="stat-num">100%</span><span class="stat-label">electric, with Canadian-marked 208 V heaters</span></li>
     </ul>
   </div>
 </section>
@@ -787,12 +787,12 @@ td small, th small { display: block; font-size: 13px; color: var(--fg-2); font-w
       <article class="card">
         <svg class="glyph" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 24h24M6 24V12l10-7 10 7v12"/><path d="M12 24v-7h8v7"/></svg>
         <h3 class="h3">The most underused floor in the building</h3>
-        <p>Most flat roofs hold mechanical plant and a door nobody opens. A Vantage suite turns that square footage into a room worth going up for.</p>
+        <p>Most flat roofs hold mechanical plant and a door nobody opens. A Vantage suite turns that space into a room worth going up for.</p>
       </article>
       <article class="card">
         <svg class="glyph" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 26c-4-4-2-8 1-11s2-6 0-9c5 2 9 6 8 11 3-1 4-3 4-6 4 5 4 11-1 15-3 3-9 3-12 0z"/></svg>
         <h3 class="h3">The amenity people now ask for</h3>
-        <p>Wellness is what residents and guests ask about. A sauna with a skyline answers the question without building a spa floor.</p>
+        <p>Vancouver has about 20 sauna studios charging C$24–55 a visit. A suite on your roof puts the same ritual one elevator ride away.</p>
       </article>
       <article class="card">
         <svg class="glyph" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="16" cy="17" r="10"/><path d="M16 11v6l4 3M13 4h6"/></svg>
@@ -802,7 +802,7 @@ td small, th small { display: block; font-size: 13px; color: var(--fg-2); font-w
       <article class="card">
         <svg class="glyph" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 27h26M5 27V15h5v12M12 27V9h6v18M20 27V18h5v9"/><circle cx="24" cy="7" r="2.5"/></svg>
         <h3 class="h3">The building's signature moment</h3>
-        <p>A cedar bench, the heat, the skyline at dusk. It becomes the view on the leasing page and the thing guests remember about the stay.</p>
+        <p>A warm bench, and the mountains or the harbour through the glass at dusk. It becomes the photo on the leasing page and the thing guests remember about the stay.</p>
       </article>
     </div>
   </div>
@@ -816,24 +816,25 @@ td small, th small { display: block; font-size: 13px; color: var(--fg-2); font-w
       <h2 class="h2">Built for the people who run buildings.</h2>
     </div>
     <div class="tabs" role="tablist" aria-label="Building types">
-      <button class="tab" role="tab" id="tab-apartments" aria-selected="true" aria-controls="panel-apartments" type="button">Apartment buildings</button>
+      <button class="tab" role="tab" id="tab-rentals" aria-selected="true" aria-controls="panel-rentals" type="button">Rental and business apartments</button>
       <button class="tab" role="tab" id="tab-hotels" aria-selected="false" aria-controls="panel-hotels" type="button" tabindex="-1">Hotels</button>
-      <button class="tab" role="tab" id="tab-offices" aria-selected="false" aria-controls="panel-offices" type="button" tabindex="-1">Offices</button>
+      <button class="tab" role="tab" id="tab-condos" aria-selected="false" aria-controls="panel-condos" type="button" tabindex="-1">Condos and strata</button>
+      <button class="tab" role="tab" id="tab-developers" aria-selected="false" aria-controls="panel-developers" type="button" tabindex="-1">Developers</button>
     </div>
 
-    <div class="panel" role="tabpanel" id="panel-apartments" aria-labelledby="tab-apartments">
+    <div class="panel" role="tabpanel" id="panel-rentals" aria-labelledby="tab-rentals">
       <div>
-        <p class="panel-intro">For Class A and B+ multifamily owners and asset managers who need an amenity that earns its square footage.</p>
+        <p class="panel-intro">For owners of purpose-built rental towers and operators of business, corporate and serviced apartments who need a reason to sign and to renew.</p>
         <ul class="bullets">
-          <li>A bookable amenity residents come back to, instead of a lounge that sits empty.</li>
-          <li>Residents reserve a session in the Vantage Access app. The smart lock lets them in at their time and the session timer runs the heater.</li>
-          <li>Sited on the amenity deck with zero roof penetrations, so your roof membrane is never opened.</li>
+          <li>New towers are competing for tenants. Vacancy in new Metro Vancouver towers runs 11.5–14.8%. A rooftop sauna is an amenity the leasing team can show on the tour.</li>
+          <li>One owner decides, so there is no owners' vote to schedule.</li>
+          <li>Residents and short-stay guests book a session in the Vantage Access app. The smart lock lets them in at their time, and each booking runs one heater cycle of up to an hour.</li>
         </ul>
       </div>
       <div class="model-box">
         <p class="eyebrow">Commercial model</p>
-        <p><strong>Purchase</strong>, or <strong>Vantage Flex</strong> from $1,650 a month (Perch) over 84 months, with Care and Access included.</p>
-        <p class="muted">Purchase terms: 50% at contract, 40% at delivery, 10% at commissioning.</p>
+        <p><strong>Purchase</strong>, or <strong>Vantage Flex</strong> from C$2,150 a month (Perch) over 84 months, with Care and Access included.</p>
+        <p class="muted">Purchase terms: 50% at contract, 40% at delivery, 10% at commissioning. Long-term rental landlords generally cannot recover GST/HST, so we quote you with tax shown.</p>
       </div>
     </div>
 
@@ -841,33 +842,51 @@ td small, th small { display: block; font-size: 13px; color: var(--fg-2); font-w
       <div>
         <p class="panel-intro">For lifestyle, upscale and luxury hotels that want a sellable rooftop experience rather than another cost centre.</p>
         <ul class="bullets">
-          <li>Hotels typically price sessions at $35–60 per guest. Guest booking and revenue tools are part of Vantage Access.</li>
-          <li>A rooftop session at dusk gives the property a signature worth putting on the first page.</li>
-          <li>Lodge adds a changing vestibule and outdoor shower. Summit adds a changing room, relaxation nook and a chilled cold plunge.</li>
+          <li>Vancouver guests already pay for sauna time: Fairmont Pacific Rim sells 45-minute Nordic spa sessions at C$40. Guest booking and session pricing are part of Vantage Access.</li>
+          <li>A rooftop session at dusk, with the city in front of every seat, gives the property a signature worth putting on the first page.</li>
+          <li>Lodge adds a changing vestibule with an indoor shower and weatherproof lockers by the entry. Summit adds a changing room with lockers, a terrace, an outdoor shower and a cold plunge.</li>
         </ul>
       </div>
       <div class="model-box">
         <p class="eyebrow">Commercial model</p>
-        <p><strong>Purchase</strong>, <strong>Vantage Flex</strong>, or the <strong>revenue-share pilot</strong> for up to five hotels: $0 upfront, Vantage takes 35% of session revenue, 5-year term, $1,500 a month minimum.</p>
+        <p><strong>Purchase</strong>, <strong>Vantage Flex</strong>, or the <strong>revenue-share pilot</strong> for up to three lighthouse hotels: C$0 upfront, Vantage takes 35% of session revenue, 5-year term, C$2,000 a month minimum.</p>
+        <p class="muted">Hotels recover GST/HST, so you compare pre-tax prices.</p>
       </div>
     </div>
 
-    <div class="panel" role="tabpanel" id="panel-offices" aria-labelledby="tab-offices" hidden>
+    <div class="panel" role="tabpanel" id="panel-condos" aria-labelledby="tab-condos" hidden>
       <div>
-        <p class="panel-intro">For Class A office landlords giving tenants a reason to come in.</p>
+        <p class="panel-intro">For strata councils in BC and condo boards in Ontario that want an amenity owners will vote for.</p>
         <ul class="bullets">
-          <li>A rooftop ritual for teams: book a session for six after the Thursday stand-up.</li>
-          <li>Tenant and team bookings, access and usage analytics in Vantage Access, so you can show the amenity is used.</li>
-          <li>Zero roof penetrations and a steel base frame designed for occupiable roofs rated 100 psf, with point loads confirmed by structural review.</li>
+          <li>In BC, one general meeting can do it: a 3/4 vote to approve the change to common property, and a second 3/4 vote to fund it from the contingency reserve fund or a special levy.</li>
+          <li>A Lodge at C$179,000 comes to about C$1,000 per unit in a 200-unit strata, tax included.</li>
+          <li>In Ontario, a change costing more than 10% of the annual budget needs owners of 66⅔% of all units to vote yes. Below that, the board can go ahead after giving notice. Toronto projects start in 2028.</li>
+          <li>We bring an information-session kit, a structural summary and sample resolutions to your council or board.</li>
         </ul>
       </div>
       <div class="model-box">
         <p class="eyebrow">Commercial model</p>
-        <p><strong>Purchase</strong>, or <strong>Vantage Flex</strong> over 84 months with Care and Access included. Site prep billed separately.</p>
+        <p><strong>Purchase</strong>, or <strong>Vantage Flex</strong> to spread the cost over 84 months, with Care and Access included.</p>
+        <p class="muted">Condo corporations generally cannot recover GST/HST, so every quote shows the tax.</p>
       </div>
     </div>
 
-    <p class="also">Also a fit for senior living, student housing, co-living and private clubs.</p>
+    <div class="panel" role="tabpanel" id="panel-developers" aria-labelledby="tab-developers" hidden>
+      <div>
+        <p class="panel-intro">For developers and architects of new rental towers and hotels delivering from 2029.</p>
+        <ul class="bullets">
+          <li>Plan the roof for it now: a 4.8 kPa occupied-roof load where the suite sits, a 208 V feed, a roof drain and a barrier-free route to the roof. Ontario requires that route for rooftop amenity spaces.</li>
+          <li>We supply drawings, loads and anchor positions for your structural engineer and code consultant, so the suite goes into the permit set, not a change order.</li>
+          <li>Factory-built in the Fraser Valley and installed in days near handover, off your critical path.</li>
+        </ul>
+      </div>
+      <div class="model-box">
+        <p class="eyebrow">Commercial model</p>
+        <p><strong>Purchase</strong> at the from-price, scheduled to your handover date. Vantage Care and Access start at commissioning.</p>
+      </div>
+    </div>
+
+    <p class="also">Also a fit for seniors' residences, student housing, co-living and private clubs.</p>
   </div>
 </section>
 
@@ -877,76 +896,96 @@ td small, th small { display: block; font-size: 13px; color: var(--fg-2); font-w
     <div class="section-head">
       <p class="eyebrow">Products</p>
       <h2 class="h2">Three suites. One construction system.</h2>
-      <p class="lede">All-electric and factory-built. Delivered as an elevator-sized flat-pack panel kit or a craneable module, and set on an engineered steel base frame with zero roof penetrations.</p>
+      <p class="lede">All-electric and factory-built in the Fraser Valley, BC. In every hot room, both bench tiers run wall to wall along the back wall and face a full-length, privacy-tinted glass front, so every seat has a view out. The short side walls are solid wood and carry the door and the heater corner.</p>
     </div>
     <div class="cards cards-3">
       <article class="card product">
         <div class="product-top">
           <h3 class="product-name">Perch</h3>
-          <p class="product-price"><strong>From $78,000</strong> installed</p>
+          <p class="product-price"><strong>From C$99,000</strong> installed</p>
+          <p class="product-note">The compact suite. One hot room behind a covered porch.</p>
         </div>
         <div class="plan">
           <svg viewBox="0 0 120 44" aria-hidden="true">
-            <rect x="4" y="10" width="7" height="24" fill="none" stroke="var(--line-strong)" stroke-dasharray="2 2"/>
-            <rect x="11" y="10" width="23" height="24" fill="var(--accent-soft)" stroke="var(--accent)"/>
+            <rect x="4" y="10" width="6" height="24" fill="none" stroke="var(--line-strong)" stroke-dasharray="2 2"/>
+            <rect x="11" y="11" width="22" height="22" fill="var(--accent-soft)" stroke="var(--accent)"/>
+            <rect x="11" y="11" width="22" height="12" fill="var(--accent-soft)"/>
+            <path d="M11 18h22M11 23h22" stroke="var(--accent)" stroke-width=".6"/>
+            <rect x="28.5" y="28.5" width="4.5" height="4.5" fill="var(--fg-2)"/>
             <rect x="4" y="10" width="30" height="24" fill="none" stroke="var(--fg)" stroke-width=".8"/>
+            <path d="M11 34h22" stroke="var(--fg)" stroke-width="2.4"/>
           </svg>
-          <p class="plan-cap">Plan, to scale · sauna in ember</p>
+          <p class="plan-cap">Plan, to scale · sauna in ember · glass in bold</p>
         </div>
         <dl class="spec">
           <div><dt>Seats</dt><dd>4–6</dd></div>
-          <div><dt>Footprint</dt><dd>2.4 × 3.0 × 2.9 m (8' × 10' × 9'6")</dd></div>
-          <div><dt>Rooms</dt><dd>Sauna 2.2 × 2.2 m + 0.6 m covered entry porch</dd></div>
-          <div><dt>Heater</dt><dd>1 × 10.5 kW, ETL/UL 875 listed</dd></div>
-          <div><dt>Dry weight</dt><dd>~2,300 kg (5,100 lb)</dd></div>
+          <div><dt>Footprint</dt><dd>2.4 × 3.0 × 2.9 m</dd></div>
+          <div><dt>Rooms</dt><dd>Sauna 2.2 × 2.2 m, ceiling 2.3 m; 0.6 m covered entry porch</dd></div>
+          <div><dt>Heater</dt><dd>1 × 10.5 kW, 208 V, cETLus, cULus or CSA marked</dd></div>
+          <div><dt>Dry weight</dt><dd>~2,300 kg</dd></div>
           <div><dt>Install</dt><dd>1–2 days on site</dd></div>
         </dl>
       </article>
       <article class="card product">
         <div class="product-top">
           <h3 class="product-name">Lodge</h3>
-          <p class="product-price"><strong>From $139,000</strong> installed</p>
+          <p class="product-price"><strong>From C$179,000</strong> installed</p>
+          <p class="product-note">The building favourite. A larger hot room and a changing vestibule with its own shower.</p>
         </div>
         <div class="plan">
           <svg viewBox="0 0 120 44" aria-hidden="true">
-            <rect x="4" y="7" width="17" height="30" fill="none" stroke="var(--line-strong)"/>
-            <rect x="21" y="7" width="31" height="30" fill="var(--accent-soft)" stroke="var(--accent)"/>
-            <rect x="4" y="7" width="48" height="30" fill="none" stroke="var(--fg)" stroke-width=".8"/>
-            <circle cx="58" cy="12" r="3" fill="none" stroke="var(--line-strong)"/>
+            <rect x="5.5" y="8.5" width="4.3" height="12" fill="none" stroke="var(--line-strong)"/>
+            <rect x="11" y="8" width="16" height="28" fill="none" stroke="var(--line-strong)"/>
+            <rect x="11" y="8" width="9" height="9" fill="none" stroke="var(--line-strong)"/>
+            <circle cx="15.5" cy="12.5" r="1" fill="var(--line-strong)"/>
+            <rect x="29" y="8" width="28" height="28" fill="var(--accent-soft)" stroke="var(--accent)"/>
+            <rect x="29" y="8" width="28" height="12" fill="var(--accent-soft)"/>
+            <path d="M29 15h28M29 20h28" stroke="var(--accent)" stroke-width=".6"/>
+            <rect x="50.5" y="29.5" width="6" height="6" fill="var(--fg-2)"/>
+            <rect x="10" y="7" width="48" height="30" fill="none" stroke="var(--fg)" stroke-width=".8"/>
+            <path d="M29 37h28" stroke="var(--fg)" stroke-width="2.4"/>
           </svg>
-          <p class="plan-cap">Plan, to scale · sauna in ember</p>
+          <p class="plan-cap">Plan, to scale · sauna in ember · glass in bold</p>
         </div>
         <dl class="spec">
           <div><dt>Seats</dt><dd>8–10</dd></div>
-          <div><dt>Footprint</dt><dd>3.0 × 4.8 × 3.0 m (10' × 16' × 9'10")</dd></div>
-          <div><dt>Rooms</dt><dd>Sauna 2.8 × 2.8 m, changing vestibule 2.8 × 1.6 m, outdoor shower</dd></div>
-          <div><dt>Heater</dt><dd>1 × 18 kW, ETL/UL 875 listed</dd></div>
-          <div><dt>Dry weight</dt><dd>~4,500 kg (9,900 lb)</dd></div>
+          <div><dt>Footprint</dt><dd>3.0 × 4.8 × 3.0 m</dd></div>
+          <div><dt>Rooms</dt><dd>Sauna 2.8 × 2.8 m, ceiling 2.4 m; changing vestibule 2.8 × 1.6 m with an indoor shower; weatherproof lockers outside by the entry</dd></div>
+          <div><dt>Heater</dt><dd>1 × 18 kW, 208 V, Canadian-marked</dd></div>
+          <div><dt>Dry weight</dt><dd>~4,500 kg</dd></div>
           <div><dt>Install</dt><dd>2–3 days on site</dd></div>
         </dl>
       </article>
       <article class="card product">
         <div class="product-top">
           <h3 class="product-name">Summit</h3>
-          <p class="product-price"><strong>From $249,000</strong> installed</p>
+          <p class="product-price"><strong>From C$329,000</strong> installed</p>
+          <p class="product-note">The full ritual. Hot room, changing room and a terrace with a cold plunge.</p>
         </div>
         <div class="plan">
           <svg viewBox="0 0 120 44" aria-hidden="true">
-            <rect x="4" y="4" width="21" height="36" fill="none" stroke="var(--line-strong)"/>
-            <rect x="25" y="4" width="36" height="36" fill="var(--accent-soft)" stroke="var(--accent)"/>
-            <rect x="61" y="4" width="15" height="36" fill="none" stroke="var(--line-strong)"/>
-            <rect x="63" y="22" width="11" height="14" rx="1" fill="none" stroke="var(--line-strong)"/>
+            <rect x="5" y="5" width="28" height="34" fill="none" stroke="var(--line-strong)"/>
+            <rect x="5" y="5" width="4" height="14" fill="none" stroke="var(--line-strong)"/>
+            <rect x="35" y="5" width="40" height="34" fill="var(--accent-soft)" stroke="var(--accent)"/>
+            <rect x="35" y="5" width="40" height="12" fill="var(--accent-soft)"/>
+            <path d="M35 12h40M35 17h40" stroke="var(--accent)" stroke-width=".6"/>
+            <rect x="70" y="27" width="5" height="5" fill="var(--fg-2)"/>
+            <rect x="70" y="33.5" width="5" height="5" fill="var(--fg-2)"/>
             <rect x="4" y="4" width="72" height="36" fill="none" stroke="var(--fg)" stroke-width=".8"/>
+            <path d="M35 40h40" stroke="var(--fg)" stroke-width="2.4"/>
             <rect x="76" y="4" width="36" height="36" fill="none" stroke="var(--fg)" stroke-width=".8" stroke-dasharray="2 2"/>
+            <rect x="85" y="7.5" width="10" height="15" rx="1.5" fill="none" stroke="var(--line-strong)"/>
+            <rect x="102" y="30" width="9" height="9" fill="none" stroke="var(--line-strong)"/>
+            <circle cx="106.5" cy="34.5" r="1" fill="var(--line-strong)"/>
           </svg>
-          <p class="plan-cap">Plan, to scale · sauna in ember · terrace dashed</p>
+          <p class="plan-cap">Plan, to scale · sauna in ember · glass in bold · terrace dashed</p>
         </div>
         <dl class="spec">
           <div><dt>Seats</dt><dd>12–14</dd></div>
-          <div><dt>Footprint</dt><dd>3.6 × 7.2 × 3.1 m (12' × 24' × 10'2") + 3.6 × 3.6 m terrace deck</dd></div>
-          <div><dt>Rooms</dt><dd>Sauna 3.4 × 4.0 m, changing room 3.4 × 2.0 m, relaxation nook, cold plunge (1,200 L, chilled), outdoor shower</dd></div>
-          <div><dt>Heater</dt><dd>2 × 12 kW, ETL/UL 875 listed</dd></div>
-          <div><dt>Dry weight</dt><dd>~8,000 kg module + ~1,900 kg plunge filled</dd></div>
+          <div><dt>Footprint</dt><dd>3.6 × 7.2 × 3.1 m + 3.6 × 3.6 m terrace</dd></div>
+          <div><dt>Rooms</dt><dd>Sauna 3.4 × 4.0 m, ceiling 2.4 m; changing room 3.4 × 2.8 m with lockers; cold plunge (1,200 L, chilled) and outdoor shower on the terrace</dd></div>
+          <div><dt>Heater</dt><dd>2 × 12 kW, 208 V, Canadian-marked</dd></div>
+          <div><dt>Dry weight</dt><dd>~8,000 kg + ~1,900 kg plunge filled</dd></div>
           <div><dt>Install</dt><dd>4–6 days on site</dd></div>
         </dl>
       </article>
@@ -956,23 +995,23 @@ td small, th small { display: block; font-size: 13px; color: var(--fg-2); font-w
       <div>
         <h3 class="h3">Every Vantage includes</h3>
         <ul class="checks">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Engineered steel base frame</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Zero roof penetrations</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Double-glazed low-iron glass front</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Thermo-aspen interior</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>ETL/UL 875 listed heater</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Full-length, privacy-tinted glass front</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Two bench tiers, every seat facing out</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Solid wood side walls, thermo-aspen interior</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Engineered steel base frame, anchored in BC</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Canadian-marked 208 V heater</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Hard-wired one-hour heater timer</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Smart lock and booking app</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Session timers</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Emergency stop</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>850 mm clear door and emergency stop</li>
         </ul>
       </div>
       <div>
         <h3 class="h3">Add-ons</h3>
         <ul class="addons">
-          <li><span>Cold plunge for Lodge (1,200 L, 2 HP chiller)</span><span>$24,500</span></li>
-          <li><span>Terrace decking and privacy screens</span><span>$9,000–$24,000</span></li>
-          <li><span>Lighting scene pack</span><span>$3,500</span></li>
-          <li><span>Towel and robe station</span><span>$2,200</span></li>
+          <li><span>Cold plunge for Lodge (1,200 L, chilled)</span><span>C$34,500</span></li>
+          <li><span>Terrace decking and privacy screens</span><span>C$12,500–34,000</span></li>
+          <li><span>Lighting scene pack</span><span>C$5,000</span></li>
+          <li><span>Towel and robe station</span><span>C$3,000</span></li>
         </ul>
       </div>
     </div>
@@ -984,20 +1023,20 @@ td small, th small { display: block; font-size: 13px; color: var(--fg-2); font-w
   <div class="wrap">
     <div class="section-head">
       <p class="eyebrow">How it works</p>
-      <h2 class="h2">From site assessment to first session in 6–10 weeks.</h2>
+      <h2 class="h2">From site assessment to first session in 12–20 weeks.</h2>
     </div>
     <ol class="steps">
-      <li class="step"><span class="step-num">1</span><div><h3>Site assessment</h3><p>Free. A 48-hour roof and electrical check: deck rating, crane or elevator access, and the three-phase feed.</p></div></li>
-      <li class="step"><span class="step-num">2</span><div><h3>Structural review and engineering package</h3><p>A structural engineer reviews the deck and specifies ballast and parapet tie-back. No install without it.</p></div></li>
-      <li class="step"><span class="step-num">3</span><div><h3>Design and permit set</h3><p>Placement, electrical and drainage drawings, and the permit package for your jurisdiction.</p></div></li>
-      <li class="step"><span class="step-num">4</span><div><h3>Factory build</h3><p>4–6 weeks. Panels, glazing and heater are assembled and tested before they leave the factory.</p></div></li>
-      <li class="step"><span class="step-num">5</span><div><h3>Elevator or crane install</h3><p>1–6 days on site depending on model. A flat-pack kit by freight elevator (the default for Perch and Lodge), or a module by crane.</p></div></li>
-      <li class="step"><span class="step-num">6</span><div><h3>Commissioning, training and launch event</h3><p>Heater commissioning, staff training, Vantage Access set up, and a launch evening for your residents or guests.</p></div></li>
+      <li class="step"><span class="step-num">1</span><div><h3>Site assessment</h3><p>Free, with an answer in 48 hours. We check the roof's load rating, elevator or crane access, and whether the building has 208 V or only 600 V power.</p></div></li>
+      <li class="step"><span class="step-num">2</span><div><h3>Structural and seismic engineering</h3><p>A structural engineer licensed in your province checks the roof and designs the base: engineered anchors in Vancouver and Victoria, ballast where a Toronto site allows it. No install without it.</p></div></li>
+      <li class="step"><span class="step-num">3</span><div><h3>Approvals and permits</h3><p>A strata or condo vote where one is needed, then building, electrical and plumbing permits. A cold plunge adds a pool permit, and a crane lift a street-use permit. We prepare the drawings.</p></div></li>
+      <li class="step"><span class="step-num">4</span><div><h3>Factory build</h3><p>4–6 weeks in our Fraser Valley workshop, while the permits are in review. Panels, glazing and heater are assembled and tested before they ship.</p></div></li>
+      <li class="step"><span class="step-num">5</span><div><h3>Elevator or crane install</h3><p>1–6 days on site depending on model. A flat-pack kit by service elevator (the default for Perch and Lodge; no panel larger than 2.0 × 1.1 m), or a module by crane.</p></div></li>
+      <li class="step"><span class="step-num">6</span><div><h3>Commissioning, training and launch event</h3><p>Heater commissioning, staff training, Vantage Access set-up, and a launch evening for your residents or guests.</p></div></li>
     </ol>
     <div class="timeline" aria-label="Total timeline">
-      <span class="chip"><b>6–10 weeks</b> Perch and Lodge</span>
-      <span class="chip"><b>10–14 weeks</b> Summit</span>
-      <span class="muted" style="font-size:14.5px">Total, from signed contract to first session.</span>
+      <span class="chip"><b>12–20 weeks</b> Perch and Lodge</span>
+      <span class="chip"><b>16–26 weeks</b> Summit</span>
+      <span class="muted" style="font-size:14.5px">Total, from signed contract to first session, including permits and any owners' vote.</span>
     </div>
   </div>
 </section>
@@ -1009,28 +1048,36 @@ td small, th small { display: block; font-size: 13px; color: var(--fg-2); font-w
       <div class="section-head" style="margin-bottom:0">
         <p class="eyebrow">Engineering and safety</p>
         <h2 class="h2">Engineered for the roof, not adapted to it.</h2>
-        <p class="lede">Every number below is in the specification we hand to your structural engineer, your insurer and your permit office.</p>
+        <p class="lede">Designed for the BC Building Code, the Vancouver Building By-law and the Ontario Building Code. Every number below is in the specification we hand to your structural engineer, your insurer and your permit office.</p>
       </div>
       <ul class="eng-list">
         <li>
-          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17h18M5 17v-4h14v4M9 13V7h6v6"/></svg>Steel base frame and ballast</h3>
-          <p>Hot-dip galvanised frame on adjustable feet and rubber pads, with ballast trays and parapet tie-back brackets. Designed for occupiable roofs rated 100 psf (4.8 kPa); the frame carries the load to the building's beams and columns, and a structural engineer reviews the point loads on every project.</p>
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17h18M5 17v-4h14v4M9 13V7h6v6"/></svg>Steel base frame, anchored for earthquakes</h3>
+          <p>Hot-dip galvanized frame on adjustable feet and rubber pads, designed for occupied roofs rated 4.8 kPa under the National Building Code and the BC and Ontario codes. Vancouver and Victoria are in Canada's highest seismic category, so in BC the frame is bolted to the structure with engineered anchors, flashed by a roofer. In Toronto, a ballasted base with no roof penetrations can pass where the site is seismic category SC1 or SC2 and the wind checks pass.</p>
         </li>
         <li>
-          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 7v6c0 4.5 3.5 7.5 8 8 4.5-.5 8-3.5 8-8V7z"/></svg>Non-combustible build</h3>
-          <p>90 mm mineral-wool insulation (Euroclass A1), 12 mm fibre-cement sheathing and a standing-seam steel roof.</p>
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h6l-1 9 8-12h-6z"/></svg>Canadian-marked heaters</h3>
+          <p>Commercial heaters rated for 208 V and marked cETLus, cULus or CSA to CSA C22.2 No. 164, wired to the Canadian Electrical Code. Each cycle ends on a hard-wired one-hour timer with no override, as Ontario requires, backed by an over-temperature cut-off and a door sensor. Buildings with only 347/600 V service get a step-down transformer kit.</p>
         </li>
         <li>
-          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h6l-1 9 8-12h-6z"/></svg>Commercial heater, ETL/UL 875 listed</h3>
-          <p>10.5 to 24 kW on 208–240 V three-phase, sized for the glass front, with a 60-minute session timer, over-temperature cut-off and door sensor.</p>
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 7v6c0 4.5 3.5 7.5 8 8 4.5-.5 8-3.5 8-8V7z"/></svg>Built for noncombustible towers</h3>
+          <p>Mineral-wool insulation (Euroclass A1), fibre-cement sheathing and a standing-seam steel roof. For towers of noncombustible construction we offer a noncombustible wood-look cladding, use tested ceiling boards (flame spread 25 or less), make the module sprinkler-ready with a high-temperature head, and tie a horn and strobe to the building alarm.</p>
+        </li>
+        <li>
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="2"/><path d="M12 8v6M8 10h8M9 21l3-7 3 7"/></svg>Accessible by design</h3>
+          <p>An 850 mm clear sauna door, a 1,500 mm turning space in the Lodge and Summit hot rooms (CSA B651), and a transfer section on the lower bench. The barrier-free route to the roof is the building's part; Ontario requires one for rooftop amenity spaces.</p>
+        </li>
+        <li>
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="m8 12 3 3 5-6"/></svg>Factory certification planned</h3>
+          <p>We plan to certify our workshop to CSA A277, the Canadian procedure for factory-built buildings, so inspectors can accept concealed work without opening panels. In Ontario, an A277-certified module is deemed to comply with the building code; the installation is still inspected. We are also seeking a listing of the whole module, heater and room together, to C22.2 No. 164.</p>
+        </li>
+        <li>
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 15c2 0 2-1.5 4.5-1.5S9.5 15 12 15s2-1.5 4.5-1.5S19 15 21 15M3 19c2 0 2-1.5 4.5-1.5S9.5 19 12 19s2-1.5 4.5-1.5S19 19 21 19M8 11V5a2 2 0 0 1 4 0"/></svg>Cold plunge, run as a pool</h3>
+          <p>BC and Ontario both regulate a cold plunge as a pool. Ours comes with chlorine or bromine dosing and logging, a handrail, a clock, signs, an emergency stop and a health notice, and we prepare the health-authority permit application with you.</p>
         </li>
         <li>
           <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 15v2"/></svg>Access and safety</h3>
-          <p>Smart lock, occupancy sensor, emergency stop, and an interior temperature cap of 90 °C (194 °F). Exterior safety signage, first-aid and a drinking-water station.</p>
-        </li>
-        <li>
-          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h18M6 12V8h12v4"/><path d="m5 20 2-4h10l2 4"/></svg>Zero roof penetrations</h3>
-          <p>Ballast and tie-back hold the module in place. The floor drain and the roof gutter run to your existing roof drain.</p>
+          <p>Smart lock, occupancy sensor, emergency stop, and an interior temperature cap of 90 °C. Exterior safety signage, first aid and a drinking-water station.</p>
         </li>
       </ul>
     </div>
@@ -1047,17 +1094,17 @@ td small, th small { display: block; font-size: 13px; color: var(--fg-2); font-w
     <div class="plans">
       <article class="plan-card">
         <p class="eyebrow">Vantage Access</p>
-        <p class="price">$249<small> / month per building</small></p>
-        <p>Resident and guest booking, smart-lock access, session timers, usage analytics, and revenue tools for hotels. Your building's sauna, in your residents' pockets.</p>
+        <p class="price">C$300<small> / month per building</small></p>
+        <p>Resident and guest booking, smart-lock access, session timers that work within the one-hour heater cut-off, usage analytics, and session pricing for hotels. Your building's sauna, in your residents' pockets.</p>
       </article>
       <article class="plan-card">
         <p class="eyebrow">Vantage Care</p>
-        <p class="price">From $350<small> / month</small></p>
-        <p>Quarterly inspections, heater stone replacement, bench refinishing, parts, and 24-hour support. Nobody on your staff needs to learn how a sauna works.</p>
+        <p class="price">From C$450<small> / month</small></p>
+        <p>Quarterly inspections, heater stones, bench refinishing, parts, 24-hour support, and water-quality logging for cold plunges. Nobody on your staff needs to learn how a sauna works.</p>
         <div class="tiers">
-          <div><b>Perch</b><span>$350 / mo</span></div>
-          <div><b>Lodge</b><span>$550 / mo</span></div>
-          <div><b>Summit</b><span>$900 / mo</span></div>
+          <div><b>Perch</b><span>C$450 /&nbsp;mo</span></div>
+          <div><b>Lodge</b><span>C$700 /&nbsp;mo</span></div>
+          <div><b>Summit</b><span>C$1,150 /&nbsp;mo</span></div>
         </div>
       </article>
     </div>
@@ -1082,16 +1129,16 @@ td small, th small { display: block; font-size: 13px; color: var(--fg-2); font-w
           </tr>
         </thead>
         <tbody>
-          <tr><td class="model">Perch</td><td class="num">from $78,000</td><td class="num">from $1,650 / mo</td><td class="num">$350 / mo</td></tr>
-          <tr><td class="model">Lodge</td><td class="num">from $139,000</td><td class="num">from $2,950 / mo</td><td class="num">$550 / mo</td></tr>
-          <tr><td class="model">Summit</td><td class="num">from $249,000</td><td class="num">from $5,200 / mo</td><td class="num">$900 / mo</td></tr>
+          <tr><td class="model">Perch</td><td class="num">from C$99,000</td><td class="num">from C$2,150 / mo</td><td class="num">C$450 / mo</td></tr>
+          <tr><td class="model">Lodge</td><td class="num">from C$179,000</td><td class="num">from C$3,850 / mo</td><td class="num">C$700 / mo</td></tr>
+          <tr><td class="model">Summit</td><td class="num">from C$329,000</td><td class="num">from C$6,800 / mo</td><td class="num">C$1,150 / mo</td></tr>
         </tbody>
       </table>
     </div>
     <div class="notes">
-      <p>Vantage Access is $249 a month per building. Site prep (structural review, electrical feed) is billed separately at $8,000–$25,000.</p>
-      <p>Purchase terms: 50% at contract, 40% at delivery, 10% at commissioning. Vantage Flex is a lease through a third-party equipment-finance partner.</p>
-      <p>Prices in USD. Installed prices are from-prices and depend on site conditions.</p>
+      <p>Vantage Access is C$300 a month per building. Site preparation is quoted separately: seismic anchors and roof flashing in BC (C$8,000–15,000), a 600 V to 208 V transformer kit where the building has only 347/600 V service (C$10,000–25,000), structural reinforcement where the roof is not rated for occupied use (4.8 kPa), and street-use and crane permits for module lifts.</p>
+      <p>Purchase terms: 50% at contract, 40% at delivery, 10% at commissioning. Vantage Flex is a lease through a Canadian equipment-finance partner.</p>
+      <p>Prices in Canadian dollars, before GST/PST/HST. Hotels and short-stay operators generally recover GST/HST; condo corporations and long-term rental landlords generally cannot, so we quote them with tax shown. Installed prices are from-prices and depend on site conditions.</p>
     </div>
   </div>
 </section>
@@ -1106,35 +1153,51 @@ td small, th small { display: block; font-size: 13px; color: var(--fg-2); font-w
     <div class="faq">
       <details>
         <summary>Will my roof take the weight?</summary>
-        <p>Our suites are designed for occupiable roofs rated 100 psf (4.8 kPa), the code load for roofs people gather on, and the steel base frame carries the weight to the building's beams and columns rather than spreading it across the deck. A structural engineer reviews the point loads on every site before we quote; if your deck is rated lower (many New York residential decks are 60 psf), we quote the reinforcement as site prep. We don't install without that review.</p>
+        <p>Our suites are designed for occupied roofs rated 4.8 kPa, the load the National, BC and Ontario building codes set for roofs people gather on. Many existing roofs were designed only for maintenance and snow, which is far less. So a structural engineer licensed in your province reviews the roof and the point loads before we quote. If the roof needs reinforcement, we quote it as site preparation. We don't install without that review.</p>
       </details>
       <details>
-        <summary>Do you penetrate the roof?</summary>
-        <p>No. The base is ballasted and tied back to the parapet as the structural engineer specifies, on adjustable feet with rubber load-spreading pads. The floor drain and the roof gutter run to your existing roof drain, so nothing goes through the membrane.</p>
+        <summary>Do you drill into the roof?</summary>
+        <p>In Vancouver and Victoria, yes, in a controlled way. Both cities are in Canada's highest seismic category, and the code does not let friction alone hold a rooftop structure in place during an earthquake. So the base frame is bolted to the building's structure with 4–8 engineered anchors, each flashed by a roofer. In Toronto, a ballasted base with no penetrations can pass where the site is seismic category SC1 or SC2 and the wind checks pass. Either way, the floor drain and roof gutter run to your existing roof drain.</p>
       </details>
       <details>
         <summary>What about fire code and insurance?</summary>
-        <p>The walls use non-combustible mineral-wool insulation (Euroclass A1) behind fibre-cement sheathing, under a standing-seam steel roof. The heater is ETL/UL 875 listed with a 60-minute session timer and over-temperature cut-off, and the interior is capped at 90 °C (194 °F). Permits are required on every project; we prepare the design and permit set and walk your insurer through the package.</p>
+        <p>The walls use noncombustible mineral-wool insulation behind fibre-cement sheathing, under a standing-seam steel roof. Most towers are of noncombustible construction, so for them we use a noncombustible wood-look cladding, tested ceiling boards with a flame spread of 25 or less, a sprinkler-ready module with a high-temperature head, and a horn and strobe tied to the building alarm. Permits are required on every project; we prepare the permit set and walk your insurer through it.</p>
+      </details>
+      <details>
+        <summary>Are the heaters approved for Canada?</summary>
+        <p>We use only heaters that carry a Canadian mark (cETLus, cULus or CSA) to CSA C22.2 No. 164, rated for 208 V. A US-only ETL or UL mark is not enough in Canada. Every heater runs on a hard-wired one-hour timer with no override, as Ontario's electrical code requires, plus an over-temperature cut-off, and the interior is capped at 90 °C.</p>
+      </details>
+      <details>
+        <summary>Our building has 600 V power. Is that a problem?</summary>
+        <p>No, but it adds a step. Sauna heaters certified in Canada are rated 300 V or less, so a roof with only 347/600 V service needs a step-down transformer kit to 208 V. We quote it as site preparation, at C$10,000–25,000 depending on the run from the electrical room. The site assessment checks your supply first, so you know before you commit.</p>
       </details>
       <details>
         <summary>How long does it take?</summary>
-        <p>6–10 weeks from signed contract to first session for Perch and Lodge, and 10–14 weeks for Summit. The factory build takes 4–6 weeks and the on-site install 1–6 days depending on model. Structural review and permits sit inside that window, and a slow permit office can stretch it.</p>
+        <p>12–20 weeks from signed contract to first session for Perch and Lodge, and 16–26 weeks for Summit. That covers engineering, any strata or condo vote, building and electrical permits, and the pool permit for a cold plunge. The factory build takes 4–6 weeks while permits are in review, and the on-site install 1–6 days depending on model.</p>
+      </details>
+      <details>
+        <summary>How does a BC strata approve it?</summary>
+        <p>A rooftop suite is a significant change to common property, so under the Strata Property Act it needs a 3/4 vote of the votes cast at a general meeting. Paying from the contingency reserve fund or by special levy needs a second 3/4 vote, and both resolutions can go on the same agenda. We supply an information-session kit, a structural summary and sample resolutions. Plan for 4–9 months from first conversation to the vote.</p>
+      </details>
+      <details>
+        <summary>What about condos in Ontario?</summary>
+        <p>Under Ontario's Condominium Act, a change that costs more than 10% of the annual budget needs owners of at least 66⅔% of all units to vote yes. Below that line, the board can go ahead after giving owners notice, unless owners of 15% of units call a meeting within 30 days and vote it down. In larger towers a Perch or Lodge can fall under the line. The reserve fund cannot pay for a new amenity, so we offer Vantage Flex. We start Toronto projects in 2028.</p>
+      </details>
+      <details>
+        <summary>Do you charge GST, PST or HST?</summary>
+        <p>Our prices are before tax. In Ontario we charge 13% HST. In BC we charge 5% GST, plus 7% PST where it applies; we are confirming with the BC Ministry of Finance how PST applies to a suite, and every quote shows it. Hotels and short-stay operators can usually recover GST/HST. Condo corporations and long-term rental landlords usually cannot, so we quote them with tax included.</p>
       </details>
       <details>
         <summary>Who maintains it?</summary>
-        <p>Vantage Care does: quarterly inspections, heater stone replacement, bench refinishing, parts and 24-hour support, for $350, $550 or $900 a month by model. Your staff don't need to touch the sauna beyond keeping the roof deck clear.</p>
+        <p>Vantage Care does: quarterly inspections, heater stones, bench refinishing, parts, 24-hour support and plunge water logging, for C$450, C$700 or C$1,150 a month by model. Your staff don't need to touch the sauna beyond keeping the roof deck clear.</p>
       </details>
       <details>
         <summary>How do residents book it?</summary>
-        <p>Through Vantage Access, the booking app included at $249 a month per building. Residents reserve a session, the smart lock opens for them at their time, and the session timer runs the heater. Managers see usage analytics.</p>
+        <p>Through Vantage Access, at C$300 a month per building. Residents reserve a session, the smart lock opens for them at their time, and each booking starts one heater cycle of up to an hour. The app cannot extend a cycle past the timer. Managers see usage analytics.</p>
       </details>
       <details>
         <summary>Can hotels charge for it?</summary>
-        <p>Yes. Vantage Access includes guest booking and revenue tools, and hotels typically price sessions at $35–60 per guest. For a limited number of pilot hotels we also offer a revenue-share model: $0 upfront, Vantage takes 35% of session revenue, 5-year term, $1,500 a month minimum.</p>
-      </details>
-      <details>
-        <summary>What if we have no three-phase power?</summary>
-        <p>The heaters run on 208–240 V three-phase, so a new feed becomes part of site prep, which is billed separately at $8,000–$25,000 depending on the run. The 48-hour site assessment checks your electrical capacity first, so you know before you commit. In the buildings we assess, the question is usually the run to the roof rather than the service itself.</p>
+        <p>Yes. Vantage Access includes guest booking and session pricing, and Vancouver guests already pay: Fairmont Pacific Rim sells 45-minute sessions at C$40. For up to three lighthouse hotels we also offer a revenue-share pilot: C$0 upfront, Vantage takes 35% of session revenue, 5-year term, C$2,000 a month minimum.</p>
       </details>
     </div>
   </div>
@@ -1147,8 +1210,8 @@ td small, th small { display: block; font-size: 13px; color: var(--fg-2); font-w
       <div class="lead-aside">
         <p class="eyebrow">Request a site assessment</p>
         <h2 class="h2">Tell us about your roof.</h2>
-        <p>Free, and it takes 48 hours. We check the deck rating, crane or elevator access and the electrical feed, then tell you which model fits and what it will cost.</p>
-        <p class="lead-note">Now assessing buildings in the New York City metro. Next: Chicago, Boston, Toronto, Denver, Seattle and Minneapolis.</p>
+        <p>Free, and it takes 48 hours. We check the roof's load rating, elevator or crane access and the electrical supply, then tell you which model fits and what it will cost.</p>
+        <p class="lead-note">Now assessing buildings in Metro Vancouver and Greater Victoria. Toronto and the GTA from 2028. Ask about pilot pricing for 2027 installs.</p>
       </div>
 
       <form class="form" id="lead-form" novalidate>
@@ -1157,21 +1220,22 @@ td small, th small { display: block; font-size: 13px; color: var(--fg-2); font-w
           <div class="field"><label for="f-email">Work email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
         </div>
         <div class="form-row">
-          <div class="field"><label for="f-company">Company</label><input id="f-company" name="company" type="text" autocomplete="organization"></div>
-          <div class="field"><label for="f-role">Role</label><input id="f-role" name="role" type="text" autocomplete="organization-title" placeholder="Asset manager, GM, owner"></div>
+          <div class="field"><label for="f-company">Company or strata</label><input id="f-company" name="company" type="text" autocomplete="organization"></div>
+          <div class="field"><label for="f-role">Role</label><input id="f-role" name="role" type="text" autocomplete="organization-title" placeholder="Owner, GM, strata council"></div>
         </div>
         <div class="form-row">
           <div class="field">
             <label for="f-type">Building type</label>
             <select id="f-type" name="buildingType" required>
               <option value="">Select</option>
-              <option>Apartment building</option>
+              <option>Rental tower or business apartments</option>
               <option>Hotel</option>
-              <option>Office</option>
+              <option>Condo or strata</option>
+              <option>New development</option>
               <option>Other</option>
             </select>
           </div>
-          <div class="field"><label for="f-city">City</label><input id="f-city" name="city" type="text" autocomplete="address-level2"></div>
+          <div class="field"><label for="f-city">City</label><input id="f-city" name="city" type="text" autocomplete="address-level2" placeholder="Vancouver, Victoria, Toronto"></div>
         </div>
         <div class="form-row">
           <div class="field">
@@ -1182,8 +1246,6 @@ td small, th small { display: block; font-size: 13px; color: var(--fg-2); font-w
               <option>50–150 units or rooms</option>
               <option>150–300 units or rooms</option>
               <option>300+ units or rooms</option>
-              <option>Office under 100,000 sq ft</option>
-              <option>Office 100,000 sq ft or more</option>
               <option>Not sure</option>
             </select>
           </div>
@@ -1191,13 +1253,13 @@ td small, th small { display: block; font-size: 13px; color: var(--fg-2); font-w
             <label for="f-access">Roof access</label>
             <select id="f-access" name="roofAccess">
               <option value="">Select</option>
+              <option>Service or freight elevator</option>
               <option>Crane access</option>
-              <option>Freight elevator</option>
               <option>Unsure</option>
             </select>
           </div>
         </div>
-        <div class="field"><label for="f-message">Message <span>(optional)</span></label><textarea id="f-message" name="message" placeholder="Roof deck rating if you know it, timing, anything else"></textarea></div>
+        <div class="field"><label for="f-message">Message <span>(optional)</span></label><textarea id="f-message" name="message" placeholder="Roof load rating (kPa) if you know it, electrical service (208 V or 600 V), timing, anything else"></textarea></div>
         <div class="form-foot">
           <small>We use this only to arrange your assessment.</small>
           <button class="btn btn-primary" id="lead-submit" type="submit">Request a site assessment</button>
@@ -1247,12 +1309,13 @@ td small, th small { display: block; font-size: 13px; color: var(--fg-2); font-w
         <h4>Contact</h4>
         <ul class="footer-links">
           <li><a href="mailto:hello@vantagesauna.example">hello@vantagesauna.example</a></li>
-          <li class="muted">New York City metro</li>
+          <li class="muted">Workshop in the Fraser Valley, BC</li>
+          <li class="muted">Vancouver and Victoria now; Toronto from 2028</li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>Prices in USD; installed prices are from-prices and depend on site conditions.</span>
+      <span>Prices in Canadian dollars, before GST/PST/HST; installed prices are from-prices and depend on site conditions.</span>
       <span>© 2026 Vantage Sauna Co.</span>
     </div>
   </div>
